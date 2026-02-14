@@ -7,6 +7,7 @@
 import { AthenaConfigManager } from './5-engine/lib/ConfigManager.js';
 import { ProjectController } from './5-engine/controllers/ProjectController.js';
 import { SiteController } from './5-engine/controllers/SiteController.js';
+import { MarketingController } from './5-engine/controllers/MarketingController.js';
 import { AthenaInterpreter } from './5-engine/lib/Interpreter.js';
 import path from 'path';
 import fs from 'fs';
@@ -20,6 +21,7 @@ const root = path.resolve(__dirname, '..');
 const config = new AthenaConfigManager(root);
 const projectCtrl = new ProjectController(config);
 const siteCtrl = new SiteController(config);
+const marketingCtrl = new MarketingController(config);
 const interpreter = new AthenaInterpreter(config);
 
 const command = process.argv[2];
@@ -34,6 +36,12 @@ async function run() {
 
             case 'list-sites':
                 console.log(JSON.stringify(siteCtrl.list(), null, 2));
+                break;
+
+            case 'generate-blog':
+                // Usage: athena-agent generate-blog <projectName> [topic]
+                const blogResult = await marketingCtrl.generateBlog(args[0], args[1]);
+                console.log(JSON.stringify(blogResult, null, 2));
                 break;
 
             case 'create-site':
