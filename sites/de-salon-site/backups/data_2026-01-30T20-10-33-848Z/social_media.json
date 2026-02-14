@@ -1,0 +1,14 @@
+[
+  {
+    "social_id": 1,
+    "naam": "Facebook",
+    "icoon_klasse": "fa",
+    "url": ""
+  },
+  {
+    "social_id": 2,
+    "naam": "Instagram",
+    "icoon_klasse": "in",
+    "url": ""
+  }
+]

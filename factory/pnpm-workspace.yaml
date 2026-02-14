@@ -1,0 +1,7 @@
+packages:
+  - '5-engine'
+  - '2-templates'
+  - 'sites/*'
+
+onlyBuiltDependencies:
+  - esbuild

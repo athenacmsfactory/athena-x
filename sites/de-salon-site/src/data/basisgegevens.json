@@ -1,0 +1,15 @@
+[
+  {
+    "bedrijfsnaam": "De Schaar",
+    "adres": "Dok Noord 3, 9000 Gent",
+    "email_algemeen": "info@deschaar-gent.be",
+    "telefoonnummer": "09 123 45 67",
+    "kvk_nummer": "BE 0123.456.789",
+    "missie_kern": "We care About your hair",
+    "missie_uitgebreid": "Het combineren van schoonheid, milieubewustheid en welzijn. Dat is onze missie.",
+    "copyright_tekst": "© 2026 De Schaar",
+    "privacy_beleid_link": "/Privacybeleid",
+    "cookies_beleid_link": "/Cookies",
+    "afbeelding": "salon_hero.png"
+  }
+]

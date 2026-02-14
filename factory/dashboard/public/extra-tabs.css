@@ -1,0 +1,38 @@
+
+/* --- TABS --- */
+.tabs {
+    overflow: hidden;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 20px;
+}
+
+.tabs button {
+    background-color: inherit;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 10px 20px;
+    transition: 0.3s;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    border-bottom: 2px solid transparent;
+}
+
+.tabs button:hover {
+    color: var(--text-main);
+}
+
+.tabs button.active {
+    color: var(--accent);
+    border-bottom: 2px solid var(--accent);
+}
+
+.tab-content {
+    animation: fadeEffect 0.5s;
+}
+
+@keyframes fadeEffect {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}

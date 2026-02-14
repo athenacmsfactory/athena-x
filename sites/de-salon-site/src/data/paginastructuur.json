@@ -1,0 +1,44 @@
+[
+  {
+    "pagina_id": 1,
+    "titel_navigatie": "Home",
+    "slug": "home",
+    "menu_positie": 1,
+    "is_call_to_action": false
+  },
+  {
+    "pagina_id": 2,
+    "titel_navigatie": "Tarieven",
+    "slug": "diensten_tarieven",
+    "menu_positie": 2,
+    "is_call_to_action": false
+  },
+  {
+    "pagina_id": 3,
+    "titel_navigatie": "Team",
+    "slug": "teamleden",
+    "menu_positie": 3,
+    "is_call_to_action": false
+  },
+  {
+    "pagina_id": 4,
+    "titel_navigatie": "Aveda",
+    "slug": "aveda_informatie",
+    "menu_positie": 4,
+    "is_call_to_action": false
+  },
+  {
+    "pagina_id": 5,
+    "titel_navigatie": "Locaties",
+    "slug": "locaties",
+    "menu_positie": 5,
+    "is_call_to_action": false
+  },
+  {
+    "pagina_id": 6,
+    "titel_navigatie": "Contact",
+    "slug": "basisgegevens",
+    "menu_positie": 6,
+    "is_call_to_action": true
+  }
+]

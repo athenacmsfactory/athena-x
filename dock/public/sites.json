@@ -1,0 +1,172 @@
+[
+  {
+    "id": "test-upgrade-site",
+    "name": "test-upgrade-site",
+    "siteType": "basic-dock-type",
+    "generatedAt": "2026-02-12T21:03:02.877Z",
+    "governance_mode": "dev-mode",
+    "repoUrl": null,
+    "liveUrl": null,
+    "port": 6009
+  },
+  {
+    "id": "demo-consultant-classic",
+    "name": "demo-consultant-classic",
+    "siteType": "athena-showcase",
+    "generatedAt": "2026-02-12T17:29:29.537Z",
+    "governance_mode": "dev-mode",
+    "repoUrl": null,
+    "liveUrl": null,
+    "port": 5089
+  },
+  {
+    "id": "demo-consultant-bold",
+    "name": "demo-consultant-bold",
+    "siteType": "athena-showcase",
+    "generatedAt": "2026-02-12T17:29:29.515Z",
+    "governance_mode": "dev-mode",
+    "repoUrl": null,
+    "liveUrl": null,
+    "port": 5113
+  },
+  {
+    "id": "demo-portfolio-warm",
+    "name": "demo-portfolio-warm",
+    "siteType": "karel-portfolio-ath",
+    "generatedAt": "2026-02-12T17:28:39.047Z",
+    "governance_mode": "dev-mode",
+    "repoUrl": null,
+    "liveUrl": null,
+    "port": 5179
+  },
+  {
+    "id": "demo-portfolio-corporate",
+    "name": "demo-portfolio-corporate",
+    "siteType": "karel-portfolio-ath",
+    "generatedAt": "2026-02-12T17:28:39.026Z",
+    "governance_mode": "dev-mode",
+    "repoUrl": null,
+    "liveUrl": null,
+    "port": 5860
+  },
+  {
+    "id": "demo-bakkerij",
+    "name": "demo-bakkerij",
+    "siteType": "chocolade-shop-type",
+    "generatedAt": "2026-02-07T21:23:23.363Z",
+    "governance_mode": "dev-mode",
+    "repoUrl": null,
+    "liveUrl": null,
+    "port": 5459
+  },
+  {
+    "id": "demo-consultant",
+    "name": "demo-consultant",
+    "siteType": "athena-showcase",
+    "generatedAt": "2026-02-07T20:18:30.943Z",
+    "governance_mode": "dev-mode",
+    "repoUrl": null,
+    "liveUrl": null,
+    "port": 5982
+  },
+  {
+    "id": "urban-soles",
+    "name": "urban-soles",
+    "siteType": "webshop-pay",
+    "generatedAt": "2026-02-04T15:55:27.705Z",
+    "governance_mode": "dev-mode",
+    "repoUrl": null,
+    "liveUrl": null,
+    "port": 5815
+  },
+  {
+    "id": "demo-portfolio",
+    "name": "demo-portfolio",
+    "siteType": "karel-portfolio-ath",
+    "generatedAt": "2026-02-04T15:55:26.650Z",
+    "governance_mode": "dev-mode",
+    "repoUrl": null,
+    "liveUrl": null,
+    "port": 5736
+  },
+  {
+    "id": "athena-hub",
+    "name": "athena-hub",
+    "siteType": "professional-service-provider",
+    "generatedAt": "2026-02-04T15:55:23.382Z",
+    "governance_mode": "dev-mode",
+    "repoUrl": "https://github.com/athena-cms-factory/athena-hub",
+    "liveUrl": "https://athena-cms-factory.github.io/athena-hub",
+    "port": 6041
+  },
+  {
+    "id": "karel-portfolio-ath",
+    "name": "karel-portfolio-ath",
+    "siteType": "karel-portfolio-ath",
+    "generatedAt": "2026-01-31T13:10:44.187Z",
+    "governance_mode": "dev-mode",
+    "repoUrl": "https://github.com/athena-cms-factory/karel-portfolio-ath",
+    "liveUrl": "https://athena-cms-factory.github.io/karel-portfolio-ath",
+    "port": 6104
+  },
+  {
+    "id": "karel-webdesign",
+    "name": "karel-webdesign",
+    "siteType": "karel-webdesign",
+    "generatedAt": "2026-01-31T13:10:39.119Z",
+    "governance_mode": "dev-mode",
+    "repoUrl": "https://github.com/athena-cms-factory/karel-webdesign",
+    "liveUrl": "https://athena-cms-factory.github.io/karel-webdesign",
+    "port": 6105
+  },
+  {
+    "id": "athena-pro",
+    "name": "athena-pro",
+    "siteType": "professional-service-provider",
+    "generatedAt": "2026-01-30T11:33:00.674Z",
+    "governance_mode": "dev-mode",
+    "repoUrl": "https://github.com/athena-cms-factory/athena-pro",
+    "liveUrl": "https://athena-cms-factory.github.io/athena-pro",
+    "port": 6001
+  },
+  {
+    "id": "nieuwe-tanden",
+    "name": "nieuwe-tanden",
+    "siteType": "science-article-type",
+    "generatedAt": "2026-01-29T15:47:03.709Z",
+    "governance_mode": "dev-mode",
+    "repoUrl": "https://github.com/athena-cms-factory/nieuwe-tanden",
+    "liveUrl": "https://athena-cms-factory.github.io/nieuwe-tanden",
+    "port": 6106
+  },
+  {
+    "id": "fpc-gent-site",
+    "name": "fpc-gent",
+    "siteType": "mpa-hydra",
+    "generatedAt": "2026-01-28T17:40:25.598Z",
+    "governance_mode": "dev-mode",
+    "repoUrl": null,
+    "liveUrl": null,
+    "port": 6103
+  },
+  {
+    "id": "chocolade-shop",
+    "name": "chocolade-shop",
+    "siteType": "webshop-order",
+    "generatedAt": "2026-01-27T14:51:59.792Z",
+    "governance_mode": "dev-mode",
+    "repoUrl": "https://github.com/athena-cms-factory/chocolade-shop",
+    "liveUrl": "https://athena-cms-factory.github.io/chocolade-shop",
+    "port": 6101
+  },
+  {
+    "id": "de-salon-site",
+    "name": "de-salon-site",
+    "siteType": "de-salon-type",
+    "generatedAt": "2026-01-22T15:08:39.843Z",
+    "governance_mode": "dev-mode",
+    "repoUrl": "https://github.com/athena-cms-factory/de-salon-site",
+    "liveUrl": "https://athena-cms-factory.github.io/de-salon-site",
+    "port": 6102
+  }
+]

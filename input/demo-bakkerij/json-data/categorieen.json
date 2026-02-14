@@ -1,0 +1,17 @@
+[
+  {
+    "categorie_id": 1,
+    "naam": "Brood",
+    "slug": "brood"
+  },
+  {
+    "categorie_id": 2,
+    "naam": "Gebak",
+    "slug": "gebak"
+  },
+  {
+    "categorie_id": 3,
+    "naam": "Taart",
+    "slug": "taart"
+  }
+]

@@ -1,0 +1,10 @@
+[
+  {
+    "title": "De Schaar",
+    "hero_image": "hero_de-schaar-1.png",
+    "hero_height": "85vh",
+    "hero_max_height": "150vh",
+    "hero_aspect_ratio": "16/9",
+    "light_title_color": "#c8cfdf"
+  }
+]

@@ -1,0 +1,71 @@
+name: 🔱 Athena Monorepo Publisher
+
+on:
+  workflow_dispatch:
+    inputs:
+      sites:
+        description: 'Site(s) om te publiceren (spatie-gescheiden, bv. "karel-portfolio-ath de-salon-site"). Leeg = alle sites.'
+        required: false
+        default: ''
+  push:
+    paths:
+      - 'sites/**'
+    branches:
+      - main
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    if: github.repository == 'athenacmsfactory/athena-2'
+    steps:
+      - name: 🛰️ Checkout Monorepo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.ATHENA_DEPLOY_TOKEN }}
+
+      - name: 🔍 Detect Changed Sites
+        id: detect
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            INPUT_SITES="${{ github.event.inputs.sites }}"
+            if [ -n "$INPUT_SITES" ]; then
+              # Handmatige trigger met specifieke sites
+              CHANGED_SITES="$INPUT_SITES"
+            else
+              # Handmatige trigger zonder input: publiceer ALLE sites
+              CHANGED_SITES=$(ls -d sites/*/ 2>/dev/null | xargs -I{} basename {} | xargs)
+            fi
+          else
+            # Push trigger: alleen gewijzigde sites
+            CHANGED_SITES=$(git diff --name-only ${{ github.event.before }} ${{ github.event.after }} | grep '^sites/' | cut -d/ -f2 | sort -u | xargs)
+          fi
+          echo "sites=$CHANGED_SITES" >> $GITHUB_OUTPUT
+          echo "Gevonden wijzigingen in: $CHANGED_SITES"
+
+      - name: 🚀 Push Subtrees to Client Repos
+        env:
+          GITHUB_TOKEN: ${{ secrets.ATHENA_DEPLOY_TOKEN }}
+          API_TOKEN_GITHUB: ${{ secrets.ATHENA_DEPLOY_TOKEN }}
+          OWNER: "athena-cms-factory"
+        run: |
+          for SITE in ${{ steps.detect.outputs.sites }}; do
+            echo "📦 Verwerken van site: $SITE"
+            
+            if [ -d "sites/$SITE" ]; then
+              # Controleer of repo bestaat, zo niet: maak aan
+              if ! gh repo view $OWNER/$SITE >/dev/null 2>&1; then
+                echo "➕ Repo $OWNER/$SITE bestaat niet. Aanmaken..."
+                gh repo create $OWNER/$SITE --public --description "Athena CMS Site: $SITE"
+                # Optioneel: GitHub Pages inschakelen kan ook via 'gh repo edit'
+                # Maar de Action in de site zelf (deploy.yml) regelt de feitelijke publicatie naar gh-pages
+              fi
+
+              REMOTE_URL="https://x-access-token:${API_TOKEN_GITHUB}@github.com/${OWNER}/${SITE}.git"
+              echo "Pushing sites/$SITE to $REMOTE_URL"
+              
+              # Gebruik subtree split en push -f om de remote te overschrijven met de monorepo-inhoud
+              SPLIT_SHA=$(git subtree split --prefix=sites/$SITE main)
+              git push "$REMOTE_URL" "$SPLIT_SHA":refs/heads/main --force
+            fi
+          done

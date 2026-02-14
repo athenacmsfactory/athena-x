@@ -1,0 +1,26 @@
+[
+  {
+    "gradatie_id": 1,
+    "titel": "Junior stylist",
+    "min_ervaring_jaren": 0,
+    "omschrijving_criteria": "werkt eerste 5 jaar in ons salon"
+  },
+  {
+    "gradatie_id": 2,
+    "titel": "Stylist",
+    "min_ervaring_jaren": 10,
+    "omschrijving_criteria": "minimum 10 jaar ervaring"
+  },
+  {
+    "gradatie_id": 3,
+    "titel": "Senior Stylist",
+    "min_ervaring_jaren": 10,
+    "omschrijving_criteria": "min 10 jaar bij ons werkzaam, verschillende cursussen gevolgd"
+  },
+  {
+    "gradatie_id": 4,
+    "titel": "Director",
+    "min_ervaring_jaren": 20,
+    "omschrijving_criteria": "minimum 20 jaar bij ons werkzaam, buitenlandse cursussen"
+  }
+]

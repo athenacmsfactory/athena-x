@@ -1,0 +1,14 @@
+{
+  "sections": {
+    "profile": {
+      "visible_fields": [
+        "professional_title",
+        "bio_long",
+        "avatar_url",
+        "contact_email",
+        "cta_text"
+      ],
+      "hidden_fields": []
+    }
+  }
+}

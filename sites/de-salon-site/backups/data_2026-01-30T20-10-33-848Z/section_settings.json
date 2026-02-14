@@ -1,0 +1,52 @@
+[
+  {
+    "id": "basisgegevens",
+    "title": "TEST TITEL",
+    "subtitle": "Overzicht van basisgegevens"
+  },
+  {
+    "id": "locaties",
+    "title": "locaties",
+    "subtitle": "Overzicht van locaties"
+  },
+  {
+    "id": "stylist_gradatie",
+    "title": "stylist gradatie",
+    "subtitle": "Overzicht van stylist_gradatie"
+  },
+  {
+    "id": "teamleden",
+    "title": "teamleden",
+    "subtitle": "Overzicht van teamleden"
+  },
+  {
+    "id": "diensten_hoofdgroepen",
+    "title": "diensten hoofdgroepen",
+    "subtitle": "Overzicht van diensten_hoofdgroepen"
+  },
+  {
+    "id": "diensten_tarieven",
+    "title": "diensten tarieven",
+    "subtitle": "Overzicht van diensten_tarieven"
+  },
+  {
+    "id": "testimonials",
+    "title": "testimonials",
+    "subtitle": "Overzicht van testimonials"
+  },
+  {
+    "id": "aveda_informatie",
+    "title": "aveda informatie",
+    "subtitle": "Overzicht van aveda_informatie"
+  },
+  {
+    "id": "social_media",
+    "title": "social media",
+    "subtitle": "Overzicht van social_media"
+  },
+  {
+    "id": "paginastructuur",
+    "title": "paginastructuur",
+    "subtitle": "Overzicht van paginastructuur"
+  }
+]
