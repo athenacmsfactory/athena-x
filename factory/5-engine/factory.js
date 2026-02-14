@@ -7,6 +7,7 @@ import { generateSectionComponent } from './logic/standard-layout-generator.js';
 import { Validator } from './lib/validator.js';
 import { QualityChecker } from './lib/quality-check.js';
 import { ThemeEngine } from './lib/theme-engine.js';
+import { AssetScavenger } from './lib/AssetScavenger.js';
 import * as recast from 'recast';
 import * as babelParser from '@babel/parser';
 
@@ -57,55 +58,8 @@ export function generateReadme(projectDir, safeName) {
 }
 
 export function scavengeAssets(projectDir, projectName) {
-    const dataDir = path.join(projectDir, 'src/data');
-    const imagesDest = path.join(projectDir, 'public/images');
-    const inputDir = path.resolve(projectDir, '../../input', projectName.replace('-site', ''));
-    const inputSitesDir = path.resolve(projectDir, '../../inputsites');
-
-    if (!fs.existsSync(dataDir)) return;
-
-    const imageFiles = fs.readdirSync(dataDir).filter(f => f.endsWith('.json'));
-    const foundImages = new Set();
-
-    imageFiles.forEach(file => {
-        try {
-            const content = fs.readFileSync(path.join(dataDir, file), 'utf8');
-            const matches = content.match(/["']([^"']+\.(jpg|jpeg|png|gif|webp|svg|mp4|webm))["']/gi);
-            if (matches) {
-                matches.forEach(m => {
-                    const cleanName = m.replace(/["']/g, '');
-                    if (!cleanName.startsWith('http') && !cleanName.includes('/') && !cleanName.includes('\\')) {
-                        foundImages.add(cleanName);
-                    }
-                });
-            }
-        } catch (e) { }
-    });
-
-    if (foundImages.size === 0) return;
-    console.log(`🔍  Asset Discovery: ${foundImages.size} images found.`);
-
-    const sourcePaths = [path.join(inputDir, 'input'), path.join(inputDir, 'images'), inputSitesDir];
-
-    foundImages.forEach(img => {
-        for (const srcPath of sourcePaths) {
-            if (!fs.existsSync(srcPath)) continue;
-            const findFile = (dir) => {
-                const entries = fs.readdirSync(dir, { withFileTypes: true });
-                for (const entry of entries) {
-                    const fullPath = path.join(dir, entry.name);
-                    if (entry.isDirectory()) { if (findFile(fullPath)) return true; }
-                    else if (entry.name === img) {
-                        fs.copyFileSync(fullPath, path.join(imagesDest, img));
-                        console.log(`   ✅ Asset restored: ${img}`);
-                        return true;
-                    }
-                }
-                return false;
-            };
-            if (findFile(srcPath)) break;
-        }
-    });
+    const scavenger = new AssetScavenger(projectDir, projectName);
+    scavenger.scavenge();
 }
 
 /**
