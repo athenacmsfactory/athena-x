@@ -1,5 +1,10 @@
 # 📋 TODO - Athena CMS (Master Plan)
 
+## 🎯 Upcoming Sprint (Next Week): Validation & Launch
+- [ ] **Operation War Game**: Execute first end-to-end autonomous agent test via Gmail.
+- [ ] **Athena Hub Launch**: Final content polish and live Stripe payment test.
+- [ ] **Autonomous Reliability**: Configure cronjobs for nightly monitor and storage pruning.
+
 ## 🏢 Operations & Governance
 - [ ] **Infrastructure Migration**: Plan and execute the full transition of GCP and AI services from `karel.test.special@gmail.com` to `athena.cms.factory@gmail.com` once commercial viability is established.
 - [ ] **Corporate Entity Setup**: Legal and financial preparation for the Factory as a standalone entity.

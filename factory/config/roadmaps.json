@@ -39,6 +39,86 @@
       ]
     },
     {
+      "id": "war-game",
+      "title": "⚔️ Operation War Game: Autonome Stresstest",
+      "difficulty": "Advanced",
+      "time": "30 min",
+      "description": "Test de volledige autonomie van de Athena Agent door real-world e-mail verzoeken te simuleren.",
+      "steps": [
+        {
+          "title": "Gateway Opstarten",
+          "description": "Zet de luistervink aan die e-mails van klanten opvangt.",
+          "action": "showSection('servers')",
+          "details": "Zorg dat de 'Athena Gateway' server online is in het dashboard of via `athena-agent.js start-gateway`."
+        },
+        {
+          "title": "Klant-verzoek Sturen",
+          "description": "Stuur een échte e-mail naar athena.cms.agent@gmail.com met een wijzigingsverzoek.",
+          "details": "Gebruik een onderwerp als `[chocolade-shop]` en vraag om een blogpost of een tekstwijziging."
+        },
+        {
+          "title": "Agent Uitvoering Monitoren",
+          "description": "Kijk hoe de Agent de e-mail analyseert en de site automatisch update.",
+          "details": "Volg de logs in `output/logs/gateway.log`. De Agent zal de JSON data aanpassen en de Google Sheet syncen."
+        },
+        {
+          "title": "Bevestiging Ontvangen",
+          "description": "Controleer je inbox voor het antwoord van de Agent.",
+          "details": "De Agent stuurt een e-mail terug naar de klant met een overzicht van de doorgevoerde wijzigingen."
+        }
+      ]
+    },
+    {
+      "id": "hub-launch",
+      "title": "🎯 Athena Hub: Commerciële Lancering",
+      "difficulty": "Intermediate",
+      "time": "45 min",
+      "description": "Optimaliseer je eigen uithangbord om klanten aan te trekken en betalingen te ontvangen.",
+      "steps": [
+        {
+          "title": "Hub Content Polijsten",
+          "description": "Gebruik de AI tools om de Hub te voorzien van sterke verkoopteksten.",
+          "action": "showSection('sites')",
+          "details": "Klik op 'SEO' en 'BLOG' op de athena-hub card om AI-geoptimaliseerde metadata en een introductie-artikel te genereren."
+        },
+        {
+          "title": "Stripe Live Test",
+          "description": "Voer een echte (of test) betaling uit via de Hub.",
+          "details": "Open de Hub, voeg een service toe aan je mandje en doorloop de Stripe Checkout flow tot aan de bedankpagina."
+        },
+        {
+          "title": "Showcase Portfolio",
+          "description": "Zorg dat alle demo-sites in de Hub correct linken en up-to-date zijn.",
+          "details": "Verifieer dat de 'Live' badges op de Hub cards werken en dat klanten direct de kwaliteit van de Factory kunnen zien."
+        }
+      ]
+    },
+    {
+      "id": "system-reliability",
+      "title": "🤖 Reliability: Systeem Automatisering",
+      "difficulty": "Beginner",
+      "time": "10 min",
+      "description": "Zet de Factory op 'autopilot' zodat onderhoud en backups vanzelf gaan.",
+      "steps": [
+        {
+          "title": "Cronjob Setup",
+          "description": "Plan de nachtelijke monitor en opschoning in.",
+          "details": "Voeg de `athena-monitor.sh` toe aan je crontab (`crontab -e`) om elke nacht om 03:00 te draaien."
+        },
+        {
+          "title": "Storage Policies",
+          "description": "Stel in welke sites standaard 'Dormant' moeten blijven.",
+          "action": "showSection('storage')",
+          "details": "Configureer de hydration-policies in het dashboard om te voorkomen dat je Chromebook SSD volloopt met onnodige `node_modules`."
+        },
+        {
+          "title": "Log Rotatie Check",
+          "description": "Verifieer dat oude logs automatisch worden verwijderd.",
+          "details": "De monitor-script controleert of de LogManager de rotatie-regels strikt handhaaft om schijfruimte te sparen."
+        }
+      ]
+    },
+    {
       "id": "mpa-hydra",
       "title": "🌊 Project Hydra: Multi-Page Content Machine",
       "difficulty": "Advanced",
@@ -61,17 +141,12 @@
           "description": "Genereer de site met het 'Multi-Page (MPA)' model.",
           "action": "showSection('create')",
           "details": "Selecteer 'Model: MPA' in het creatie-formulier. Athena bouwt een React-Router structuur met lazy-loading voor optimale performance."
-        },
-        {
-          "title": "Navigatie Beheer",
-          "description": "Beheer de menustructuur en paginalinks via de Dock.",
-          "details": "In de Dock verschijnt bij MPA sites een extra 'Pages' tabblad in het rechterpaneel om razendsnel tussen pagina's te navigeren tijdens het editen."
         }
       ]
     },
     {
       "id": "payment-gateway",
-      "title": "💳 E-commerce & Stripe Flow",
+      "title": "💳 Payment Gateways & Stripe Flow",
       "difficulty": "Expert",
       "time": "30 min",
       "description": "Integreer real-world betalingen (Stripe, Bancontact, PayPal) in je Athena webshops.",
@@ -86,67 +161,6 @@
           "title": "Checkout Activeren",
           "description": "Zorg dat je sitetype gebruik maakt van de 'webshop-pay' blauwdruk.",
           "details": "De 'webshop-pay' blauwdruk bevat de `Checkout.jsx` die automatisch verbinding maakt met de Athena Payment Gateway proxy."
-        },
-        {
-          "title": "Betaalmethodes Kiezen",
-          "description": "Configureer welke methodes je wilt aanbieden in je Stripe Dashboard.",
-          "details": "In Stripe kun je met één klik Bancontact, iDEAL en PayPal activeren. De Athena Gateway regelt de rest."
-        },
-        {
-          "title": "Succes & Cancel URL's",
-          "description": "Test de volledige flow van mandje tot bedankpagina.",
-          "details": "Na een geslaagde betaling stuurt Stripe de klant terug naar `/checkout?status=success`. De Checkout component toont dan automatisch de bevestiging en leegt het mandje."
-        }
-      ]
-    },
-    {
-      "id": "athenafy-existing",
-      "title": "🤖 Athenafier: Bestaande prototypes omzetten",
-      "difficulty": "Intermediate",
-      "time": "30 min",
-      "description": "Transformeer een statische HTML site of AI-gegenereerd prototype naar een beheersbare Athena site.",
-      "steps": [
-        {
-          "title": "Prototype Importeren",
-          "description": "Plaats je externe HTML/JS bestanden in de `inputsites/` map.",
-          "details": "Athena scant de structuur van je externe prototype."
-        },
-        {
-          "title": "Reverse Engineering",
-          "description": "Laat de 'Athenafier' engine de componenten en datavelden extraheren.",
-          "details": "De engine vervangt statische tekst door `EditableText` componenten en maakt automatisch een `data-dock` map aan."
-        },
-        {
-          "title": "Sitetype Extractie",
-          "description": "Maak van je geathenafiseerde site een herbruikbare blauwdruk.",
-          "action": "showSection('sitetypes')",
-          "details": "Gebruik 'Sitetype van Site' om je unieke ontwerp vast te leggen voor toekomstig gebruik."
-        }
-      ]
-    },
-    {
-      "id": "maintenance-growth",
-      "title": "🛠️ Groei & Onderhoud: De Survival Track",
-      "difficulty": "Beginner",
-      "time": "5 min (periodiek)",
-      "description": "Houd je systeem gezond en je sites up-to-date terwijl je portfolio groeit.",
-      "steps": [
-        {
-          "title": "Hydration Management",
-          "description": "Bespaar gigabytes aan schijfruimte door inactieve sites in 'Dormant' modus te zetten.",
-          "action": "showSection('storage')",
-          "details": "Zet projecten die je momenteel niet bewerkt op '🌵 Dormant'. Dit verwijdert de zware `node_modules` mappen."
-        },
-        {
-          "title": "Content Explosion",
-          "description": "Gebruik de AI Marketing tools om je site organisch te laten groeien.",
-          "action": "showSection('sites')",
-          "details": "Klik op 'BLOG' of 'SEO' op een site-card om automatisch nieuwe pagina's en metadata te genereren op basis van je bestaande data."
-        },
-        {
-          "title": "Nightly Audits",
-          "description": "Vertrouw op de 'Self-Healing' architectuur van Athena.",
-          "details": "De `athena-monitor.sh` draait periodiek om fouten in JSON bestanden te herstellen en opslaglimieten te bewaken."
         }
       ]
     }
