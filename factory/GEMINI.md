@@ -10,6 +10,15 @@
    - **Interaction**: Use `Shift+Click` on buttons/links in the site preview to test functionality; standard click remains for editing.
 3. **Finalization**: Move completed tasks to `factory/TASKS/_DONE.md` and remove from `factory/TASKS/_TODO.md` / `factory/TASKS/_IN_PROGRESS.md`.
 
+## 🏢 Operational Infrastructure & Account Context
+- **Current Primary Account**: `karel.test.special@gmail.com`
+    - **Reason**: Access to Google One AI premium tools and higher quota limits for advanced development.
+    - **Role**: Serves as the primary owner for GCP projects, Google Sheets templates, and linked AI services.
+- **GitHub Governance**: 
+    - `KarelTestSpecial` (linked to primary email) has full administrative rights over the `athena-cms-factory` organization.
+    - `athenacmsfactory` (linked to `athena.cms.factory@gmail.com`) is co-administrator.
+- **Future Roadmap**: Transition all infrastructure to `athena.cms.factory@gmail.com` once the project achieves sufficient commercial success to self-fund premium subscriptions.
+
 ## 📂 Detailed Project Directory Structure
 ```text
 /home/kareltestspecial/athena/

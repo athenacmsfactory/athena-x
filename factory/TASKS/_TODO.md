@@ -1,5 +1,9 @@
 # 📋 TODO - Athena CMS (Master Plan)
 
+## 🏢 Operations & Governance
+- [ ] **Infrastructure Migration**: Plan and execute the full transition of GCP and AI services from `karel.test.special@gmail.com` to `athena.cms.factory@gmail.com` once commercial viability is established.
+- [ ] **Corporate Entity Setup**: Legal and financial preparation for the Factory as a standalone entity.
+
 ## 🤖 AI Tasks (Jules 2.0)
 - [ ] **Systemic Audit:** Map all redundant components across the factory and site repositories.
 - [ ] **Modular Engine Refactor:** Redesign `factory.js` into a more modular, plugin-based architecture.

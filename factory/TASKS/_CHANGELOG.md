@@ -6,6 +6,7 @@
 - **Secure Payment Gateway Proxy**: Implemented `PaymentController.js` to handle Stripe sessions server-side, protecting secret API keys.
 - **Hybrid Checkout System**: Upgraded all e-commerce templates to support both automated Stripe payments and manual email-based orders.
 - **Interactive Roadmaps v2**: Expanded the roadmap system with Expert tracks for E-commerce and detailed accordion-based guidance.
+- **Infrastructure Documentation**: Formally documented the account governance strategy (`karel.test.special@gmail.com` as primary development engine due to Google One AI quotas).
 
 ### Fixed
 - **System Path Alignment**: Unified `ROOT_DIR` and `ATHENA_ROOT` variables in `.env` to prevent absolute path resolution errors.
