@@ -20,6 +20,7 @@
 
 ## 🛠️ Engine Improvements
 - [x] **Data Gateway**: Replaced legacy 'Sync' with a unified Data Gateway (Cloud Pull/Push + Pull from local input folder).
+- [x] **Terminology Unification**: Standardized "Data Bron" (Data Source) for all input folders across the system and documentation.
 - [ ] Streamline `scavengeAssets` for faster and more reliable asset mapping.
 - [ ] Implement a unified data aggregator for complex sites and MPA structures.
 - [ ] Optimize the internal build and dev-server orchestration.

@@ -52,7 +52,7 @@ Both hubs act as "orchestrators": they utilize centralized managers to perform t
 |:---|:---|:---|:---|:---|
 | **Factory Engine** | `5-engine/factory.js` | Dashboard / CLI | `ProcessManager`, `ConfigManager` | Generates complete React site in `../sites/` |
 | **AI Engine** | `5-engine/ai-engine.js` | Many scripts | Google Gemini API, `ConfigManager` | Structured AI responses |
-| **Parser Wizard** | `5-engine/parser-wizard.js` | CLI | `parser-engine.js`, `AthenaDataManager` | Processed data in `input/[project]/tsv-data/` |
+| **Parser Wizard** | `5-engine/parser-wizard.js` | CLI | `parser-engine.js`, `AthenaDataManager` | Processed data in `input/[data-bron]/tsv-data/` |
 | **Global Update** | `6-utilities/update-all-sites.js` | CLI | `standard-layout-generator.js` | Propagates v7.9+ features to existing sites |
 | **Deploy Wizard** | `5-engine/deploy-wizard.js` | Dashboard / CLI | `ProcessManager`, `ConfigManager` | Live website on GitHub Pages |
 | **Layout Visualizer** | `5-engine/layout-visualizer.js`| Dashboard | `ai-engine.js` | New JSX components in sitetypes |
@@ -64,7 +64,7 @@ Both hubs act as "orchestrators": they utilize centralized managers to perform t
 ## 4. Data Flow Scenarios
 
 ### Scenario A: Creating a New Site (Happy Path)
-1.  User selects project in **Dashboard (Port 5001)**.
+1.  User selects data source in **Dashboard (Port 5001)**.
 2.  Dashboard calls `factory.js` via `ProcessManager`.
 3.  `factory.js` reads blueprint from `3-sitetypes/` using `ConfigManager`.
 4.  `factory.js` calls `standard-layout-generator.js` to create `Section.jsx`.

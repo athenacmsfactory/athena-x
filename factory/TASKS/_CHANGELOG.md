@@ -1,5 +1,22 @@
 # Changelog - Athena CMS Factory
 
+## [7.9.5] - 2026-02-17
+### Added
+- **Athena Data Hub**: Transformed the legacy "Projects" view into a centralized, 4-stage visual pipeline (Ingestion -> Extraction -> Core -> Cloud).
+- **Data Gateway Modal**: Replaced the legacy "Sync" button with a unified gateway offering "Pull from Cloud", "Push to Cloud", and "Pull from local input folder".
+- **Smart Preview Orchestration**: The `SiteController` now automatically checks if a site's dev server is running, installs dependencies if missing, and spawns the process via `ProcessManager`.
+- **Client Onboarding Track**: Added a dedicated interactive roadmap for technical and commercial client onboarding via the Discovery Agent.
+- **Unified Terminologie**: Standardized the use of "Data Bron" (Data Source) for all input folders across the dashboard, code, and documentation to eliminate confusion with generated sites.
+
+### Changed
+- **AI Data Extractor (Parser)**: Rebranded the AI Content Parser to "AI Data Extractor" with explicit technical documentation on data source and destination paths.
+- **Unified Launcher**: Corrected root path calculation in `athena.js` and `athena-agent.js` to ensure reliable site discovery.
+- **Documentation Overhaul**: Updated all developer and client manuals to reflect the new "Data Source" terminology and Gateway workflow.
+
+### Fixed
+- **Dashboard API Consistency**: Added missing `/api/roadmaps` and `/api/todo` endpoints to ensure live roadmap tracking.
+- **Site Installation Reference**: Fixed a `ReferenceError` by importing `spawn` in the `SiteController`.
+
 ## [7.9.4] - 2026-02-15
 ### Added
 - **Stripe Checkout Integration**: Native support for real-world payments (Bancontact, Payconiq, iDEAL, Creditcard, PayPal) across all docked webshops.

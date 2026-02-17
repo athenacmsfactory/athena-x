@@ -13,12 +13,12 @@ You can now use AI to generate content and optimize your site for search engines
 *   **Blog Generator (`generate-blog`)**:
     *   Creates a complete blog post based on your site's context and a topic you provide.
     *   Automatically syncs the new post to your Google Sheet.
-    *   **Usage:** `node athena-agent.js generate-blog [project-name] "Your Topic"`
+    *   **Usage:** `node athena-agent.js generate-blog [site-name] "Your Topic"`
 
 *   **SEO Optimizer (`generate-seo`)**:
     *   Analyzes your site's content and generates optimized `metaTitle`, `metaDescription`, and `keywords`.
     *   Updates your `site_settings.json` and syncs to Google Sheets.
-    *   **Usage:** `node athena-agent.js generate-seo [project-name]`
+    *   **Usage:** `node athena-agent.js generate-seo [site-name]`
 
 ### 2. Storage & Health Management
 

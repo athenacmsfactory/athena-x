@@ -1,5 +1,25 @@
 # ✅ DONE - Athena CMS
 
+## Data Hub & Workflow Orchestration - 2026-02-17
+- [x] **Athena Data Hub Implementation**
+    - Ombouw van de "Projecten" tab naar een visuele 4-traps pipeline (Ingestie -> Extractie -> Site Core -> Cloud).
+    - Toegevoegd visuele status-indicatoren en context-bewuste actieknopen per fase.
+- [x] **Unificatie van Terminologie (Data Bron)**
+    - Volledige migratie van de term "Project" naar "Data Bron" (Data Source) voor alle input-gerelateerde mappen en acties.
+    - Bijgewerkt in Dashboard UI, modals, tooltips en alle documentatie (`DEVELOPER_MANUAL.md`, `WORKFLOW_OVERVIEW.md`, etc.).
+- [x] **Data Gateway Modal**
+    - Geïmplementeerd gecentraliseerde modal op de site-cards voor alle data-stromen.
+    - Ondersteuning voor: `Pull from Cloud`, `Push to Cloud`, en `Pull from local input folder` (voorheen TSV sync).
+- [x] **Slimme Preview Orchestratie**
+    - `SiteController` uitgebreid met automatische dependency-check en proces-spawning via `ProcessManager`.
+    - Gebruikers kunnen nu met één klik (`DEV`) een site opstarten zonder handmatige installatie of terminal-commando's.
+- [x] **Interactieve Roadmap Fixes**
+    - Hersteld van de `/api/roadmaps` en `/api/todo` endpoints.
+    - Toegevoegd nieuwe "Client Onboarding & Discovery" track voor stap-voor-stap begeleiding.
+- [x] **Launcher Optimalisatie**
+    - Splitsing van `launch.sh` (GUI) en `launch-cli.sh` (CLI).
+    - Bijgewerkt `.bash_aliases` met de nieuwe `athdev` shortcut.
+
 ## E-commerce & Betaalsystemen (Stripe) - 2026-02-15
 - [x] **Stripe Checkout Integratie**
     - Ontwikkeld `PaymentController.js` voor beveiligde server-side betaalsessies.

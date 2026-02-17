@@ -1,7 +1,7 @@
 # Auto-Sheet Provisioner (The Holy Grail)
 
 ## Overview
-The Auto-Sheet Provisioner is responsible for automatically creating, configuring, and linking a Google Sheet CMS to an Athena project.
+The Auto-Sheet Provisioner is responsible for automatically creating, configuring, and linking a Google Sheet CMS to an Athena data source or site.
 
 ## Architecture (OAuth 2.0 vs. Service Account)
 Since January 2026, the system has used a hybrid authentication model to bypass Google's storage quotas:
@@ -17,12 +17,12 @@ The following variables are essential for operation:
 - `DRIVE_PROJECTS_FOLDER_ID`: The ID of the folder where new sheets are placed.
 
 ## Workflow
-1.  **Dashboard:** Click the 'Sheet' button for a project.
+1.  **Dashboard:** Click the 'Sheet' button for a site or data source.
 2.  **Magic Wand:** Click the 'Auto-provision' icon.
 3.  **Process:**
     *   System copies the Master Template to the target folder.
     *   System shares the sheet with the Service Account.
-    *   System generates `url-sheet.json` in the site's project folder.
+    *   System generates `url-sheet.json` in the site's configuration folder.
 4.  **Result:** The site is immediately ready for 'Fetch Data' or 'Save visual edits'.
 
 ## Troubleshooting

@@ -20,5 +20,7 @@
 
 ## Finalization & Documentation
 - [ ] **Track: Documentation Sync & Jules Integration**
-  - [ ] Use Jules to audit and update all files in `factory/docs/`.
-  - [ ] Create a master "User Manual" for the new CLI and Dashboard features.
+  - [x] Audit and update all files in `factory/docs/` for terminology consistency (Data Source vs Project).
+  - [x] Update "User Manual" and "CLI Guide" for the new v8.0 features.
+  - [ ] Perform a final deep audit using Jules for any remaining architectural inconsistencies.
+
