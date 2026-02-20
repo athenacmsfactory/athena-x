@@ -70,5 +70,5 @@ This file tracks all major tracks for the project. Each track has its own detail
 - [ ] **Track: Documentation Sync & Jules Integration**
   *Link: [./tracks/docs-sync/](./tracks/docs-sync/)*
 
-- [ ] **Track: Debug Dashboard Sites Tab (Layout & Navigation Fixes)**
+- [x] **Track: Debug Dashboard Sites Tab (Layout & Navigation Fixes)**
   *Link: [./tracks/debug-dashboard-2-20260220/](./tracks/debug-dashboard-2-20260220/)*
