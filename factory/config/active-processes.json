@@ -1,16 +1,16 @@
 {
   "5002": {
-    "pid": 12989,
+    "pid": 4591,
     "id": "athena-dock",
     "type": "dock",
-    "startTime": "2026-02-17T18:33:04.629Z",
+    "startTime": "2026-02-20T11:13:33.071Z",
     "logFile": "/home/kareltestspecial/ath/athena-x/factory/output/logs/athena-dock-dock.log"
   },
   "6041": {
-    "pid": 10534,
+    "pid": 1951,
     "id": "athena-hub",
     "type": "preview",
-    "startTime": "2026-02-17T15:00:51.778Z",
+    "startTime": "2026-02-20T11:09:42.048Z",
     "logFile": "/home/kareltestspecial/ath/athena-x/factory/output/logs/athena-hub-preview.log"
   }
 }

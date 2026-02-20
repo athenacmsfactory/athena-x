@@ -48,6 +48,9 @@ This file tracks all major tracks for the project. Each track has its own detail
 - [x] **Track: Web-Based Discovery Agent & Flexible Onboarding**
   *Link: [./tracks/web-discovery-agent-20260217/](./tracks/web-discovery-agent-20260217/)*
 
+- [x] **Track: Extract AI Waterfall Module (Standalone AI Waterfall System)**
+  *Link: [./tracks/extract-ai-waterfall-module/](./tracks/extract-ai-waterfall-module/)*
+
 ---
 
 ## Active & Pending Tracks
