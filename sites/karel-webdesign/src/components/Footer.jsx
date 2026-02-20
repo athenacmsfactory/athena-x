@@ -4,7 +4,7 @@ import EditableText from './EditableText';
 
 export default function Footer({ data }) {
   // Gebruik de eerste elementen uit de arrays (conform Google Sheets mapping)
-  const siteSettings = Array.isArray(data?.site_settings) ? data.site_settings[0] : (data?.site_settings || {});
+  const settings = Array.isArray(data?.site_settings) ? data.site_settings[0] : (data?.site_settings || {});
   const contactInfo = Array.isArray(data?.contact) ? data.contact[0] : (data?.contact || {});
   const navigation = data?.navigation || [];
 
