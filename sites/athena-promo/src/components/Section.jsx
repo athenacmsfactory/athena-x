@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import GenericSection from './components/GenericSection';
+import GenericSection from './GenericSection';
 import { useCart } from './CartContext'; 
 
 const Section = ({ data }) => {
