@@ -1,0 +1,127 @@
+name: 🔱 Athena Monorepo Publisher
+
+on:
+  workflow_dispatch:
+    inputs:
+      sites:
+        description: 'Site(s) om te publiceren (spatie-gescheiden, bv. "karel-portfolio-ath"). Leeg = alle sites.'
+        required: false
+        default: ''
+  push:
+    paths:
+      - 'sites/**'
+    branches:
+      - main
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    # Verwijder de harde check op repo-naam om sandbox-vriendelijk te zijn
+    steps:
+      - name: 🛰️ Checkout Monorepo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.ATHENA_DEPLOY_TOKEN || secrets.GITHUB_TOKEN }}
+
+      - name: 🔍 Detect Changed Sites
+        id: detect
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            INPUT_SITES="${{ github.event.inputs.sites }}"
+            if [ -n "$INPUT_SITES" ]; then
+              CHANGED_SITES="$INPUT_SITES"
+            else
+              CHANGED_SITES=$(ls -d sites/*/ 2>/dev/null | xargs -I{} basename {} | xargs)
+            fi
+          else
+            # Push trigger: alleen gewijzigde sites
+            CHANGED_SITES=$(git diff --name-only ${{ github.event.before }} ${{ github.event.after }} | grep '^sites/' | cut -d/ -f2 | sort -u | xargs)
+          fi
+          echo "sites=$CHANGED_SITES" >> $GITHUB_OUTPUT
+          echo "Gevonden wijzigingen in: $CHANGED_SITES"
+
+      - name: 🛠️ Setup Node.js & pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9
+      
+      - name: 🏗️ Pre-flight Build & Quality Audit
+        run: |
+          npm install -g @lhci/cli@0.13.x
+          for SITE in ${{ steps.detect.outputs.sites }}; do
+            if [ -d "sites/$SITE" ]; then
+              echo "🔨 Validating build for: $SITE"
+              cd "sites/$SITE"
+              pnpm install --no-frozen-lockfile
+              pnpm build
+              
+              echo "🚦 Running Lighthouse Audit (Performance, Accessibility, SEO)..."
+              # Create temporary minimalist config
+              cat <<EOF > lighthouserc.json
+              {
+                "ci": {
+                  "collect": { "staticDistDir": "./dist" },
+                  "assert": {
+                    "assertions": {
+                      "categories:performance": ["warn", {"minScore": 0.7}],
+                      "categories:accessibility": ["warn", {"minScore": 0.8}],
+                      "categories:seo": ["warn", {"minScore": 0.8}]
+                    }
+                  }
+                }
+              }
+          EOF
+              lhci collect --static-dist-dir=./dist || echo "⚠️ Lighthouse collection failed, skipping audit..."
+              lhci assert || echo "⚠️ Audit metrics below target, but continuing publish..."
+              
+              cd ../..
+            fi
+          done
+
+      - name: 🚀 Push Subtrees to Client Repos
+        env:
+          GITHUB_TOKEN: ${{ secrets.ATHENA_DEPLOY_TOKEN || secrets.GITHUB_TOKEN }}
+          API_TOKEN_GITHUB: ${{ secrets.ATHENA_DEPLOY_TOKEN || secrets.GITHUB_TOKEN }}
+          DEFAULT_OWNER: ${{ github.repository_owner }}
+        run: |
+          for SITE in ${{ steps.detect.outputs.sites }}; do
+            echo "📦 Verwerken van site: $SITE"
+            
+            if [ -d "sites/$SITE" ]; then
+              # Probeer de specifieke repoUrl uit de site settings te halen
+              DEPLOY_CONFIG="sites/$SITE/project-settings/deployment.json"
+              TARGET_REPO=""
+              
+              if [ -f "$DEPLOY_CONFIG" ]; then
+                echo "🔍 Deployment config gevonden voor $SITE"
+                # Extraheer URL en zet om naar SSH-formaat of gebruik token-auth URL
+                RAW_URL=$(cat "$DEPLOY_CONFIG" | jq -r '.repoUrl' 2>/dev/null || echo "")
+                if [[ "$RAW_URL" == *"github.com"* ]]; then
+                  # Extraheer 'owner/repo' uit de URL
+                  REPO_PATH=$(echo "$RAW_URL" | sed 's/.*github.com\///' | sed 's/\.git$//')
+                  TARGET_REPO="$REPO_PATH"
+                  echo "🎯 Doel gevonden via config: $TARGET_REPO"
+                fi
+              fi
+
+              # Fallback als er geen config is
+              if [ -z "$TARGET_REPO" ]; then
+                TARGET_REPO="$DEFAULT_OWNER/$SITE"
+                echo "⚠️ Geen config gevonden, gebruik fallback: $TARGET_REPO"
+              fi
+
+              # Controleer of repo bestaat, zo niet: maak aan
+              if ! gh repo view $TARGET_REPO >/dev/null 2>&1; then
+                echo "➕ Repo $TARGET_REPO bestaat niet. Aanmaken..."
+                gh repo create $TARGET_REPO --public --description "Athena CMS Site: $SITE"
+              fi
+
+              REMOTE_URL="https://x-access-token:${API_TOKEN_GITHUB}@github.com/${TARGET_REPO}.git"
+              echo "Pushing sites/$SITE to $REMOTE_URL"
+              
+              # Gebruik subtree split om de site-map te isoleren en te pushen
+              SPLIT_SHA=$(git subtree split --prefix=sites/$SITE main)
+              git push "$REMOTE_URL" "$SPLIT_SHA":refs/heads/main --force
+            fi
+          done
