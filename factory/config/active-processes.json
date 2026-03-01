@@ -1,16 +1,23 @@
 {
   "5002": {
-    "pid": 25930,
+    "pid": 10032,
     "id": "athena-dock",
     "type": "dock",
-    "startTime": "2026-03-01T17:00:38.286Z",
+    "startTime": "2026-03-01T19:27:26.353Z",
     "logFile": "/home/kareltestspecial/0-IT/2-Fabriek/athena/athena-x/factory/output/logs/athena-dock-dock.log"
   },
+  "5004": {
+    "pid": 5568,
+    "id": "media-mapper",
+    "type": "editor",
+    "startTime": "2026-03-01T19:21:21.057Z",
+    "logFile": "/home/kareltestspecial/0-IT/2-Fabriek/athena/athena-x/factory/output/logs/media-mapper-editor.log"
+  },
   "6041": {
-    "pid": 25563,
+    "pid": 5197,
     "id": "athena-hub",
     "type": "preview",
-    "startTime": "2026-03-01T17:00:29.750Z",
+    "startTime": "2026-03-01T19:21:11.570Z",
     "logFile": "/home/kareltestspecial/0-IT/2-Fabriek/athena/athena-x/factory/output/logs/athena-hub-preview.log"
   }
 }

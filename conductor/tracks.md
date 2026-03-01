@@ -54,6 +54,9 @@ This file tracks all major tracks for the project. Each track has its own detail
 - [x] **Track: Debug Dashboard Sites Tab (Bug Fixes & UX improvements)**
   *Link: [./tracks/debug-dashboard-sites-20260220/](./tracks/debug-dashboard-sites-20260220/)*
 
+- [x] **Track: Demo Section for Athena Hub (v8.0.1)**
+  *Link: [./tracks/athena-hub-demo-section/](./tracks/athena-hub-demo-section/)*
+
 - [x] **Track: Debug Athena Hub: Links & Dock Editing**
   *Link: [./tracks/debug-athena-hub-links-and-dock/](./tracks/debug-athena-hub-links-and-dock/)*
 

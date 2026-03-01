@@ -1,1 +1,52 @@
-[]
+[
+  {
+    "name": "Athena Pro",
+    "category": "B2B / SaaS",
+    "description": "Een professionele showcase voor geavanceerde B2B diensten en SaaS oplossingen.",
+    "link": {
+      "label": "Bekijk Demo",
+      "url": "https://athena-cms-factory.github.io/athena-pro/"
+    },
+    "image": "showcase-athena-pro.jpg"
+  },
+  {
+    "name": "Cloud Architects",
+    "category": "IT / Tech",
+    "description": "Strakke, moderne website voor IT-consultants en cloud architectuur specialisten.",
+    "link": {
+      "label": "Bekijk Demo",
+      "url": "https://athena-cms-factory.github.io/cloud-architects/"
+    },
+    "image": "showcase-cloud-architects.jpg"
+  },
+  {
+    "name": "Bakkerij Artisanaal",
+    "category": "Retail / Food",
+    "description": "Breng de geur van vers brood online met deze sfeervolle ambachtelijke template.",
+    "link": {
+      "label": "Bekijk Demo",
+      "url": "https://athena-cms-factory.github.io/demo-bakkerij/"
+    },
+    "image": "showcase-demo-bakkerij.jpg"
+  },
+  {
+    "name": "Pure Relaxation",
+    "category": "Wellness",
+    "description": "Een oase van rust voor wellness centra, therapeuten en massagepraktijken.",
+    "link": {
+      "label": "Bekijk Demo",
+      "url": "https://athena-cms-factory.github.io/pure-relaxation/"
+    },
+    "image": "showcase-pure-relaxation.jpg"
+  },
+  {
+    "name": "Urban Oasis",
+    "category": "Lifestyle",
+    "description": "Modern interieurontwerp en lifestyle concepten gepresenteerd in een luxe stijl.",
+    "link": {
+      "label": "Bekijk Demo",
+      "url": "https://athena-cms-factory.github.io/urban-oasis/"
+    },
+    "image": "showcase-urban-oasis.jpg"
+  }
+]

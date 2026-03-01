@@ -10,7 +10,7 @@
     "header_height": 68,
     "header_transparent": false,
     "header_show_button": true,
-    "content_top_offset": "38",
+    "content_top_offset": 16,
     "header_visible": true,
     "header_show_title": true,
     "header_show_logo": true,
@@ -18,10 +18,6 @@
     "light_bg_color": "#d0d1d2",
     "light_header_color": "#d0d1d2",
     "hero_overlay_opacity": "0",
-    "light_hero_bg_color": "#e7fdfc",
-    "header_cta": {
-      "label": "Contact",
-      "url": "#intro"
-    }
+    "light_hero_bg_color": "#e7fdfc"
   }
 ]

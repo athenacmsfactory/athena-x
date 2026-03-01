@@ -31,3 +31,9 @@ In complexe React-omgevingen traden race-conditions op waarbij de Dock-modal lee
 - **Registry Port Correction**: Updated the centralized `sites.json` to reflect port 6225 for `jets-archive`.
 
 ... rest of history remains unchanged ...
+
+## [2026-03-01] v8.0.1 - Athena Hub Showcase Update
+- **Feature**: Toegevoegd 'showcase' sectie aan Athena Hub met 5 top-tier demo's.
+- **Fix**: Hersteld hero CTA koppeling naar #showcase.
+- **Optimization**: Lokale opslag van alle showcase afbeeldingen voor snelheid en betrouwbaarheid.
+- **Architecture**: Verfijning van HeroSection image-key detectie via JSON volgorde.
