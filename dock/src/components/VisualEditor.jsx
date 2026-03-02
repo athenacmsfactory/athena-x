@@ -74,6 +74,46 @@ const VisualEditor = ({ item, selectedSite, onSave, onCancel, onUpload }) => {
     onSave(finalData, {});
   };
 
+  const getPreviewUrl = (filename) => {
+    if (!filename) return '';
+    if (filename.startsWith('http')) return filename;
+    
+    // Construct URL from selected site
+    const baseUrl = selectedSite?.url || '';
+    const cleanBase = baseUrl.replace(/\/$/, '');
+    return `${cleanBase}/images/${filename}`.replace(/\/+/g, '/').replace('http:/', 'http://').replace('https:/', 'https://');
+  };
+
+  const handleFileChange = async (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    // Use the upload logic from DockFrame if available or a direct upload
+    const formData = new FormData();
+    formData.append('file', file);
+
+    const baseUrl = selectedSite?.url || '';
+    const cleanBase = baseUrl.replace(/\/$/, '');
+    const uploadUrl = `${cleanBase}/__athena/upload`;
+
+    try {
+      const res = await fetch(uploadUrl, {
+        method: 'POST',
+        headers: { 'X-Filename': file.name },
+        body: file
+      });
+      const data = await res.json();
+      if (data.success) {
+        setValue(data.filename);
+        // Direct save for media usually feels better
+        // onUpload(data.filename);
+      }
+    } catch (err) {
+      console.error("Upload failed:", err);
+      alert("Upload mislukt.");
+    }
+  };
+
   return (
     <div className="fixed inset-0 z-[200] flex items-center justify-center bg-black/60 backdrop-blur-md p-4">
       <div className="bg-white dark:bg-slate-900 rounded-3xl shadow-2xl w-full max-w-lg overflow-hidden border border-slate-200 dark:border-slate-700 animate-in zoom-in duration-150">
@@ -128,10 +168,26 @@ const VisualEditor = ({ item, selectedSite, onSave, onCancel, onUpload }) => {
             </>
           ) : isMedia ? (
             <div className="space-y-4">
-              <div className="aspect-video bg-slate-100 dark:bg-black rounded-2xl overflow-hidden border-2 border-slate-200 dark:border-slate-800 flex items-center justify-center">
-                <img src={getPreviewUrl(value)} alt="Preview" className="max-h-full object-contain" />
+              <div className="aspect-video bg-slate-100 dark:bg-black rounded-2xl overflow-hidden border-2 border-slate-200 dark:border-slate-800 flex items-center justify-center group relative">
+                {value ? (
+                  <img src={getPreviewUrl(value)} alt="Preview" className="max-h-full object-contain" />
+                ) : (
+                  <div className="text-slate-400">Geen afbeelding</div>
+                )}
+                <label className="absolute inset-0 flex items-center justify-center bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity cursor-pointer text-white font-bold uppercase text-xs">
+                  Upload Nieuw
+                  <input type="file" className="hidden" onChange={handleFileChange} accept="image/*" />
+                </label>
               </div>
-              <input type="text" value={value} onChange={(e) => setValue(e.target.value)} className="w-full p-4 bg-slate-50 dark:bg-black border border-slate-200 dark:border-slate-700 rounded-2xl text-slate-900 dark:text-white" />
+              <div className="space-y-1">
+                <label className="text-[9px] font-black uppercase text-slate-400">Bestandsnaam</label>
+                <input 
+                  type="text" 
+                  value={value} 
+                  onChange={(e) => setValue(e.target.value)} 
+                  className="w-full p-4 bg-slate-50 dark:bg-black border border-slate-200 dark:border-slate-700 rounded-2xl text-slate-900 dark:text-white font-mono text-xs" 
+                />
+              </div>
             </div>
           ) : (
             <textarea 
