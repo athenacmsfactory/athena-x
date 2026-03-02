@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import EditableMedia from './EditableMedia';
 import EditableText from './EditableText';
 import EditableLink from './EditableLink';
@@ -6,9 +6,9 @@ import { useCart } from './CartContext';
 
 const Section = ({ data }) => {
   const { addToCart } = useCart();
+  const [selectedCategory, setSelectedCategory] = useState('Alle');
   const sectionOrder = data.section_order || [];
-
-  
+  const categories = data.categorieen || [];
 
   useEffect(() => {
     if (window.athenaScan) {
@@ -23,7 +23,7 @@ const Section = ({ data }) => {
   return (
     <div className="flex flex-col">
       {sectionOrder.map((sectionName, idx) => {
-        const items = data[sectionName] || [];
+        let items = data[sectionName] || [];
         if (items.length === 0) return null;
 
         if (sectionName === 'basisgegevens') {
@@ -70,12 +70,38 @@ const Section = ({ data }) => {
         }
 
         if (sectionName.includes('product') || sectionName.includes('shop')) {
+          const filteredItems = selectedCategory === 'Alle' 
+            ? items 
+            : items.filter(item => item.categorie === selectedCategory);
+
           return (
             <section key={idx} id={sectionName} data-dock-section={sectionName} className="py-24 px-6 bg-background">
               <div className="max-w-7xl mx-auto">
-                <h2 className="text-4xl font-serif font-bold mb-16 text-center text-primary uppercase tracking-widest">{sectionName.replace(/_/g, ' ')}</h2>
+                <h2 className="text-4xl font-serif font-bold mb-8 text-center text-primary uppercase tracking-widest">{sectionName.replace(/_/g, ' ')}</h2>
+                
+                {/* Category Filter Bar */}
+                {categories.length > 0 && (
+                  <div className="flex flex-wrap justify-center gap-4 mb-16">
+                    <button 
+                      onClick={() => setSelectedCategory('Alle')}
+                      className={`px-6 py-2 rounded-full font-bold transition-all ${selectedCategory === 'Alle' ? 'bg-accent text-white shadow-lg scale-105' : 'bg-surface text-primary hover:bg-slate-100'}`}
+                    >
+                      Alle
+                    </button>
+                    {categories.map((cat, cIdx) => (
+                      <button 
+                        key={cIdx}
+                        onClick={() => setSelectedCategory(cat.naam)}
+                        className={`px-6 py-2 rounded-full font-bold transition-all ${selectedCategory === cat.naam ? 'bg-accent text-white shadow-lg scale-105' : 'bg-surface text-primary hover:bg-slate-100'}`}
+                      >
+                        {cat.naam}
+                      </button>
+                    ))}
+                  </div>
+                )}
+
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
-                  {items.map((item, index) => {
+                  {filteredItems.map((item, index) => {
                     const priceValue = parseFloat(String(item.prijs || 0).replace(/[^0-9.,]/g, '').replace(',', '.'));
                     const titleKey = Object.keys(item).find(k => /naam|titel/i.test(k)) || 'naam';
                     const imgKey = Object.keys(item).find(k => /foto|afbeelding|url/i.test(k)) || 'product_foto_url';
@@ -84,6 +110,11 @@ const Section = ({ data }) => {
                         <div className="aspect-square overflow-hidden flex-shrink-0 relative">
                           <EditableMedia src={item[imgKey]} cmsBind={{file: sectionName, index, key: imgKey}} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
                           <div className="absolute inset-0 bg-black/5 group-hover:bg-transparent transition-colors"></div>
+                          {item.categorie && (
+                            <div className="absolute top-4 left-4 bg-white/90 backdrop-blur px-4 py-1 rounded-full text-xs font-black uppercase tracking-tighter text-accent shadow-sm">
+                              {item.categorie}
+                            </div>
+                          )}
                         </div>
                         <div className="p-8 flex flex-col flex-grow text-center">
                           <h3 className="text-2xl font-bold mb-4 text-primary min-h-[4rem] flex items-center justify-center">
@@ -99,6 +130,9 @@ const Section = ({ data }) => {
                     );
                   })}
                 </div>
+                {filteredItems.length === 0 && (
+                  <div className="text-center py-20 text-slate-400 italic text-xl">Geen producten gevonden in deze categorie.</div>
+                )}
               </div>
             </section>
           );
