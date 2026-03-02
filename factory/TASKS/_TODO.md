@@ -33,4 +33,6 @@
 
 ## 🏗️ Showcase Hub Improvements
 - [x] **Section Polish**: Secties `showcase` en `proces` productie-ready maken (en debuggen).
-- [x] **Sitetype from Site**: Added functionality to create a new sitetype based on an existing site's structure and components (implemented via `premium-webshop-filter`).
+- [x] **Sitetype from Site**: Added functionality to create a new sitetype based on an existing site's structure and components (implemented via `premium-webshop-filter`).- [ ] Onderzoek gedeelde node_modules via pnpm workspaces [research/shared-node-modules-optimization]
+- [ ] Valideer Vite werking in gesubstancieerde test-workspace
+- [ ] Ontwerp migratieplan voor bestaande sites

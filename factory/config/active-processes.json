@@ -5,5 +5,12 @@
     "type": "dock",
     "startTime": "2026-03-02T13:33:34.664Z",
     "logFile": "/home/kareltestspecial/0-IT/2-Fabriek/athena/athena-x/factory/output/logs/athena-dock-dock.log"
+  },
+  "5229": {
+    "pid": 19892,
+    "id": "cloud-architects-cyberpunk",
+    "type": "preview",
+    "startTime": "2026-03-02T14:45:13.951Z",
+    "logFile": "/home/kareltestspecial/0-IT/2-Fabriek/athena/athena-x/factory/output/logs/cloud-architects-cyberpunk-preview.log"
   }
 }

@@ -87,3 +87,4 @@ In complexe React-omgevingen traden race-conditions op waarbij de Dock-modal lee
 - **Fix**: Hersteld hero CTA koppeling naar #showcase.
 - **Optimization**: Lokale opslag van alle showcase afbeeldingen voor snelheid en betrouwbaarheid.
 - **Architecture**: Verfijning van HeroSection image-key detectie via JSON volgorde.
+- Mon Mar  2 03:54:19 PM CET 2026: Start onderzoek naar gedeelde node_modules (Lead Architect)

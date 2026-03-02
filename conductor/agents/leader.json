@@ -1,6 +1,6 @@
 {
-  "session_id": "leader",
   "role": "Lead Architect",
-  "identity": "Lead Architect",
-  "status": "active"
+  "id": "Leader",
+  "status": "active",
+  "started_at": "Mon Mar  2 03:54:19 PM CET 2026"
 }

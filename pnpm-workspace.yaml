@@ -1,0 +1,10 @@
+packages:
+  - 'factory'
+  - 'dock'
+  - 'sites/*'
+
+onlyBuiltDependencies:
+  - esbuild
+  - lightningcss
+  - core-js
+  - canvas
