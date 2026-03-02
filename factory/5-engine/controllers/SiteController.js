@@ -237,25 +237,45 @@ export class SiteController {
         if (!fs.existsSync(siteDir)) throw new Error('Site niet gevonden');
 
         const previewPort = this.getSitePort(id, siteDir);
+
+        // 1. STOP ALLE ANDERE PREVIEWS (behalve het dashboard!)
+        const activeProcesses = this.pm.listActive();
+        const dashboardPort = 5001; // Forceer dashboard poort beveiliging
         
-        // Check if already running via ProcessManager
-        const active = this.pm.listActive();
-        if (active[previewPort] && active[previewPort].id === id) {
-            return { success: true, url: `http://localhost:${previewPort}/${id}/` };
+        for (const port in activeProcesses) {
+            const pNum = parseInt(port);
+            if (activeProcesses[port].type === 'preview' && pNum !== dashboardPort) {
+                await this.pm.stopProcessByPort(pNum);
+            }
         }
 
-        // Auto-install if node_modules is missing
+        // Harde poort-vrijgave (indien poort nog bezet is door extern proces)
+        try {
+            this.pm.stopProcessByPort(previewPort); 
+        } catch (e) {}
+
+        // 2. CONTROLEER INSTALLATIE (Niet-blokkerend)
         if (!fs.existsSync(path.join(siteDir, 'node_modules'))) {
-            console.log(`📦 node_modules ontbreken in ${id}, installeren...`);
-            this.execService.runSync('pnpm install', { cwd: siteDir, label: `Install for ${id}` });
+            console.log(`📦 node_modules ontbreken in ${id}, installatie starten in achtergrond...`);
+            // Start installatie maar wacht er niet op met de API respons
+            this.install(id).catch(err => console.error(`Fout bij installatie ${id}:`, err));
+            return { 
+                success: true, 
+                status: 'installing', 
+                message: 'Installatie is gestart. Even geduld...',
+                url: `http://localhost:${previewPort}/${id}/`
+            };
         }
 
-        // Start preview process
+        // 3. START PREVIEW
         console.log(`🚀 Starting preview for ${id} on port ${previewPort}...`);
-        this.pm.startProcess(id, 'preview', previewPort, 'pnpm', ['dev', '--port', previewPort.toString(), '--host'], { cwd: siteDir });
+        try {
+            await this.pm.startProcess(id, 'preview', previewPort, 'pnpm', ['dev', '--port', previewPort.toString(), '--host'], { cwd: siteDir });
+        } catch (e) {
+            console.error(`Fout bij starten preview ${id}:`, e.message);
+        }
 
-        // Give it a small headstart
-        return { success: true, url: `http://localhost:${previewPort}/${id}/` };
+        return { success: true, status: 'ready', url: `http://localhost:${previewPort}/${id}/` };
     }
 
     /**

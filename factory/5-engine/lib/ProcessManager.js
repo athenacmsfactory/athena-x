@@ -86,14 +86,12 @@ export class AthenaProcessManager {
         if (info && info.pid) {
             try {
                 process.kill(-info.pid); // Kill process group if detached
-                console.log(`🛑 Stopped process group ${info.pid} on port ${port}`);
             } catch (e) {
                 // Fallback to simple kill if group kill fails
                 try {
                     process.kill(info.pid);
-                    console.log(`🛑 Stopped process ${info.pid} on port ${port}`);
                 } catch (err) {
-                    console.log(`⚠️ Process ${info.pid} already dead?`);
+                    // Process already dead?
                 }
             }
             delete registry[port];
@@ -101,16 +99,14 @@ export class AthenaProcessManager {
             return true;
         }
 
-        // Fallback: use ss to find PID if not in registry (fuser is often missing)
+        // Fallback: use ss to find PID if not in registry
         try {
-            console.log(`🔍 Port ${port} not in registry. Using ss fallback...`);
             const pidMatch = execSync(`ss -tunlp | grep :${port}`, { encoding: 'utf8' })
                 .match(/users:\(\(".*",pid=(\d+),/);
             
             if (pidMatch && pidMatch[1]) {
                 const pid = parseInt(pidMatch[1]);
                 process.kill(pid);
-                console.log(`🛑 Stopped external process ${pid} on port ${port}`);
                 return true;
             }
             return false;

@@ -1,7 +1,16 @@
 # Changelog - Athena CMS Factory
 
+## [8.0.5] - 2026-03-02
+### 🔍 Site Reviewer & Stability Engine
+- **Athena Site Reviewer**: Introductie van een nieuwe interactieve reviewer op `localhost:5001/reviewer.html`. Hiermee kunnen 35+ sites systematisch worden gecontroleerd met automatische installatie en opstart-logica.
+- **EPIPE Immunity**: Kritieke fix voor de beruchte `EPIPE` crash die de dashboard-server willekeurig kon stoppen tijdens logging-operaties.
+- **Smart Resource Management**: De `SiteController` ruimt nu proactief oude preview-servers op voordat een nieuwe wordt gestart, wat cruciaal is voor de stabiliteit op systemen met beperkt RAM (Chromebooks).
+- **Forced Linux Environment**: De `athena.sh` launcher is geoptimaliseerd om geforceerd de Linux-versie van Chrome te openen via een absolute binary call (`/opt/google/chrome/google-chrome`), inclusief profiel-isolatie om ChromeOS overnames te voorkomen.
+- **Bulk Audit Utility**: Nieuwe tool `bulk-site-audit.js` toegevoegd voor een snelle technische scan van het volledige portfolio.
+
 ## [8.0.4] - 2026-03-02
 ### 🛡️ Asset Reliability & Stability Standard (v8.2)
+...
 - **Safe Path Resolution**: Introductie van een robuust pad-resolutie protocol in `EditableMedia` en `EditableImage`. 
     - **Crash-proof**: Toegevoegd `typeof src === 'string'` checks om te voorkomen dat de applicatie crasht op `endsWith()` wanneer er per ongeluk objecten of null-waarden in afbeeldingsvelden staan.
     - **Smart Root Access**: Het systeem herkent nu automatisch root-assets (`.svg`, `.ico`, `.png` in de `public/` root) en omzeilt daarvoor de `/images/` submap.

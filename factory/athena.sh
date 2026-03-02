@@ -29,10 +29,16 @@ $NODE_BIN dashboard/athena.js > "$LOG_FILE" 2>&1 &
 # Geef de server even de tijd om te binden aan de poort
 sleep 2
 
-# Open de browser (dit werkt op ChromeOS Crostini)
-if command -v xdg-open > /dev/null; then
-    xdg-open http://localhost:$FINAL_PORT
+# Open de browser (Absolute Linux Binary - Omzeilt ChromeOS)
+echo "🌐 Dashboard openen in Linux Chrome (Absolute Binary)..."
+USER_DATA_DIR="/home/kareltestspecial/.chrome-linux-profile"
+mkdir -p "$USER_DATA_DIR"
+
+if [ -f "/opt/google/chrome/google-chrome" ]; then
+    /opt/google/chrome/google-chrome --user-data-dir="$USER_DATA_DIR" --new-window "http://localhost:$FINAL_PORT/reviewer.html" --no-first-run --no-default-browser-check &
+elif [ -f "/usr/bin/firefox" ]; then
+    firefox "http://localhost:$FINAL_PORT/reviewer.html" &
 else
-    # Fallback voor sommige omgevingen
-    garcon-url-handler http://localhost:$FINAL_PORT
+    xdg-open "http://localhost:$FINAL_PORT/reviewer.html"
 fi
+
