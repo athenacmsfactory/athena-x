@@ -6,7 +6,7 @@
     "prijs": 189.95,
     "beschrijving": "Engineered for speed, the Air Velocity Max features a carbon-plated sole and breathable mesh for peak athletic performance.",
     "keywords": "running, performance, carbon plate, blue",
-    "afbeelding": "snkr-001.jpg"
+    "afbeelding": "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=800"
   },
   {
     "id": "snkr-002",
@@ -15,7 +15,7 @@
     "prijs": 129,
     "beschrijving": "A minimalist classic. Handcrafted with premium Italian leather, the Street Low is your perfect companion for city life.",
     "keywords": "lifestyle, minimal, white, leather",
-    "afbeelding": "snkr-002.jpg"
+    "afbeelding": "https://images.unsplash.com/photo-1549298916-b41d501d3772?w=800"
   },
   {
     "id": "snkr-003",
@@ -24,7 +24,7 @@
     "prijs": 249.5,
     "beschrijving": "Turn heads after dark. Featuring reflective 3M overlays and neon accents, these high-tops are a statement of nocturnal style.",
     "keywords": "limited edition, reflective, high-top, neon",
-    "afbeelding": "snkr-003.jpg"
+    "afbeelding": "https://images.unsplash.com/photo-1514989940723-e8e51635b782?w=800"
   },
   {
     "id": "snkr-004",
@@ -33,7 +33,7 @@
     "prijs": 210,
     "beschrijving": "Unmatched energy return. The Carbon Fiber Runner uses aerospace-grade materials to propel you forward with every stride.",
     "keywords": "running, carbon, athlete, black",
-    "afbeelding": "snkr-004.jpg"
+    "afbeelding": "https://images.unsplash.com/photo-1608231387042-66d1773070a5?w=800"
   },
   {
     "id": "snkr-005",
@@ -42,7 +42,7 @@
     "prijs": 320,
     "beschrijving": "Sleek, dark, and sophisticated. The Midnight Stealth is crafted for those who appreciate understated luxury and premium comfort.",
     "keywords": "luxury, stealth, black, suede",
-    "afbeelding": "snkr-005.jpg"
+    "afbeelding": "https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?w=800"
   },
   {
     "id": "snkr-006",
@@ -51,7 +51,7 @@
     "prijs": 275,
     "beschrijving": "Burst onto the scene with the Solar Flare G2. A vibrant colorway meets cutting-edge cushioning technology.",
     "keywords": "vibrant, orange, limited, tech",
-    "afbeelding": "snkr-006.jpg"
+    "afbeelding": "https://images.unsplash.com/photo-1512374382149-4332c6c02151?w=800"
   },
   {
     "id": "snkr-007",
@@ -60,7 +60,7 @@
     "prijs": 145,
     "beschrijving": "Cool aesthetics for the modern explorer. The Arctic Frost offers a crisp look with water-resistant materials.",
     "keywords": "winter, blue, water-resistant, lifestyle",
-    "afbeelding": "snkr-007.jpg"
+    "afbeelding": "https://images.unsplash.com/photo-1552346154-21d32810aba3?w=800"
   },
   {
     "id": "snkr-008",
@@ -69,7 +69,7 @@
     "prijs": 195,
     "beschrijving": "Tough enough for the trail, stylish enough for the street. The Desert Nomad features a rugged Vibram sole.",
     "keywords": "outdoor, hiking, sand, rugged",
-    "afbeelding": "snkr-008.jpg"
+    "afbeelding": "https://images.unsplash.com/photo-1543508282-6319a3e2621f?w=800"
   },
   {
     "id": "snkr-009",
@@ -78,7 +78,7 @@
     "prijs": 225,
     "beschrijving": "Step into the future. The Vortex Prime utilizes 3D-printed midsole technology for personalized support and comfort.",
     "keywords": "future, 3d-printed, performance, silver",
-    "afbeelding": "snkr-009.jpg"
+    "afbeelding": "https://images.unsplash.com/photo-1539185441755-769473a23570?w=800"
   },
   {
     "id": "snkr-010",
@@ -87,7 +87,7 @@
     "prijs": 350,
     "beschrijving": "The pinnacle of sneaker craftsmanship. Made from full-grain obsidian leather with hand-stitched details.",
     "keywords": "luxury, leather, black, handmade",
-    "afbeelding": "snkr-010.jpg"
+    "afbeelding": "https://images.unsplash.com/photo-1560769629-975ec94e6a86?w=800"
   },
   {
     "id": "snkr-011",
@@ -96,7 +96,7 @@
     "prijs": 199,
     "beschrijving": "Defy the laws of physics. Our lightest sneaker ever, designed to provide a weightless running experience.",
     "keywords": "lightweight, running, white, comfort",
-    "afbeelding": "snkr-011.jpg"
+    "afbeelding": "https://images.unsplash.com/photo-1551107696-a4b0c5a0d9a2?w=800"
   },
   {
     "id": "snkr-012",
@@ -105,7 +105,7 @@
     "prijs": 289,
     "beschrijving": "Bold and unapologetic. The Crimson Peak is a collector's dream, featuring unique textures and a striking red palette.",
     "keywords": "red, limited, collector, high-end",
-    "afbeelding": "snkr-012.jpg"
+    "afbeelding": "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=800"
   },
   {
     "id": "snkr-013",
@@ -114,7 +114,7 @@
     "prijs": 310,
     "beschrijving": "Sophistication in every stitch. The Emerald City combines deep green velvet with premium metallic accents.",
     "keywords": "green, luxury, velvet, gold",
-    "afbeelding": "snkr-013.jpg"
+    "afbeelding": "https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=800"
   },
   {
     "id": "snkr-014",
@@ -123,7 +123,7 @@
     "prijs": 185,
     "beschrijving": "Built to last. The Titanium Tough uses ripstop fabrics and reinforced toe caps for maximum durability in any environment.",
     "keywords": "durable, ripstop, grey, urban",
-    "afbeelding": "snkr-014.jpg"
+    "afbeelding": "https://images.unsplash.com/photo-1511556532299-8f662fc26c06?w=800"
   },
   {
     "id": "snkr-015",
@@ -132,7 +132,7 @@
     "prijs": 260,
     "beschrijving": "Inspired by the cosmos. The Nebula Pulse features a color-shifting upper that reacts to light and movement.",
     "keywords": "cosmic, iridescent, limited, purple",
-    "afbeelding": "snkr-015.jpg"
+    "afbeelding": "https://images.unsplash.com/photo-1605348532760-6753d2c43329?w=800"
   },
   {
     "id": "snkr-016",
@@ -141,7 +141,7 @@
     "prijs": 139,
     "beschrijving": "Pure minimalism. The Zenith Zero strips away the noise to deliver a clean, essential aesthetic for everyday wear.",
     "keywords": "minimal, white, lifestyle, essential",
-    "afbeelding": "snkr-016.jpg"
+    "afbeelding": "https://images.unsplash.com/photo-1525966222ec1-b11479f71571?w=800"
   },
   {
     "id": "snkr-017",
@@ -150,7 +150,7 @@
     "prijs": 175,
     "beschrijving": "Never lose your footing. The Iron Grip features a specialized rubber compound designed for maximum traction on wet surfaces.",
     "keywords": "grip, wet, urban, black",
-    "afbeelding": "snkr-017.jpg"
+    "afbeelding": "https://images.unsplash.com/photo-1570154524816-a79ff4df6845?w=800"
   },
   {
     "id": "snkr-018",
@@ -159,7 +159,7 @@
     "prijs": 155,
     "beschrijving": "Ultimate comfort. The Cloud Walker uses a proprietary foam blend that makes every step feel like a breeze.",
     "keywords": "comfort, foam, grey, lifestyle",
-    "afbeelding": "snkr-018.jpg"
+    "afbeelding": "https://images.unsplash.com/photo-1515955656352-a1fa3ffcd111?w=800"
   },
   {
     "id": "snkr-019",
@@ -168,7 +168,7 @@
     "prijs": 340,
     "beschrijving": "Sharp design for the sharp-minded. The Phantom Edge features aggressive lines and premium matte finishes.",
     "keywords": "sharp, luxury, matte, black",
-    "afbeelding": "snkr-019.jpg"
+    "afbeelding": "https://images.unsplash.com/photo-1584735175315-9d5df23860e6?w=800"
   },
   {
     "id": "snkr-020",
@@ -177,6 +177,6 @@
     "prijs": 205,
     "beschrijving": "Heavy-duty style. The Titan Tread combines a chunky silhouette with high-tech materials for the ultimate urban statement.",
     "keywords": "chunky, tech, urban, durable",
-    "afbeelding": "snkr-020.jpg"
+    "afbeelding": "https://images.unsplash.com/photo-1516478177764-9fe5bd7e9717?w=800"
   }
 ]
