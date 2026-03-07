@@ -12,15 +12,14 @@
     "locaties": {
       "visible_fields": [
         "naam_locatie",
+        "straat_nummer",
         "postcode",
         "stad",
         "telefoonnummer",
         "ligging_omschrijving",
         "parking_info"
       ],
-      "hidden_fields": [
-        "straat_nummer"
-      ]
+      "hidden_fields": []
     },
     "hero": {
       "visible_fields": [

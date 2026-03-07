@@ -324,6 +324,17 @@ const DockFrame = () => {
       }, '*');
     }
 
+    setSiteStructure(prev => {
+      if (!prev) return prev;
+      const newData = { ...prev.data };
+      const settings = [...(newData.section_settings || [])];
+      if (settings[sectionIndex]) {
+        settings[sectionIndex] = { ...settings[sectionIndex], visible: nextVisible };
+        newData.section_settings = settings;
+      }
+      return { ...prev, data: newData };
+    });
+
     saveData('section_settings', sectionIndex, 'visible', nextVisible);
   };
 
@@ -1045,6 +1056,19 @@ const DockFrame = () => {
                                 value: val
                               }, '*');
                             }
+
+                            // Update local state
+                            setSiteStructure(prev => {
+                              if (!prev) return prev;
+                              const newData = { ...prev.data };
+                              const settings = [...(newData.section_settings || [])];
+                              if (settings[idx]) {
+                                settings[idx] = { ...settings[idx], padding: val };
+                                newData.section_settings = settings;
+                              }
+                              return { ...prev, data: newData };
+                            });
+
                             saveData('section_settings', idx, 'padding', val);
                           }
                         }}
