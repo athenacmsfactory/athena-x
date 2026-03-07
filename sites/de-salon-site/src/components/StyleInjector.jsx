@@ -5,8 +5,10 @@ import React, { useLayoutEffect } from 'react';
  * Synchronizes Athena JSON settings with CSS Custom Properties (Variables).
  * This ensures the site looks correct both in standalone mode and in the Dock.
  */
-const StyleInjector = ({ siteSettings }) => {
-  const settings = Array.isArray(siteSettings) ? (siteSettings[0] || {}) : (siteSettings || {});
+const StyleInjector = ({ hero = {}, headerSettings = {} }) => {
+  const hData = Array.isArray(hero) ? (hero[0] || {}) : hero;
+  const sData = Array.isArray(headerSettings) ? (headerSettings[0] || {}) : headerSettings;
+  const settings = { ...hData, ...sData };
 
   useLayoutEffect(() => {
     const root = document.documentElement;

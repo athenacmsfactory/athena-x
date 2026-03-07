@@ -9,12 +9,13 @@ const App = ({ data }) => {
   
   return (
     <div className="min-h-screen bg-[var(--color-background)] text-[var(--color-text)] transition-colors duration-500">
-      <StyleInjector siteSettings={data['site_settings']} />
+      <StyleInjector hero={data['hero']} headerSettings={data['header_settings']} />
       
       <Header 
         primaryTable={primaryTable} 
         tableName="basisgegevens" 
-        siteSettings={data['site_settings']} 
+        hero={data['hero']} 
+        headerSettings={data['header_settings']}
         navData={data['paginastructuur']}
       />
       

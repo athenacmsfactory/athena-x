@@ -49,7 +49,13 @@
         const structure = {
             sections: scanSections(),
             layouts: lastKnownData?.layout_settings?.[0] || lastKnownData?.layout_settings || {},
-            data: lastKnownData || {},
+            data: {
+                ...lastKnownData,
+                site_settings: {
+                    ...(Array.isArray(lastKnownData?.hero) ? lastKnownData?.hero[0] : lastKnownData?.hero),
+                    ...(Array.isArray(lastKnownData?.header_settings) ? lastKnownData?.header_settings[0] : lastKnownData?.header_settings)
+                }
+            },
             url: window.location.href,
             timestamp: Date.now()
         };

@@ -224,9 +224,13 @@ const DockFrame = () => {
       }, '*');
 
       if (shouldSave) {
-        const oldValue = siteStructure?.data?.site_settings?.[key];
-        pushToHistory('site_settings', 0, key, oldValue, value);
-        saveData('site_settings', 0, key, value);
+        let file = 'site_settings';
+        if (key.startsWith('header_') || key === 'content_top_offset') file = 'header_settings';
+        else if (key.startsWith('hero_') || key === 'title') file = 'hero';
+
+        const oldValue = siteStructure?.data?.[file]?.[key] || siteStructure?.data?.site_settings?.[key];
+        pushToHistory(file, 0, key, oldValue, value);
+        saveData(file, 0, key, value);
       }
     }
   };
@@ -880,7 +884,9 @@ const DockFrame = () => {
               <div key={section} className="mb-6 p-4 bg-slate-50 border border-slate-200 rounded-xl shadow-sm" title={`Beheersectie voor de '${section}' op je pagina.`}>
                 <div className="flex items-center justify-between mb-3">
                   <span className="text-sm font-bold text-slate-800 capitalize truncate" title={`Sectie: ${section}`}>
-                    {section === 'site_settings' ? 'Hero / Header Settings' : section}
+                    {section === 'hero' ? 'Hero Settings' : 
+                     section === 'header_settings' ? 'Header Settings' : 
+                     section === 'site_settings' ? 'Site Settings' : section}
                   </span>
                   <div className="flex gap-1">
                     <button

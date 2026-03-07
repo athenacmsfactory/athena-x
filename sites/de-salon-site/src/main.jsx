@@ -22,7 +22,8 @@ async function init() {
     // Systeembestanden
     data['section_order'] = getData('section_order') || [];
     data['layout_settings'] = getData('layout_settings') || {};
-    data['site_settings'] = getData('site_settings') || {};
+    data['hero'] = getData('hero') || {};
+    data['header_settings'] = getData('header_settings') || {};
     data['section_settings'] = getData('section_settings') || [];
     data['display_config'] = getData('display_config') || { sections: {} };
     data['style_bindings'] = getData('style_bindings') || {};

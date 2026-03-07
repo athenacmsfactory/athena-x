@@ -6,20 +6,20 @@ import EditableMedia from './EditableMedia';
  * Header (Docked Track)
  * Robust Hero section with support for Title Color and detached Header Image.
  */
-function Header({ primaryTable, tableName, siteSettings = {}, navData = [] }) {
+function Header({ primaryTable, tableName, hero = {}, headerSettings = {}, navData = [] }) {
   const info = Array.isArray(primaryTable) ? (primaryTable[0] || {}) : (primaryTable || {});
 
-  // Ensure siteSettings is treated as an object (might be array from JSON)
-  const settings = Array.isArray(siteSettings) ? (siteSettings[0] || {}) : siteSettings;
+  const heroData = Array.isArray(hero) ? (hero[0] || {}) : hero;
+  const settings = Array.isArray(headerSettings) ? (headerSettings[0] || {}) : headerSettings;
 
   // Look for fields in primary table for fallbacks
   const keys = Object.keys(info);
   const fallbackTitleKey = keys.find(k => /naam|titel|header|kop|bedrijfsnaam/i.test(k)) || keys[0];
   const fallbackTaglineKey = keys.find(k => /slogan|tagline|ondertitel|subtitle/i.test(k));
 
-  // Values: Site Settings > Primary Table > Default
-  const rawTitle = settings.title || info[fallbackTitleKey] || 'Welcome';
-  const rawTagline = settings.tagline || (fallbackTaglineKey ? info[fallbackTaglineKey] : '');
+  // Values: Hero settings > Primary Table > Default
+  const rawTitle = heroData.title || info[fallbackTitleKey] || 'Welcome';
+  const rawTagline = heroData.tagline || (fallbackTaglineKey ? info[fallbackTaglineKey] : '');
 
   const title = (typeof rawTitle === 'object' && rawTitle !== null) ? (rawTitle.text || rawTitle.title || 'Welcome') : rawTitle;
   const tagline = (typeof rawTagline === 'object' && rawTagline !== null) ? (rawTagline.text || rawTagline.title || '') : rawTagline;
@@ -50,7 +50,7 @@ function Header({ primaryTable, tableName, siteSettings = {}, navData = [] }) {
               <EditableMedia
                 src={settings.site_logo_image}
                 className="w-full h-full object-contain"
-                cmsBind={{ file: 'site_settings', index: 0, key: 'site_logo_image' }}
+                cmsBind={{ file: 'header_settings', index: 0, key: 'site_logo_image' }}
               />
             </div>
           ) : (
@@ -99,17 +99,17 @@ function Header({ primaryTable, tableName, siteSettings = {}, navData = [] }) {
       {/* Main Header / Hero Section */}
       <header 
         id="home" 
-        data-dock-section="site_settings"
+        data-dock-section="hero"
         className="relative min-h-[85vh] flex flex-col overflow-hidden bg-primary text-white pt-20"
       >
         {/* Background Media */}
         <div className="absolute inset-0">
           <EditableMedia
-            src={settings.hero_image}
+            src={heroData.hero_image}
             alt={title}
             className="w-full h-full"
-            cmsBind={{ file: 'site_settings', index: 0, key: 'hero_image' }}
-            dataItem={settings}
+            cmsBind={{ file: 'hero', index: 0, key: 'hero_image' }}
+            dataItem={heroData}
           />
           {/* Dynamic Gradient Overlay */}
           <div
@@ -126,7 +126,7 @@ function Header({ primaryTable, tableName, siteSettings = {}, navData = [] }) {
               tagName="h1"
               value={rawTitle}
               className="text-5xl md:text-7xl lg:text-9xl mb-8 font-serif font-bold text-[var(--color-title)] leading-tight"
-              cmsBind={{ file: 'site_settings', index: 0, key: 'title' }}
+              cmsBind={{ file: 'hero', index: 0, key: 'title' }}
             />
 
             {tagline && (
@@ -136,7 +136,7 @@ function Header({ primaryTable, tableName, siteSettings = {}, navData = [] }) {
                 data-dock-element="header-tagline"
                 className="text-xl md:text-3xl font-light text-white/80 mb-12 max-w-2xl mx-auto leading-relaxed italic"
                 style={{ display: settings.header_show_tagline === false ? 'none' : 'block' }}
-                cmsBind={{ file: 'site_settings', index: 0, key: 'tagline' }}
+                cmsBind={{ file: 'hero', index: 0, key: 'tagline' }}
               />
             )}
             <div className="flex gap-6 justify-center">

@@ -622,7 +622,7 @@
                     <div class="panel rounded-[2rem] border border-border overflow-hidden shadow-2xl animate-fadeIn">
                         <div class="bg-slate-800/50 p-6 font-black text-white border-b border-border flex justify-between items-center">
                             <span class="flex items-center gap-3 uppercase tracking-tighter">
-                                <i class="fa-solid fa-table text-purple-500"></i> ${tableName === 'site_settings' ? 'Hero / Header Settings' : tableName}
+                                <i class="fa-solid fa-table text-purple-500"></i> ${tableName === 'hero' ? 'Hero Settings' : tableName === 'header_settings' ? 'Header Settings' : tableName}
                             </span>
                             <span class="px-3 py-1 bg-slate-900/50 rounded-full text-[9px] text-slate-500 uppercase tracking-widest border border-border">${rows.length} items</span>
                         </div>

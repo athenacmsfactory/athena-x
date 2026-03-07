@@ -159,35 +159,43 @@ export default function DesignControls({ onColorChange, siteStructure }) {
 
       console.log("🚀 Initializing Layout & Color Save to:", apiUrl);
 
-      // We verzamelen ALLEEN de layout en kleur data
-      // We filteren de content-keys (links/teksten) eruit om corruptie te voorkomen
-      const filteredData = {};
-      Object.keys(localColors).forEach(key => {
-        if (key.includes('color') || key.includes('offset') || key.includes('header_') || key.includes('hero_') || key.includes('footer_')) {
-          // Check of het geen link-object is dat we per ongeluk als string hebben
-          if (typeof localColors[key] !== 'object') {
-            filteredData[key] = localColors[key];
-          }
-        }
-      });
-
-      const payload = {
-        file: 'site_settings',
-        index: 0,
-        data: {
-          ...filteredData,
+      // We splitsen de data op naar de relevante bestanden
+      const heroData = {};
+      const headerData = {
           content_top_offset: sliderValues.content_top_offset,
           header_height: sliderValues.header_height
-        }
       };
+      const siteData = {};
 
-      const response = await fetch(apiUrl, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload)
+      Object.keys(localColors).forEach(key => {
+        if (typeof localColors[key] === 'object') return;
+
+        if (key.startsWith('header_') || key === 'content_top_offset' || key === 'header_height') {
+            headerData[key] = localColors[key];
+        } else if (key.startsWith('hero_') || key === 'title') {
+            heroData[key] = localColors[key];
+        } else if (key.includes('color') || key.includes('global_') || key.includes('footer_')) {
+            siteData[key] = localColors[key];
+        }
       });
 
-      if (response.ok) {
+      const saveFile = async (fileName, data) => {
+          if (Object.keys(data).length === 0) return true;
+          const res = await fetch(apiUrl, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ file: fileName, index: 0, data })
+          });
+          return res.ok;
+      };
+
+      const results = await Promise.all([
+          saveFile('hero', heroData),
+          saveFile('header_settings', headerData),
+          saveFile('site_settings', siteData)
+      ]);
+
+      if (results.every(r => r)) {
         btn.style.background = 'var(--success, #22c55e)';
         btn.innerHTML = '<i class="fa-solid fa-check"></i> SAVED TO DISK';
         setTimeout(() => {
@@ -196,7 +204,7 @@ export default function DesignControls({ onColorChange, siteStructure }) {
           btn.innerHTML = originalText;
         }, 2000);
       } else {
-        throw new Error("Server responded with error");
+        throw new Error("One or more saves failed");
       }
     } catch (e) {
       console.error("Save failed:", e);
