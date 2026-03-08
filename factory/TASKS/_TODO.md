@@ -19,6 +19,16 @@
 - [ ] **Advanced Generator:** Explore AST-based or template-based code injection for safer project generation.
 
 ## 🛠️ Engine Improvements
+- [x] **Migratie: paginastructuur -> navbar (de-schaar-site)**
+  - [x] Hernoem `src/data/paginastructuur.json` naar `navbar.json`
+  - [x] Update `project-settings/url-sheet.json` (Key & GID mapping)
+  - [x] Update `App.jsx` (`navData={data['navbar']}`)
+  - [x] Update `Header.jsx` (`cmsBind={{ file: 'navbar', ... }}`)
+  - [x] Update `Section.jsx` (Config mapping)
+  - [x] Update `src/data/section_settings.json` (ID en titels)
+  - [x] Update `src/data/section_order.json`
+  - [x] Update `src/data/schema.json`
+  - [x] Hernoem tabblad in Google Sheet via API naar 'navbar'
 - [x] **Data Gateway**: Replaced legacy 'Sync' with a unified Data Gateway (Cloud Pull/Push + Pull from local input folder).
 - [x] **Terminology Unification**: Standardized "Data Bron" (Data Source) for all input folders across the system and documentation.
 - [ ] Streamline `scavengeAssets` for faster and more reliable asset mapping.

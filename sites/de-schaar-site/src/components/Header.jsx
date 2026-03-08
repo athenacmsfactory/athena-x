@@ -89,7 +89,7 @@ function Header({ primaryTable, tableName, hero = {}, headerSettings = {}, navDa
             >
               <EditableText
                 value={item.titel_navigatie}
-                cmsBind={{ file: 'paginastructuur', index: idx, key: 'titel_navigatie' }}
+                cmsBind={{ file: 'navbar', index: idx, key: 'titel_navigatie' }}
               />
             </a>
           ))}

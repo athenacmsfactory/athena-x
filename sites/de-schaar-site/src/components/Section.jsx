@@ -20,7 +20,7 @@ const Section = ({ data }) => {
     { table: "testimonials", title: "testimonials", subtitle: "Overzicht van testimonials", defaultLayout: "list" },
     { table: "aveda", title: "aveda", subtitle: "Overzicht van aveda informatie", defaultLayout: "grid" },
     { table: "social_media", title: "social media", subtitle: "Overzicht van social media", defaultLayout: "grid" },
-    { table: "paginastructuur", title: "paginastructuur", subtitle: "Overzicht van paginastructuur", defaultLayout: "grid" }
+    { table: "navbar", title: "navbar", subtitle: "Overzicht van navigatiebalk", defaultLayout: "grid" }
   ];
 
   // Helper voor actuele layout per sectie
@@ -102,7 +102,7 @@ const Section = ({ data }) => {
         const isVisible = sectionMeta.visible !== false;
 
         // Skip technical sections by default
-        if (config.table === 'paginastructuur' || config.table === 'footer' || config.table === 'social_media' || config.table.includes('hoofdgroepen')) return null;
+        if (config.table === 'navbar' || config.table === 'footer' || config.table === 'social_media' || config.table.includes('hoofdgroepen')) return null;
         
         // Skip based on visibility setting (except in Dev mode where we show them dimmed)
         if (!isVisible && !isDev) return null;

@@ -102,7 +102,7 @@ const App = ({ data: initialData }) => {
         tableName="footer" 
         hero={data['hero']} 
         headerSettings={data['header_settings']}
-        navData={data['paginastructuur']}
+        navData={data['navbar']}
       />
       
       <main>

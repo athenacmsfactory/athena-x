@@ -253,7 +253,7 @@
       ]
     },
     {
-      "table_name": "paginastructuur",
+      "table_name": "navbar",
       "columns": [
         {
           "name": "pagina_id",

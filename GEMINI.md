@@ -74,3 +74,9 @@ Athena v8.1 is an automated factory featuring the v33 Sync Bridge and Modular Co
 - **Data:** Prefer `all_data.json` aggregation for performance over heavy HTTP requests.
 - **Layout:** Modularize sections in `src/components/sections/`.
 - **Unified Interaction**: Use `Shift + Click` logic for editing; standard clicks trigger native behavior for easier functional testing. Mandatory `data-dock-type` and `data-dock-bind` for editor reliability.
+
+## 🛠️ Maintenance & Lessons Learned
+- **Google Sheets API Limits (March 2026):**
+  - **Object Synchronization:** The Google Sheets API (v4) in `RAW` mode cannot process nested objects (e.g., color/font CMS objects). This results in `Invalid values[x][y]: struct_value` errors.
+  - **Solution:** `DataManager.js` must always extract primitives (`.text`, `.title`, `.label`) or stringify objects before syncing.
+  - **Build Integrity:** Corrupt/empty Sheets can overwrite local data during the GitHub Actions build via `fetch-data.js`. Always verify Sheet sync success before a production push.

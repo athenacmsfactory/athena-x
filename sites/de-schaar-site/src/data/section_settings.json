@@ -63,9 +63,9 @@
     "padding": 40
   },
   {
-    "id": "paginastructuur",
-    "title": "paginastructuur",
-    "subtitle": "Overzicht van paginastructuur",
+    "id": "navbar",
+    "title": "navbar",
+    "subtitle": "Overzicht van navigatiebalk",
     "visible": "",
     "padding": ""
   }
