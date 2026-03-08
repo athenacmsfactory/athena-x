@@ -370,6 +370,10 @@ export class AthenaDataManager {
                 jsonData.forEach(item => {
                     rows.push(headers.map(h => {
                         const val = item[h];
+                        if (val && typeof val === 'object' && !Array.isArray(val)) {
+                            // Extract text/title/label if it's a CMS object
+                            return val.text || val.title || val.label || JSON.stringify(val);
+                        }
                         return val === null || val === undefined ? "" : val;
                     }));
                 });
