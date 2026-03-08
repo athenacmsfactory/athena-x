@@ -111,6 +111,13 @@ const App = ({ data: initialData }) => {
     return () => window.removeEventListener('message', handleMessage);
   }, []);
 
+  // 🔥 [v33 Bridge]: Deel actuele data met de Dock-connector
+  useEffect(() => {
+    if (window.athenaScan) {
+      window.athenaScan(data);
+    }
+  }, [data]);
+
   const primaryTable = data['footer'] || [];
   
   return (

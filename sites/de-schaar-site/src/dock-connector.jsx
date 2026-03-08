@@ -15,7 +15,6 @@
 
     // --- 2. THEME MAPPINGS ---
     const themeMappings = {
-        // Universal mappings that apply regardless of current theme prefix
         'primary_color': ['--color-primary', '--primary-color'],
         'title_color': ['--color-title'],
         'heading_color': ['--color-heading'],
@@ -32,7 +31,39 @@
         'global_radius': '--radius-custom'
     };
 
-    // --- 3. SECTION SCANNER ---
+    // --- 3. SECTION SCANNER & STYLE CAPTURE ---
+    function getComputedThemeColors() {
+        try {
+            const root = getComputedStyle(document.documentElement);
+            const captured = {};
+            const isDark = document.documentElement.classList.contains('dark');
+            const prefix = isDark ? 'dark_' : 'light_';
+
+            const map = {
+                '--color-primary': 'primary_color',
+                '--color-accent': 'accent_color',
+                '--color-button': 'button_color',
+                '--color-card': 'card_color',
+                '--color-header': 'header_color',
+                '--color-background': 'bg_color',
+                '--color-text': 'text_color',
+                '--color-title': 'title_color',
+                '--color-heading': 'heading_color'
+            };
+
+            Object.entries(map).forEach(([cssVar, athenaKey]) => {
+                const val = root.getPropertyValue(cssVar).trim();
+                if (val && (val.startsWith('#') || val.startsWith('rgb'))) {
+                    captured[`${prefix}${athenaKey}`] = val;
+                }
+            });
+
+            return captured;
+        } catch (e) {
+            return {};
+        }
+    }
+
     function scanSections() {
         const sections = [];
         const sectionElements = document.querySelectorAll('[data-dock-section]');
@@ -46,14 +77,16 @@
     function notifyDock(fullData = null) {
         if (fullData) lastKnownData = fullData;
         
-        // v8.4.3: Ensure ALL config files are sent to the dock for hydration
+        const computedDefaults = getComputedThemeColors();
+
         const structure = {
             sections: scanSections(),
             layouts: lastKnownData?.layout_settings?.[0] || lastKnownData?.layout_settings || {},
             data: {
                 ...lastKnownData,
-                // Backward compatibility for older Dock versions
+                // Merge computed defaults with actual JSON data
                 site_settings: {
+                    ...computedDefaults,
                     ...(Array.isArray(lastKnownData?.hero) ? lastKnownData?.hero[0] : lastKnownData?.hero),
                     ...(Array.isArray(lastKnownData?.header_settings) ? lastKnownData?.header_settings[0] : lastKnownData?.header_settings),
                     ...(lastKnownData?.style_config || {})
@@ -73,7 +106,7 @@
     window.addEventListener('message', async (event) => {
         const { type, key, value, section, direction, file, index } = event.data;
 
-        // Color & Style Update (Real-time Preview)
+        // Color Update
         if (type === 'DOCK_UPDATE_COLOR') {
             const root = document.documentElement;
             const isDark = root.classList.contains('dark');
@@ -203,7 +236,6 @@
         // Style Swap (Requires full reload to apply new CSS imports)
         if (type === 'DOCK_SWAP_STYLE') {
             console.log("🎨 Swapping global style to:", value);
-            // We doen een kleine delay zodat de API call van de Dock eerst klaar kan zijn
             setTimeout(() => window.location.reload(), 500);
         }
 
@@ -241,63 +273,7 @@
 
     window.athenaScan = notifyDock;
 
-    // --- 7. DRAG & DROP (VIDEOS & IMAGES) ---
-    const isMediaBind = (bind) => {
-        if (!bind || !bind.key) return false;
-        const k = bind.key.toLowerCase();
-        return k.includes('foto') || k.includes('image') || k.includes('img') || k.includes('afbeelding') || k.includes('hero_image') || k.includes('video');
-    };
-
-    // Global Drag Tracking
-    let dragEnterCount = 0;
-    window.addEventListener('dragenter', (e) => {
-        dragEnterCount++;
-        if (dragEnterCount === 1) document.body.classList.add('dock-dragging-active');
-    });
-
-    window.addEventListener('dragleave', (e) => {
-        dragEnterCount--;
-        if (dragEnterCount <= 0) {
-            dragEnterCount = 0;
-            document.body.classList.remove('dock-dragging-active');
-        }
-    });
-
-    window.addEventListener('dragover', (e) => { e.preventDefault(); });
-
-    window.addEventListener('drop', async (e) => {
-        const target = e.target.closest('[data-dock-bind]');
-        dragEnterCount = 0;
-        document.body.classList.remove('dock-dragging-active');
-
-        if (!target) return;
-        const bind = JSON.parse(target.getAttribute('data-dock-bind'));
-        if (!isMediaBind(bind)) return;
-
-        e.preventDefault();
-        const file = e.dataTransfer.files[0];
-        if (!file || (!file.type.startsWith('image/') && !file.type.startsWith('video/'))) return;
-
-        try {
-            const uploadRes = await fetch(getApiUrl('__athena/upload'), {
-                method: 'POST',
-                headers: { 'x-filename': file.name },
-                body: file
-            });
-            const uploadData = await uploadRes.json();
-            
-            if (uploadData.success) {
-                await fetch(getApiUrl('__athena/update-json'), {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ file: bind.file, index: bind.index, key: bind.key, value: uploadData.filename })
-                });
-                window.parent.postMessage({ type: 'DOCK_TRIGGER_REFRESH' }, '*');
-            }
-        } catch (err) { console.error(err); }
-    }, true);
-
-    // Click selection
+    // --- Click selection ---
     document.addEventListener('click', (e) => {
         const target = e.target.closest('[data-dock-bind]');
         if (target && window.parent !== window) {
@@ -307,13 +283,7 @@
             e.stopPropagation();
 
             const binding = JSON.parse(target.getAttribute('data-dock-bind'));
-            const dockType = target.getAttribute('data-dock-type') || (
-                (binding.key && (binding.key.toLowerCase().includes('foto') || 
-                                 binding.key.toLowerCase().includes('image') || 
-                                 binding.key.toLowerCase().includes('img') || 
-                                 binding.key.toLowerCase().includes('afbeelding') || 
-                                 binding.key.toLowerCase().includes('video'))) ? 'media' : 'text'
-            );
+            const dockType = target.getAttribute('data-dock-type') || 'text';
 
             let currentValue = target.getAttribute('data-dock-current') || target.innerText;
             

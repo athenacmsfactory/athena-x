@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 import App from './App';
 import './index.css';
 import './modern.css';
-import './dock-connector.js';
+import './dock-connector.jsx';
 
 async function init() {
   const data = {};
