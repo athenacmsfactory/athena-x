@@ -23,11 +23,17 @@ function Header({ primaryTable, tableName, hero = {}, headerSettings = {}, navDa
     return val.text || val.title || val.label || val.name || val.value || fallback;
   };
 
-  // Values: Hero settings > Primary Table > Default
-  const rawTitle = heroData.title || info[fallbackTitleKey] || 'Welcome';
-  const rawTagline = heroData.tagline || (fallbackTaglineKey ? info[fallbackTaglineKey] : '');
+  // 1. Separate Titles: Hero vs Navigation
+  // Navigation Title: usually the business name from Footer table
+  const navTitleValue = info[fallbackTitleKey] || 'De Schaar';
+  
+  // Hero Title: the main headline in the middle of the page
+  const heroTitleValue = heroData.titel || heroData.title || navTitleValue;
+  
+  // Tagline
+  const rawTagline = heroData.ondertitel || heroData.tagline || (fallbackTaglineKey ? info[fallbackTaglineKey] : '');
 
-  const titleString = extractText(rawTitle, 'Welcome');
+  const titleString = extractText(heroTitleValue, 'Welcome');
   const taglineString = extractText(rawTagline, '');
 
   const sortedNav = [...navData].sort((a, b) => (a.menu_positie || 0) - (b.menu_positie || 0));
@@ -39,31 +45,31 @@ function Header({ primaryTable, tableName, hero = {}, headerSettings = {}, navDa
         data-dock-element="header-nav"
         className="fixed top-0 left-0 right-0 z-[1000] w-full px-8 py-4 flex items-center justify-between border-b transition-all duration-300"
         style={{
-          display: settings.header_visible === false ? 'none' : 'flex',
-          height: settings.header_height ? `${settings.header_height}px` : 'var(--header-height, auto)',
+          display: (settings.header_zichtbaar === false || settings.header_visible === false) ? 'none' : 'flex',
+          height: (settings.header_hoogte || settings.header_height) ? `${settings.header_hoogte || settings.header_height}px` : 'var(--header-height, auto)',
           backgroundColor: 'var(--header-bg, var(--color-header, rgba(var(--color-primary-rgb), 0.6)))',
           backdropFilter: 'var(--header-blur, blur(12px))',
           borderColor: 'var(--header-border, rgba(255,255,255,0.1))'
         }}
       >
         <div className="flex items-center gap-4">
-          {settings.site_logo_image ? (
+          {(settings.logo_afbeelding || settings.site_logo_image) ? (
             <div 
               data-dock-element="header-logo"
               className="w-10 h-10 overflow-hidden"
-              style={{ display: settings.header_show_logo === false ? 'none' : 'block' }}
+              style={{ display: (settings.toon_logo === false || settings.header_show_logo === false) ? 'none' : 'block' }}
             >
               <EditableMedia
-                src={settings.site_logo_image}
+                src={settings.logo_afbeelding || settings.site_logo_image}
                 className="w-full h-full object-contain"
-                cmsBind={{ file: 'header_settings', index: 0, key: 'site_logo_image' }}
+                cmsBind={{ file: 'header_settings', index: 0, key: settings.logo_afbeelding ? 'logo_afbeelding' : 'site_logo_image' }}
               />
             </div>
           ) : (
             <div 
               data-dock-element="header-logo"
               className="w-10 h-10 bg-accent rounded-lg flex items-center justify-center text-xl"
-              style={{ display: settings.header_show_logo === false ? 'none' : 'flex' }}
+              style={{ display: (settings.toon_logo === false || settings.header_show_logo === false) ? 'none' : 'flex' }}
             >
               <i className="fa-solid fa-scissors text-white"></i>
             </div>
@@ -71,26 +77,24 @@ function Header({ primaryTable, tableName, hero = {}, headerSettings = {}, navDa
           <EditableText
             tagName="span"
             data-dock-element="header-title"
-            value={rawTitle}
+            value={navTitleValue}
             className="font-serif font-bold text-xl tracking-tighter uppercase"
-            style={{ display: settings.header_show_title === false ? 'none' : 'inline' }}
-            table="footer"
-            id={0}
-            field={fallbackTitleKey}
+            style={{ display: (settings.toon_titel === false || settings.header_show_title === false) ? 'none' : 'inline' }}
+            cmsBind={{ file: 'footer', index: 0, key: 'bedrijfsnaam' }}
           />
         </div>
 
         <div 
           data-dock-element="header-navbar"
           className="hidden md:flex items-center gap-8"
-          style={{ display: settings.header_show_navbar === false ? 'none' : 'flex' }}
+          style={{ display: (settings.toon_navigatie === false || settings.header_show_navbar === false) ? 'none' : 'flex' }}
         >
           {sortedNav.map((item, idx) => (
             <a
               key={idx}
               href={`#${item.slug}`}
               data-dock-element={item.is_call_to_action ? "header-button" : undefined}
-              style={{ display: (item.is_call_to_action && settings.header_show_button === false) ? 'none' : undefined }}
+              style={{ display: (item.is_call_to_action && (settings.toon_cta_knop === false || settings.header_show_button === false)) ? 'none' : undefined }}
               className={`text-xs font-bold uppercase tracking-widest transition-colors hover:text-accent ${item.is_call_to_action ? 'px-5 py-2 bg-accent text-white rounded-full shadow-lg shadow-accent/20' : 'text-white/70'}`}
             >
               <EditableText
@@ -111,10 +115,10 @@ function Header({ primaryTable, tableName, hero = {}, headerSettings = {}, navDa
         {/* Background Media */}
         <div className="absolute inset-0">
           <EditableMedia
-            src={heroData.hero_image}
+            src={heroData.hero_afbeelding || heroData.hero_image}
             alt={titleString}
             className="w-full h-full"
-            cmsBind={{ file: 'hero', index: 0, key: 'hero_image' }}
+            cmsBind={{ file: 'hero', index: 0, key: heroData.hero_afbeelding ? 'hero_afbeelding' : 'hero_image' }}
             dataItem={heroData}
           />
           {/* Dynamic Gradient Overlay */}
@@ -130,9 +134,9 @@ function Header({ primaryTable, tableName, hero = {}, headerSettings = {}, navDa
           <div className="relative z-10 max-w-4xl mx-auto reveal">
             <EditableText
               tagName="h1"
-              value={rawTitle}
+              value={heroTitleValue}
               className="text-5xl md:text-7xl lg:text-9xl mb-8 font-serif font-bold text-[var(--color-title)] leading-tight"
-              cmsBind={{ file: 'hero', index: 0, key: 'title' }}
+              cmsBind={{ file: 'hero', index: 0, key: heroData.titel ? 'titel' : 'title' }}
             />
 
             {taglineString && (
@@ -141,8 +145,8 @@ function Header({ primaryTable, tableName, hero = {}, headerSettings = {}, navDa
                 value={rawTagline}
                 data-dock-element="header-tagline"
                 className="text-xl md:text-3xl font-light text-white/80 mb-12 max-w-2xl mx-auto leading-relaxed italic"
-                style={{ display: settings.header_show_tagline === false ? 'none' : 'block' }}
-                cmsBind={{ file: 'hero', index: 0, key: 'tagline' }}
+                style={{ display: (settings.toon_ondertitel === false || settings.header_show_tagline === false) ? 'none' : 'block' }}
+                cmsBind={{ file: 'hero', index: 0, key: heroData.ondertitel ? 'ondertitel' : 'tagline' }}
               />
             )}
             <div className="flex gap-6 justify-center">

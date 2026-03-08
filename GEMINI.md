@@ -46,6 +46,7 @@ Athena v8.1 is an automated factory featuring the v33 Sync Bridge and Modular Co
 - **Temporary Data (`src/data-temp/`)**: When pulling data from Sheets directly, it goes to `src/data-temp/` first for safe comparison (diffing) before overwriting local visual edits.
 
 ## 🚨 Critical Code Constraints & Guardrails
+- **Human-Readable Data Rule**: Alle veldnamen in Google Sheets en JSON bestanden moeten in het **Nederlands** zijn en een natuurlijke, leesbare naam hebben (bv. `bedrijfsnaam` in plaats van `company_name`, `titel` in plaats van `title`). Dit maximaliseert de gebruiksvriendelijkheid voor de eindklant in de Google Sheets interface.
 - **Template Literals**: In `5-engine/logic/`, ALWAYS escape dollar signs in generated code: `\$`.
 - **BaseURL**: Use `import.meta.env.BASE_URL` for ALL internal links and assets perfectly support GitHub Pages.
 - **CSS Architecture**: ONLY `index.css` is allowed to `@import "tailwindcss"`. No custom CSS unless standard Tailwind utilities fail.
