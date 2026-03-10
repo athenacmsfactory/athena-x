@@ -7,22 +7,30 @@ import './dock-connector.js';
 
 async function init() {
   const data = {};
-  // Dummy data loading logic for local development
   try {
-    
     const dataModules = import.meta.glob('./data/*.json', { eager: true });
     const getData = (name) => {
         const key = Object.keys(dataModules).find(k => k.toLowerCase().endsWith(`/${name.toLowerCase()}.json`));
         return key ? dataModules[key].default : null;
     };
+
+    // 1. Globale configuraties inladen
     data['section_order'] = getData('section_order') || [];
-    data['site_settings'] = getData('site_settings') || {};
     data['display_config'] = getData('display_config') || { sections: {} };
     data['layout_settings'] = getData('layout_settings') || {};
+    data['style_config'] = getData('style_config') || {};
+    
+    // 2. Specifieke globale bestanden inladen (voor Header/Footer)
+    data['header'] = getData('header') || [];
+    data['footer'] = getData('footer') || [];
+    data['site_settings'] = getData('site_settings') || getData('header') || {};
+
+    // 3. Sectie data inladen op basis van de volgorde
     for (const sectionName of data['section_order']) {
         const sectionData = getData(sectionName);
         data[sectionName] = sectionData ? (Array.isArray(sectionData) ? sectionData : [sectionData]) : [];
     }
+
     if (window.athenaScan) window.athenaScan(data);
   } catch (e) {
     console.error("Data laad fout:", e);
