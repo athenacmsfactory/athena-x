@@ -2594,6 +2594,7 @@ async function openSheetModal(name, event) {
     // Reset UI
     document.getElementById('modal-project-name').innerText = name;
     document.getElementById('sheet-status').innerText = "";
+    document.getElementById('oauth-error-box').classList.add('hidden');
     document.getElementById('sa-email-display').innerText = "📡 Laden...";
     document.getElementById('sheet-url-input').value = ""; // Veld leegmaken!
 
@@ -2640,9 +2641,12 @@ async function saveSheetLink() {
 
 async function autoProvisionSheet() {
     const status = document.getElementById('sheet-status');
+    const errorBox = document.getElementById('oauth-error-box');
     if (!confirm(`Wil je automatisch een nieuwe Google Sheet laten aanmaken voor '${currentSheetProject}'?`)) return;
 
     status.innerText = "⏳ Bezig met aanmaken...";
+    errorBox.classList.add('hidden'); // Verberg vorige fouten
+
     try {
         const res = await fetch(`${API}/projects/${currentSheetProject}/auto-provision`, { method: 'POST' });
         const data = await res.json();
@@ -2651,6 +2655,9 @@ async function autoProvisionSheet() {
             setTimeout(() => location.reload(), 2000);
         } else {
             status.innerText = "❌ Fout: " + data.error;
+            if (data.error && data.error.includes('invalid_grant')) {
+                errorBox.classList.remove('hidden');
+            }
         }
     } catch (e) { status.innerText = "❌ Netwerkfout."; }
 }

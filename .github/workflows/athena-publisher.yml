@@ -135,4 +135,12 @@ jobs:
           # Isoleer en push naar DEZELFDE branch op de target repo
           # (behalve voor main, dat blijft de standaard)
           SPLIT_SHA=$(git subtree split --prefix=sites/$SITE $BRANCH)
-          git push "$REMOTE_URL" "$SPLIT_SHA":refs/heads/$BRANCH --force
+
+          if [ "$BRANCH" = "main" ]; then
+            git push "$REMOTE_URL" "$SPLIT_SHA":refs/heads/main --force
+          else
+            # MULTIVERSE: Push naar 'preview' slot op de target repo
+            # Dit triggert de 'deploy.yml' op de target repo (indien aanwezig)
+            # Of we kunnen hier direct naar gh-pages/preview pushen.
+            git push "$REMOTE_URL" "$SPLIT_SHA":refs/heads/$BRANCH --force
+          fi

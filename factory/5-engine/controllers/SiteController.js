@@ -442,29 +442,29 @@ export class SiteController {
      */
     async safePullFromGitHub(id) {
         const paths = this.dataManager.resolvePaths(id);
-        console.log(`📦 Creating safety backup for ${id} before pull...`);
+        console.log(`📦 Creating safety backup for ${id} before surgical sync...`);
         this.dataManager.backupData(paths.siteDir, paths.dataDir);
 
         const relPath = path.relative(this.root, paths.siteDir);
-        console.log(`📡 Pulling latest changes for ${relPath} only...`);
+        const dataPath = path.join(relPath, 'src/data');
+        
+        console.log(`📡 Surgically syncing ${dataPath} from GitHub main...`);
         
         try {
-            // We gebruiken sparse-checkout om alleen de relevante folder te updaten in de monorepo
-            // Dit voorkomt dat we de hele bak aan andere sites overschrijven of binnenhalen
-            execSync('git sparse-checkout init --cone', { cwd: this.root, stdio: 'ignore' });
-            execSync(`git sparse-checkout set ${relPath} factory/dashboard factory/5-engine`, { cwd: this.root, stdio: 'ignore' });
-            execSync('git pull origin main', { cwd: this.root, stdio: 'inherit' });
+            // 1. Haal de laatste status op van de remote (verandert geen lokale bestanden)
+            execSync('git fetch origin main', { cwd: this.root, stdio: 'ignore' });
             
-            return { success: true, message: `GitHub Sync voltooid voor ${id} (na backup).` };
+            // 2. We resetten eerst de index voor deze specifieke map om conflicten bij checkout te vermijden
+            execSync(`git reset origin/main -- ${dataPath}`, { cwd: this.root, stdio: 'ignore' });
+
+            // 3. Overschrijf chirurgisch alleen de bestanden in de DATA-map met de versie van GitHub main
+            // Dit raakt geen andere sites aan en laat de factory/dock/logs volledig met rust.
+            execSync(`git checkout origin/main -- ${dataPath}`, { cwd: this.root, stdio: 'inherit' });
+            
+            return { success: true, message: `GitHub Sync voltooid voor ${id} (na backup). Content is bijgewerkt vanaf GitHub.` };
         } catch (err) {
-            console.error("❌ Git Pull failed:", err);
-            // Probeer terug te vallen naar gewone pull als sparse faalt, maar waarschuw
-            try {
-                execSync('git pull origin main', { cwd: this.root, stdio: 'inherit' });
-                return { success: true, message: "GitHub Sync voltooid (via fallback pull)." };
-            } catch (fallbackErr) {
-                throw new Error(`Git Pull mislukt: ${fallbackErr.message}`);
-            }
+            console.error("❌ Surgical Sync failed:", err);
+            throw new Error(`Surgische sync mislukt: ${err.message}. Controleer je internetverbinding of Git status.`);
         }
     }
 

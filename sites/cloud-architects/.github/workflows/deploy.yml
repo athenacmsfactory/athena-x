@@ -2,9 +2,9 @@ name: Deploy Athena Site
 
 on:
   push:
-    branches: [ main, 'feat/**', 'fix/**' ]
+    branches: [ main ]
   repository_dispatch:
-    types: [ publish_button ]
+    types: [ publish_button ] # Dit luistert naar de Google Sheet knop
 
 permissions:
   contents: write
@@ -19,7 +19,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Install pnpm
-        uses: pnpm/action-setup@v3
+        uses: pnpm/action-setup@v4
         with:
           version: 9
 
@@ -31,30 +31,20 @@ jobs:
       - name: Install dependencies
         run: pnpm install --no-frozen-lockfile
 
-      - name: Build project
+      - name: Fetch latest data from Google Sheets (Optional)
         run: |
-          if [ "${{ github.ref_name }}" = "main" ]; then
-            pnpm build
+          if [ -f "project-settings/url-sheet.json" ]; then
+            echo "✅ Google Sheet config gevonden. Synchroniseren..."
+            pnpm fetch-data || echo "⚠️ Sync mislukt, we gaan door met lokale data."
           else
-            # Build for preview subfolder
-            REPO_NAME=$(echo "${{ github.repository }}" | cut -d'/' -f2)
-            export VITE_BASE_URL="/$REPO_NAME/preview/"
-            pnpm build --base="/$REPO_NAME/preview/"
+            echo "ℹ️ Geen Google Sheet gekoppeld. We gebruiken de data in de repository."
           fi
 
-      - name: Deploy to GitHub Pages (Main)
-        if: github.ref_name == 'main'
-        uses: peaceiris/actions-gh-pages@v4
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist
-          keep_files: true # Cruciaal om de preview map niet te verwijderen
+      - name: Build project
+        run: pnpm build
 
-      - name: Deploy to GitHub Pages (Preview Slot)
-        if: github.ref_name != 'main'
+      - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./dist
-          destination_dir: preview
-          keep_files: true

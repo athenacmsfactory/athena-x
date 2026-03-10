@@ -42,7 +42,7 @@ const DockFrame = () => {
       const res = await fetch(`http://${hostname}:${dashboardPort}/api/sites/${siteId}/compare-sources`);
       const data = await res.json();
 
-      if (data.hasRepo) {
+      if (data.hasRepo && data.hasDrift) {
         setConflictReport(data);
         setShowConflictModal(true);
       }

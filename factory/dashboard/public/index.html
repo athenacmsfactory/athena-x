@@ -1056,6 +1056,12 @@
                 </ol>
             </div>
 
+            <div id="oauth-error-box" class="info-box hidden" style="margin-top: 10px; border-left: 3px solid var(--error); background: rgba(255, 0, 0, 0.05);">
+                <p style="margin: 0 0 8px 0; font-size: 0.85rem; color: var(--error);">🔴 Fout: invalid_grant?</p>
+                <p style="margin: 0; font-size: 0.75rem; line-height: 1.4;">De Google Refresh Token is verlopen. Herstel dit met:<br>
+                <code style="background: #000; color: #fff; padding: 2px 5px; border-radius: 4px;">cd ~/0-IT/2-Productie/athena/athena-x && node factory/5-engine/get-new-token.js</code></p>
+            </div>
+
             <div class="divider"></div>
 
             <div class="sync-actions">
