@@ -14,10 +14,10 @@
     "logFile": "/home/kareltestspecial/0-IT/2-Productie/athena/athena-x/factory/output/logs/media-mapper-editor.log"
   },
   "5591": {
-    "pid": 2544,
+    "pid": 9632,
     "id": "cloud-architects",
     "type": "preview",
-    "startTime": "2026-03-10T14:24:29.544Z",
+    "startTime": "2026-03-10T20:26:00.885Z",
     "logFile": "/home/kareltestspecial/0-IT/2-Productie/athena/athena-x/factory/output/logs/cloud-architects-preview.log"
   }
 }

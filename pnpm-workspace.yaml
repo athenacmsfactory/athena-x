@@ -1,5 +1,7 @@
 packages:
   - 'factory'
+  - 'factory/athena-api'
+  - 'factory/athena-dashboard-ui'
   - 'dock'
   - 'sites/*'
 
