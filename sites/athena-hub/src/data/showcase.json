@@ -40,6 +40,16 @@
     "image": "showcase-urban-brew-bite.webp"
   },
   {
+    "name": "Athena Pro",
+    "category": "B2B / SaaS",
+    "description": "Een professionele showcase voor geavanceerde B2B diensten en SaaS oplossingen.",
+    "link": {
+      "label": "BEKIJK DEMO",
+      "url": "https://athena-cms-factory.github.io/athena-pro/"
+    },
+    "image": "showcase-athena-pro.jpg"
+  },
+  {
     "name": "De Salon",
     "category": "Beauty & Wellness",
     "description": "Een moderne website voor kapsalons met focus op sfeer en team-presentatie.",
