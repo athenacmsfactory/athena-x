@@ -46,7 +46,9 @@
       "cta": {
         "label": "Bekijk de Demo's",
         "url": "#showcase"
-      }
+      },
+      "cta_label": "Bekijk de Demo's",
+      "cta_url": "#showcase"
     }
   ],
   "innovatie": [],
@@ -381,7 +383,9 @@
       "light_bg_color": "#d0d1d2",
       "light_header_color": "#d0d1d2",
       "hero_overlay_opacity": "0",
-      "light_hero_bg_color": "#e7fdfc"
+      "light_hero_bg_color": "#e7fdfc",
+      "header_cta_label": "Start Nu",
+      "header_cta_url": "#contact"
     }
   ],
   "style_bindings": {
