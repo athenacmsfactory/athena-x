@@ -16,7 +16,7 @@
       "titel": "Klaar om uw online aanwezigheid te transformeren?",
       "email": "athena.cms.factory@gmail.be",
       "telefoon": "",
-      "locatie": "Gent, België",
+      "locatie": "Gent, Belgi\u00eb",
       "btw_nummer": "",
       "linkedin_url": "contact-laptop-gent.png"
     }
@@ -271,6 +271,46 @@
   },
   "showcase": [
     {
+      "name": "Gentse Dakwerken",
+      "category": "Bouw & Renovatie",
+      "description": "Specialist in dakrenovatie en zonnepanelen in de regio Gent.",
+      "link": {
+        "label": "BEKIJK PROJECT",
+        "url": "https://athena-cms-factory.github.io/gentse-dakwerken/"
+      },
+      "image": "showcase-gentse-dakwerken.webp"
+    },
+    {
+      "name": "KDC IT Advies",
+      "category": "IT & Consultancy",
+      "description": "Strategisch IT-advies en digitale transformatie voor KMO's.",
+      "link": {
+        "label": "BEKIJK PROJECT",
+        "url": "https://athena-cms-factory.github.io/kdc-it-advies/"
+      },
+      "image": "showcase-kdc-it-advies.webp"
+    },
+    {
+      "name": "Lex & Justitia Advocaten",
+      "category": "Juridische Dienstverlening",
+      "description": "Juridische expertise in ondernemingsrecht en vastgoedrecht.",
+      "link": {
+        "label": "BEKIJK PROJECT",
+        "url": "https://athena-cms-factory.github.io/lex-justitia/"
+      },
+      "image": "showcase-lex-justitia.webp"
+    },
+    {
+      "name": "Urban Brew & Bite",
+      "category": "Horeca",
+      "description": "Specialty coffee en urban lunch experience in het hart van Gent.",
+      "link": {
+        "label": "BEKIJK PROJECT",
+        "url": "https://athena-cms-factory.github.io/urban-brew-bite/"
+      },
+      "image": "showcase-urban-brew-bite.webp"
+    },
+    {
       "name": "De Salon",
       "category": "Beauty & Wellness",
       "description": "Een moderne website voor kapsalons met focus op sfeer en team-presentatie.",
@@ -311,16 +351,6 @@
       "image": "1-1770476441932-1770476982985.jpg"
     },
     {
-      "name": "Code Crafters",
-      "category": "Software / Agency",
-      "description": "Ambachtelijke software en op maat gemaakte weboplossingen voor moderne bedrijven.",
-      "link": {
-        "label": "BEKIJK DEMO",
-        "url": "https://athena-cms-factory.github.io/code-crafters/"
-      },
-      "image": "showcase-athena-pro.jpg"
-    },
-    {
       "name": "Cloud Architects",
       "category": "IT / Tech",
       "description": "Strakke, moderne website voor IT-consultants en cloud architectuur specialisten.",
@@ -329,26 +359,6 @@
         "url": "https://athena-cms-factory.github.io/cloud-architects/"
       },
       "image": "showcase-cloud-architects.jpg"
-    },
-    {
-      "name": "Pure Relaxation",
-      "category": "Wellness",
-      "description": "Een oase van rust voor wellness centra, therapeuten en massagepraktijken.",
-      "link": {
-        "label": "BEKIJK DEMO",
-        "url": "https://athena-cms-factory.github.io/pure-relaxation/"
-      },
-      "image": "showcase-pure-relaxation.jpg"
-    },
-    {
-      "name": "Urban Oasis",
-      "category": "Lifestyle",
-      "description": "Modern interieurontwerp en lifestyle concepten gepresenteerd in een luxe stijl.",
-      "link": {
-        "label": "BEKIJK DEMO",
-        "url": "https://athena-cms-factory.github.io/urban-oasis/"
-      },
-      "image": "showcase-urban-oasis.jpg"
     }
   ],
   "site_settings": [
@@ -356,7 +366,7 @@
       "site_name": "Athena CMS Factory",
       "tagline": "Uw Business op Snelheid. Beheerd via Google Sheets.",
       "logo_text": "ATHENA",
-      "footer_text": "© 2026 Athena CMS Factory - Kracht door Eenvoud.",
+      "footer_text": "\u00a9 2026 Athena CMS Factory - Kracht door Eenvoud.",
       "site_logo_image": "site-logo.svg",
       "global_shadow": "soft",
       "global_radius": "0px",
@@ -464,7 +474,7 @@
     },
     {
       "titel": "Chromebook Optimized",
-      "description": "Gebouwd op Debian 12 met minimale middelen. Dit bewijst onze focus op efficiëntie en robuustheid.",
+      "description": "Gebouwd op Debian 12 met minimale middelen. Dit bewijst onze focus op effici\u00ebntie en robuustheid.",
       "icon": "Smartphone"
     }
   ]
