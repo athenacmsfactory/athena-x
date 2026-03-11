@@ -18,8 +18,10 @@ const ShowcaseSection = ({ sectionName, items, sectionStyle }) => {
       const response = await fetch('https://api.github.com/orgs/athena-cms-factory/repos?sort=updated&per_page=100');
       const repos = await response.json();
       
+      const excludeList = ['athena-x', 'urban-sneakers-store', 'academy-1', 'bakkerij-de-graankorrel', 'dirk-de-witte-kappers'];
+      
       const data = repos
-        .filter(repo => !repo.fork && repo.name !== 'athena-x') 
+        .filter(repo => !repo.fork && !excludeList.includes(repo.name)) 
         .map(repo => ({
           name: repo.name.replace(/-/g, ' '),
           type: repo.language || 'Project',
