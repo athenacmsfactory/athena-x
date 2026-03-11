@@ -1,0 +1,38 @@
+[
+  {
+    "blok_type": "Hero",
+    "titel": "Echte Passie, Echt Brood.",
+    "tekst": "Bij Bakkerij Frimout geloven we dat goed brood meer is dan een dagelijkse noodzaak. Het is kunst, liefde en traditie. Ontdek onze ambachtelijke producten en proef het verschil van versheid.",
+    "knop_tekst": "Bestel Nu Online",
+    "knop_link": "/bestellen",
+    "image_prompt": "Een close-up van perfect gevormd, rustiek zuurdesembrood op een houten tafel, met warme, zachte belichting.",
+    "afbeelding-url": "1.jpeg"
+  },
+  {
+    "blok_type": "Tekst_Afbeelding",
+    "titel": "Ons Ambacht: Waar Kwaliteit Begint",
+    "tekst": "Elke ochtend, lang voordat de zon opkomt, beginnen onze bakkers met de voorbereiding van het deeg. We nemen de tijd. Onze croissants rijzen langzaam en ons brood wordt gebakken in een steenoven om die perfecte korst en luchtige binnenkant te garanderen. Dit is de toewijding die u proeft.",
+    "knop_tekst": "Ontdek het assortiment",
+    "knop_link": "/producten",
+    "image_prompt": "Een ambachtelijke bakker die zuurdesemdeeg kneedt met meel op zijn handen, in een traditionele, warme bakkerij-omgeving.",
+    "afbeelding-url": "d8134e9e-1260-48af-96b0-08ba236d15b9.jpg"
+  },
+  {
+    "blok_type": "Tekst_Afbeelding",
+    "titel": "Meer Dan Brood: Onze Patisserie",
+    "tekst": "Van delicate éclairs tot rijke chocoladetaarten, onze patisserie is de perfecte traktatie voor elke gelegenheid. Onze banketbakkers combineren klassieke technieken met moderne smaken, wat resulteert in ware smaaksensaties die u nergens anders vindt.",
+    "knop_tekst": "Bekijk onze taarten",
+    "knop_link": "/patisserie",
+    "image_prompt": "Een selectie van kleurrijke, elegante patisserie en taartjes tentoongesteld in een glazen vitrine, met scherpe focus.",
+    "afbeelding-url": "ec9dcac7-db49-4465-98f2-626d05561713.jpg"
+  },
+  {
+    "blok_type": "CTA",
+    "titel": "Klaar om te genieten?",
+    "tekst": "Plaats uw bestelling eenvoudig online en haal uw favoriete producten af wanneer het u uitkomt. Zo bent u verzekerd van versheid zonder wachttijden.",
+    "knop_tekst": "Start met Bestellen",
+    "knop_link": "/bestellen",
+    "image_prompt": "",
+    "afbeelding-url": ""
+  }
+]

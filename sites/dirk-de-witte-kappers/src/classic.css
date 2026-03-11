@@ -1,0 +1,21 @@
+/* styles/classic.css */
+:root {
+  /* Kleurenpalet */
+  --color-primary: #5a67d8; /* Klassiek indigo */
+  --color-secondary: #a0aec0; /* Lichter grijs */
+  --color-accent: #38a169; /* Rustig groen */
+  --color-background: #f7fafc; /* Zeer lichtgrijs */
+  --color-text: #2d3748; /* Donker leisteen */
+  --color-header-text: #ffffff;
+
+  /* Typografie */
+  --font-family-sans-serif: "Helvetica Neue", Arial, sans-serif;
+  --font-family-headings: "Georgia", serif; /* Klassiek met schreef */
+  --font-family-base: "Helvetica Neue", var(--font-family-sans-serif);
+
+  /* Randen en schaduw */
+  --border-radius-sm: 0.1rem;
+  --border-radius-main: 0.25rem; /* Scherper */
+  --border-radius-lg: 0.4rem;
+  --box-shadow-main: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+}

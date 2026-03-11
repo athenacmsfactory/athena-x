@@ -1,0 +1,129 @@
+{
+  "blueprint_name": "kapper",
+  "data_structure": [
+    {
+      "table_name": "basisgegevens",
+      "columns": [
+        {
+          "name": "bedrijfsnaam",
+          "description": "De officiële naam van de herenkapper/barbierzaak."
+        },
+        {
+          "name": "adres",
+          "description": "Het volledige fysieke adres van de locatie."
+        },
+        {
+          "name": "telefoonnummer",
+          "description": "Het algemene telefoonnummer voor contact en afspraken."
+        },
+        {
+          "name": "emailadres",
+          "description": "Het algemene e-mailadres voor vragen."
+        },
+        {
+          "name": "openingstijden_info",
+          "description": "Een korte samenvatting van de openingstijden (bijv. Di t/m Za 10:00 - 18:00)."
+        },
+        {
+          "name": "boekings_url",
+          "description": "De directe link naar het online boekingssysteem voor afspraken."
+        }
+      ]
+    },
+    {
+      "table_name": "diensten",
+      "columns": [
+        {
+          "name": "dienst_id",
+          "description": "Unieke identificatiecode voor de dienst."
+        },
+        {
+          "name": "naam",
+          "description": "De naam van de behandeling (bv. 'Strakke Fade', 'Klassieke Snit', 'Luxe Baardverzorging')."
+        },
+        {
+          "name": "beschrijving",
+          "description": "Een gedetailleerde omschrijving van wat de klant kan verwachten bij deze behandeling."
+        },
+        {
+          "name": "categorie",
+          "description": "Het type dienst (bv. Kapsel, Baard, Combinatie, Scheren)."
+        },
+        {
+          "name": "duur_minuten",
+          "description": "De verwachte duur van de behandeling in minuten."
+        },
+        {
+          "name": "prijs",
+          "description": "De prijs van deze behandeling in euro's."
+        },
+        {
+          "name": "populair",
+          "description": "Geeft aan of dit een veelgevraagde dienst is (Ja/Nee)."
+        }
+      ]
+    },
+    {
+      "table_name": "team",
+      "columns": [
+        {
+          "name": "barbier_id",
+          "description": "Unieke identificatiecode voor de teamlid."
+        },
+        {
+          "name": "naam",
+          "description": "De volledige naam van de barbier."
+        },
+        {
+          "name": "specialisatie",
+          "description": "De primaire expertise of specialiteit van deze barbier (bv. Klassieke snitten, Fades, Baard contouren)."
+        },
+        {
+          "name": "korte_bio",
+          "description": "Een korte introductie over de ervaring en passie van de barbier."
+        },
+        {
+          "name": "profielfoto_url",
+          "description": "De link naar een professionele foto van de barbier."
+        },
+        {
+          "name": "directe_boekingslink",
+          "description": "De directe link om een afspraak te maken bij deze specifieke barbier."
+        }
+      ]
+    },
+    {
+      "table_name": "producten",
+      "columns": [
+        {
+          "name": "product_id",
+          "description": "Unieke identificatiecode voor het product."
+        },
+        {
+          "name": "product_naam",
+          "description": "De officiële naam van het styling- of verzorgingsproduct."
+        },
+        {
+          "name": "merk",
+          "description": "Het merk van het product (bv. 'Eigen Lijn' of externe leverancier)."
+        },
+        {
+          "name": "omschrijving",
+          "description": "Een gedetailleerde uitleg over het product, ingrediënten en de werking."
+        },
+        {
+          "name": "prijs",
+          "description": "De verkoopprijs in euro's."
+        },
+        {
+          "name": "type_product",
+          "description": "De categorie van het product (bv. Pommade, Baardolie, Wax, Scheercrème)."
+        },
+        {
+          "name": "afbeelding_url",
+          "description": "De link naar de productafbeelding."
+        }
+      ]
+    }
+  ]
+}

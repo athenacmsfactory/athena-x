@@ -1,0 +1,11 @@
+{
+  "projectName": "athena-promo",
+  "siteType": "professional-service-provider",
+  "layoutName": "standard",
+  "styleName": "modern-dark",
+  "siteModel": "SPA",
+  "autoSheet": false,
+  "blueprintFile": "professional-service-provider/blueprint/professional-service-provider.json",
+  "safeName": "athena-promo",
+  "generatedAt": "2026-02-14T18:37:11.711Z"
+}

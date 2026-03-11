@@ -1,0 +1,18 @@
+{
+  "basisgegevens": {
+    "editUrl": "https://docs.google.com/spreadsheets/d/1TkQ4_XJmbaPrNHomOveMudFhtAQk7kCwIYWt2w373Gk/edit#gid=0",
+    "exportUrl": "https://docs.google.com/spreadsheets/d/e/2PACX-1vQlKRDIR9R7lJaxcl3zqThUfo31P_KuZDZtjK0bkrzaL-9FntYZIBfJVR8eU9W0rlVGoo38b0niw_uQ/pub?output=tsv&gid=0"
+  },
+  "Categorieen": {
+    "editUrl": "https://docs.google.com/spreadsheets/d/1TkQ4_XJmbaPrNHomOveMudFhtAQk7kCwIYWt2w373Gk/edit#gid=963507352",
+    "exportUrl": "https://docs.google.com/spreadsheets/d/e/2PACX-1vQlKRDIR9R7lJaxcl3zqThUfo31P_KuZDZtjK0bkrzaL-9FntYZIBfJVR8eU9W0rlVGoo38b0niw_uQ/pub?output=tsv&gid=963507352"
+  },
+  "Producten": {
+    "editUrl": "https://docs.google.com/spreadsheets/d/1TkQ4_XJmbaPrNHomOveMudFhtAQk7kCwIYWt2w373Gk/edit#gid=158697746",
+    "exportUrl": "https://docs.google.com/spreadsheets/d/e/2PACX-1vQlKRDIR9R7lJaxcl3zqThUfo31P_KuZDZtjK0bkrzaL-9FntYZIBfJVR8eU9W0rlVGoo38b0niw_uQ/pub?output=tsv&gid=158697746"
+  },
+  "Winkel_Info": {
+    "editUrl": "https://docs.google.com/spreadsheets/d/1TkQ4_XJmbaPrNHomOveMudFhtAQk7kCwIYWt2w373Gk/edit#gid=1802136588",
+    "exportUrl": "https://docs.google.com/spreadsheets/d/e/2PACX-1vQlKRDIR9R7lJaxcl3zqThUfo31P_KuZDZtjK0bkrzaL-9FntYZIBfJVR8eU9W0rlVGoo38b0niw_uQ/pub?output=tsv&gid=1802136588"
+  }
+}

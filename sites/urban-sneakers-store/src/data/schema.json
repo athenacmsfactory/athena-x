@@ -1,0 +1,82 @@
+{
+  "blueprint_name": "store",
+  "description": "Een minimalistische maar krachtige webshop voor producten en collecties.",
+  "data_structure": [
+    {
+      "table_name": "Winkel_Info",
+      "description": "Algemene winkelgegevens.",
+      "columns": [
+        {
+          "name": "naam",
+          "type": "string"
+        },
+        {
+          "name": "tagline",
+          "type": "string"
+        },
+        {
+          "name": "valuta",
+          "type": "string",
+          "description": "Bv. '€' of '$'"
+        },
+        {
+          "name": "verzend_info",
+          "type": "text"
+        },
+        {
+          "name": "hero_image_prompt",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "table_name": "Producten",
+      "description": "Lijst met producten.",
+      "columns": [
+        {
+          "name": "naam",
+          "type": "string"
+        },
+        {
+          "name": "prijs",
+          "type": "string"
+        },
+        {
+          "name": "afbeelding-url",
+          "type": "string",
+          "description": "URL of pad naar productfoto (bv. /images/schoen.jpg)"
+        },
+        {
+          "name": "beschrijving",
+          "type": "text"
+        },
+        {
+          "name": "categorie",
+          "type": "string"
+        },
+        {
+          "name": "populair",
+          "type": "string",
+          "description": "Ja/Nee"
+        },
+        {
+          "name": "image_prompt",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "table_name": "Categorieen",
+      "columns": [
+        {
+          "name": "naam",
+          "type": "string"
+        },
+        {
+          "name": "beschrijving",
+          "type": "text"
+        }
+      ]
+    }
+  ]
+}

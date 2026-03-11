@@ -1,0 +1,52 @@
+[
+  {
+    "id": "basisgegevens",
+    "title": "Kapsalon Gent",
+    "subtitle": "Dok-Noord"
+  },
+  {
+    "id": "locaties",
+    "title": "Locatie",
+    "subtitle": "."
+  },
+  {
+    "id": "stylist_gradatie",
+    "title": "Stylist gradatie",
+    "subtitle": "Overzicht van stylist_gradatie"
+  },
+  {
+    "id": "teamleden",
+    "title": "Team",
+    "subtitle": "Overzicht van teamleden"
+  },
+  {
+    "id": "diensten_hoofdgroepen",
+    "title": "diensten hoofdgroepen",
+    "subtitle": "Overzicht van diensten_hoofdgroepen"
+  },
+  {
+    "id": "diensten_tarieven",
+    "title": "Onze Tarieven",
+    "subtitle": "Kwaliteit en vakmanschap voor een eerlijke prijs"
+  },
+  {
+    "id": "testimonials",
+    "title": "Testimonials",
+    "subtitle": "Overzicht van testimonials"
+  },
+  {
+    "id": "aveda_informatie",
+    "title": "Aveda informatie",
+    "subtitle": "Overzicht van aveda_informatie"
+  },
+  {
+    "id": "social_media",
+    "title": "social media",
+    "subtitle": "Overzicht van social_media"
+  },
+  {
+    "id": "paginastructuur",
+    "title": "paginastructuur",
+    "subtitle": "Overzicht van paginastructuur"
+  }
+]

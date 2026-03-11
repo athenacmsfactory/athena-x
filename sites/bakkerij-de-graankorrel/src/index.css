@@ -1,0 +1,6 @@
+@import "./modern.css";
+
+@import "tailwindcss";
+@import "./classic.css";
+
+/* Basis-specifieke tweaks indien nodig */

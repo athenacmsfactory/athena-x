@@ -1,0 +1,57 @@
+@theme {
+  /* Fonts (Requires import in actual setup, e.g., via Google Fonts link) */
+  --font-serif: "Playfair Display", serif;
+  --font-sans: "Inter", sans-serif;
+  
+  /* Kleurenpalet */
+  --color-gold: #D4AF37; /* Accent kleur */
+  --color-dark-surface: #0A0A0A; /* Donkere kaarten/elementen */
+  --color-dark-background: #000000; /* Diep zwarte achtergrond */
+  
+  --color-primary: var(--color-gold);
+  --color-secondary: #1F2937; 
+  --color-text-light: #E5E7EB; 
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Base Styles met custom theme variabelen */
+:root {
+  background-color: var(--color-dark-background);
+  color: var(--color-text-light);
+  font-family: var(--font-sans);
+  /* Ensure font imports are handled, e.g., in index.html */
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-serif);
+}
+
+/* Custom utility voor subtiele goud-effecten */
+.border-gold-subtle {
+    /* Dit creëert een rand met een subtiele gouden gloed die vervaagt naar transparant */
+    border-image: linear-gradient(to right, transparent 5%, var(--color-gold) 50%, transparent 95%) 1;
+    border-width: 1px;
+    border-style: solid;
+    /* fallback voor browsers die border-image niet volledig ondersteunen */
+    border-color: rgba(212, 175, 55, 0.2);
+}
+
+/* Utility classes voor themavariabelen in Tailwind classes */
+.bg-dark-surface {
+    background-color: var(--color-dark-surface);
+}
+.bg-dark-background {
+    background-color: var(--color-dark-background);
+}
+.text-gold {
+    color: var(--color-gold);
+}
+.border-gold {
+    border-color: var(--color-gold);
+}
+.text-text-light {
+    color: var(--color-text-light);
+}
