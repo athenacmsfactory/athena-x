@@ -1,0 +1,82 @@
+[
+  {
+    "name": "De Salon",
+    "category": "Beauty & Wellness",
+    "description": "Een moderne website voor kapsalons met focus op sfeer en team-presentatie.",
+    "link": {
+      "label": "BEKIJK PROJECT",
+      "url": "https://athena-cms-factory.github.io/de-salon-site"
+    },
+    "image": "technische.png"
+  },
+  {
+    "name": "Bakkerij Artisanaal",
+    "category": "Detailhandel & Food",
+    "description": "Prachtige productcatalogus voor lokale winkels met bestelmogelijkheid via e-mail.",
+    "link": {
+      "label": "BEKIJK PROJECT",
+      "url": "https://athena-cms-factory.github.io/demo-bakkerij"
+    },
+    "image": "artisanal-1-1770398212360.jpeg"
+  },
+  {
+    "name": "Belgian Chocolate Shop",
+    "category": "Webshop",
+    "description": "Een webshop voor Belgische chocolaterie",
+    "link": {
+      "label": "BEKIJK PROJECT",
+      "url": "https://athena-cms-factory.github.io/chocolade-shop/"
+    },
+    "image": "hero-1770476346310.jpeg"
+  },
+  {
+    "name": "Urban Soles",
+    "category": "Webshop",
+    "description": "High-end sneaker shop met 20+ producten en AI-gegenereerde content.",
+    "link": {
+      "label": "BEKIJK PROJECT",
+      "url": "https://athena-cms-factory.github.io/urban-soles/"
+    },
+    "image": "1-1770476441932-1770476982985.jpg"
+  },
+  {
+    "name": "Code Crafters",
+    "category": "Software / Agency",
+    "description": "Ambachtelijke software en op maat gemaakte weboplossingen voor moderne bedrijven.",
+    "link": {
+      "label": "BEKIJK DEMO",
+      "url": "https://athena-cms-factory.github.io/code-crafters/"
+    },
+    "image": "showcase-athena-pro.jpg"
+  },
+  {
+    "name": "Cloud Architects",
+    "category": "IT / Tech",
+    "description": "Strakke, moderne website voor IT-consultants en cloud architectuur specialisten.",
+    "link": {
+      "label": "BEKIJK DEMO",
+      "url": "https://athena-cms-factory.github.io/cloud-architects/"
+    },
+    "image": "showcase-cloud-architects.jpg"
+  },
+  {
+    "name": "Pure Relaxation",
+    "category": "Wellness",
+    "description": "Een oase van rust voor wellness centra, therapeuten en massagepraktijken.",
+    "link": {
+      "label": "BEKIJK DEMO",
+      "url": "https://athena-cms-factory.github.io/pure-relaxation/"
+    },
+    "image": "showcase-pure-relaxation.jpg"
+  },
+  {
+    "name": "Urban Oasis",
+    "category": "Lifestyle",
+    "description": "Modern interieurontwerp en lifestyle concepten gepresenteerd in een luxe stijl.",
+    "link": {
+      "label": "BEKIJK DEMO",
+      "url": "https://athena-cms-factory.github.io/urban-oasis/"
+    },
+    "image": "showcase-urban-oasis.jpg"
+  }
+]

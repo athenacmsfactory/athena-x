@@ -2,10 +2,10 @@
 @import "tailwindcss";
 
 /* 
-   Athena Modern Theme Integration
+   Athena Theme Integration
    Hier importeren we de design tokens en basisstijlen van Tailwind v4
 */
-@import "./css/modern.css";
+@import "./css/warm.css";
 
 /* 
    Project Specifieke Overrides 

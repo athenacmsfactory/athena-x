@@ -1,0 +1,10 @@
+{
+  "sections": {
+    "basisgegevens": {
+      "visible_fields": [],
+      "hidden_fields": [
+        "missie_kern"
+      ]
+    }
+  }
+}

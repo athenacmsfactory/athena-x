@@ -1,0 +1,84 @@
+{
+  "site_name": "de-salon-site",
+  "hero:0:title": {},
+  "section_settings:6:title": {
+    "bold": false,
+    "italic": false,
+    "fontSize": "16px",
+    "textAlign": "left",
+    "fontFamily": "sans-serif",
+    "textShadow": false
+  },
+  "section_settings:0:title": {
+    "bold": false,
+    "italic": false,
+    "fontSize": "16px",
+    "textAlign": "left",
+    "fontFamily": "sans-serif",
+    "textShadow": false
+  },
+  "section_settings:0:subtitle": {
+    "bold": false,
+    "italic": false,
+    "fontSize": "16px",
+    "textAlign": "left",
+    "fontFamily": "sans-serif",
+    "textShadow": false
+  },
+  "basisgegevens:0:copyright_tekst": {
+    "bold": false,
+    "italic": false,
+    "fontSize": "16px",
+    "textAlign": "left",
+    "fontFamily": "sans-serif",
+    "textShadow": false
+  },
+  "section_settings:1:title": {
+    "bold": false,
+    "italic": false,
+    "fontSize": "16px",
+    "textAlign": "left",
+    "fontFamily": "sans-serif",
+    "textShadow": false
+  },
+  "section_settings:1:subtitle": {
+    "bold": false,
+    "italic": false,
+    "fontSize": "16px",
+    "textAlign": "left",
+    "fontFamily": "sans-serif",
+    "textShadow": false
+  },
+  "section_settings:2:title": {
+    "bold": false,
+    "italic": false,
+    "fontSize": "16px",
+    "textAlign": "left",
+    "fontFamily": "sans-serif",
+    "textShadow": false
+  },
+  "section_settings:3:title": {
+    "bold": false,
+    "italic": false,
+    "fontSize": "16px",
+    "textAlign": "left",
+    "fontFamily": "sans-serif",
+    "textShadow": false
+  },
+  "section_settings:7:title": {
+    "bold": false,
+    "italic": false,
+    "fontSize": "16px",
+    "textAlign": "left",
+    "fontFamily": "sans-serif",
+    "textShadow": false
+  },
+  "basisgegevens:0:kvk_label": {},
+  "basisgegevens:0:bedrijfsnaam": {},
+  "paginastructuur:0:titel_navigatie": {},
+  "paginastructuur:1:titel_navigatie": {},
+  "paginastructuur:2:titel_navigatie": {},
+  "paginastructuur:3:titel_navigatie": {},
+  "paginastructuur:4:titel_navigatie": {},
+  "basisgegevens:0:undefined": {}
+}

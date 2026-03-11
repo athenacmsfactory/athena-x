@@ -1,0 +1,20 @@
+[
+  {
+    "naam": "Dr. Elena Vance",
+    "expertise": "Hoofddocent AI en Computerwetenschappen",
+    "bio": "Elena is een voormalig onderzoekster bij OpenAI en heeft meer dan 15 jaar ervaring in computerwetenschappen. Ze staat bekend om haar heldere uitleg van complexe algoritmes, waardoor studenten snel materie beheersen.",
+    "foto_prompt": "Professionele portretfoto van Dr. Elena Vance, glimlachend en vol vertrouwen, met een futuristische, licht abstracte achtergrond die neurale netwerken symboliseert."
+  },
+  {
+    "naam": "Marcus de Vries",
+    "expertise": "Senior Web Architect",
+    "bio": "Marcus heeft als lead developer gewerkt voor diverse unicorns in de Benelux. Hij is een expert in performante frontend architecturen en een gedreven mentor voor junior developers die hij naar topniveau begeleidt.",
+    "foto_prompt": "Professionele portretfoto van Marcus de Vries, zittend in een lichte, moderne werkruimte, met schermen op de achtergrond die schone, goed gestructureerde code tonen."
+  },
+  {
+    "naam": "Sarah Jenkins",
+    "expertise": "Data Strategist",
+    "bio": "Sarah helpt Fortune 500 bedrijven om hun data-strategie te bepalen. In haar lessen combineert ze academische diepgang met praktijkvoorbeelden uit de bedrijfswereld, waardoor studenten direct toepasbare kennis opdoen.",
+    "foto_prompt": "Professionele portretfoto van Sarah Jenkins, dynamisch en betrokken, wijzend naar een complex, helder datavisualisatie op een groot scherm."
+  }
+]

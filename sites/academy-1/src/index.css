@@ -1,0 +1,54 @@
+@import "./modern.css";
+
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #3b82f6;
+  --color-secondary: #f1f5f9;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply text-slate-900 bg-white antialiased;
+  }
+}
+
+/* HARDE BEPERKINGEN VOOR AFBEELDINGEN */
+/* Dit overschrijft alles om te voorkomen dat ze gigantisch worden */
+
+header {
+  max-height: 500px !important;
+  overflow: hidden;
+}
+
+header img, .hero-bg {
+  height: 500px !important;
+  width: 100% !important;
+  object-fit: cover !important;
+}
+
+/* Alle afbeeldingen in secties (zoals Cursussen/Docenten) */
+section img {
+  width: 100% !important;
+  height: 250px !important; /* Dwing een beschaafde hoogte af */
+  object-fit: cover !important;
+  display: block;
+}
+
+/* Behalve voor docenten (die zijn rond) */
+section img.rounded-full {
+  width: 128px !important;
+  height: 128px !important;
+  margin-left: auto;
+  margin-right: auto;
+  object-fit: cover;
+}
+
+.max-w-7xl {
+  max-width: 80rem;
+  margin-left: auto;
+  margin-right: auto;
+}

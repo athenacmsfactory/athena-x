@@ -1,0 +1,107 @@
+{
+  "blueprint_name": "academy",
+  "description": "Een blueprint voor scholen, cursussen en online academies.",
+  "data_structure": [
+    {
+      "table_name": "Academy_Info",
+      "description": "Algemene informatie over de school.",
+      "columns": [
+        {
+          "name": "naam",
+          "type": "string"
+        },
+        {
+          "name": "missie",
+          "type": "text"
+        },
+        {
+          "name": "locatie",
+          "type": "string"
+        },
+        {
+          "name": "contact_email",
+          "type": "string"
+        },
+        {
+          "name": "hero_image_prompt",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "table_name": "Cursussen",
+      "description": "De aangeboden opleidingen of workshops.",
+      "columns": [
+        {
+          "name": "titel",
+          "type": "string"
+        },
+        {
+          "name": "duur",
+          "type": "string"
+        },
+        {
+          "name": "niveau",
+          "type": "string",
+          "description": "Bv. 'Beginner', 'Gevorderd'"
+        },
+        {
+          "name": "prijs",
+          "type": "string"
+        },
+        {
+          "name": "beschrijving",
+          "type": "text"
+        },
+        {
+          "name": "doelgroep",
+          "type": "string"
+        },
+        {
+          "name": "image_prompt",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "table_name": "Docenten",
+      "description": "De mensen die de lessen geven.",
+      "columns": [
+        {
+          "name": "naam",
+          "type": "string"
+        },
+        {
+          "name": "expertise",
+          "type": "string"
+        },
+        {
+          "name": "bio",
+          "type": "text"
+        },
+        {
+          "name": "foto_prompt",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "table_name": "Reviews",
+      "description": "Ervaringen van studenten.",
+      "columns": [
+        {
+          "name": "student_naam",
+          "type": "string"
+        },
+        {
+          "name": "cursus_naam",
+          "type": "string"
+        },
+        {
+          "name": "quote",
+          "type": "text"
+        }
+      ]
+    }
+  ]
+}

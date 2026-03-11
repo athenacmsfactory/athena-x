@@ -1,0 +1,47 @@
+[
+  {
+    "naam": "Velocity Runner Pro",
+    "prijs": "139.99",
+    "afbeelding-url": "1.jpeg",
+    "beschrijving": "De ultieme schoen voor hardlopers. Voorzien van responsieve demping en een ademend gebreid bovenwerk, biedt de Velocity Runner ongeëvenaarde energie-teruggave bij elke stap, terwijl hij licht en comfortabel blijft.",
+    "categorie": "Performance",
+    "populair": "Ja",
+    "image_prompt": "clean studio shot of Velocity Runner Pro sneaker, vibrant neon green accents and sleek silhouette, neutral white background"
+  },
+  {
+    "naam": "The Downtown Stroller",
+    "prijs": "99.95",
+    "afbeelding-url": "2.jpeg",
+    "beschrijving": "Stijl ontmoet comfort voor de dagelijkse grind. Gemaakt van premium suède en een stevige rubberen zool, is dit jouw go-to sneaker voor elk stedelijk avontuur. Duurzaam en ontworpen voor lange dagen op de been.",
+    "categorie": "Lifestyle",
+    "populair": "Ja",
+    "image_prompt": "clean studio shot of The Downtown Stroller sneaker, earthy beige color with white midsole, suede texture visible, neutral grey background"
+  },
+  {
+    "naam": "Original Low-Top 1985",
+    "prijs": "79.50",
+    "afbeelding-url": "3.jpeg",
+    "beschrijving": "Een eerbetoon aan de klassiekers. Deze iconische low-top sneaker combineert vintage charme met moderne duurzaamheid. De eenvoud van het design maakt het een tijdloze, essentiële toevoeging aan elke collectie.",
+    "categorie": "Classics",
+    "populair": "Nee",
+    "image_prompt": "clean studio shot of Original Low-Top 1985 sneaker, classic white leather with navy blue details, neutral background"
+  },
+  {
+    "naam": "The Apex Streetwear",
+    "prijs": "189.00",
+    "afbeelding-url": "4.jpeg",
+    "beschrijving": "Maak een gedurfd statement. Met chunky lijnen, hoogwaardige materialen en een oversized zool, definieert The Apex de moderne streetwear look. Maximale impact en uitzonderlijke schokabsorptie.",
+    "categorie": "Lifestyle",
+    "populair": "Ja",
+    "image_prompt": "clean studio shot of The Apex Streetwear sneaker, black and high-gloss grey contrast, chunky futuristic design, neutral background"
+  },
+  {
+    "naam": "Trail Blazer X",
+    "prijs": "154.99",
+    "afbeelding-url": "5.jpeg",
+    "beschrijving": "Van de straat naar het pad. Deze hybride sneaker biedt de grip van een wandelschoen en het comfort van een hardloopschoen, perfect voor de avontuurlijke urban explorer. Waterbestendige afwerking.",
+    "categorie": "Performance",
+    "populair": "Nee",
+    "image_prompt": "clean studio shot of Trail Blazer X sneaker, rugged design with teal accents, neutral background"
+  }
+]
