@@ -12,7 +12,8 @@ const App = ({ data }) => {
   const primaryTable = Object.keys(data)[0];
 
   const content = (
-    <DisplayConfigProvider data={data}>
+    <StyleProvider data={data}>
+      <DisplayConfigProvider data={data}>
       <Router future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
         <div className="min-h-screen bg-[var(--color-background)] text-[var(--color-text)] transition-colors duration-500">
           <StyleInjector siteSettings={data['site_settings']} data={data} />
@@ -26,6 +27,7 @@ const App = ({ data }) => {
         </div>
       </Router>
     </DisplayConfigProvider>
+    </StyleProvider>
   );
 
   
