@@ -108,7 +108,7 @@ function Header({ primaryTable, tableName, hero = {}, headerSettings = {}, navDa
 
       {/* Main Header / Hero Section */}
       <header 
-        id="home" 
+        id="hero" 
         data-dock-section="hero"
         className="relative min-h-[85vh] flex flex-col overflow-hidden bg-primary text-white pt-20"
       >
@@ -150,7 +150,7 @@ function Header({ primaryTable, tableName, hero = {}, headerSettings = {}, navDa
               />
             )}
             <div className="flex gap-6 justify-center">
-              <a href="#diensten_tarieven" className="btn-primary px-10 py-5 text-lg">Onze Diensten</a>
+              <a href="#tarieven" className="btn-primary px-10 py-5 text-lg">Onze Diensten</a>
               <a href="#footer" className="px-10 py-5 border-2 border-white/30 rounded-full font-bold hover:bg-white hover:text-primary transition-all">Contact</a>
             </div>
           </div>

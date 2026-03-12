@@ -9,7 +9,7 @@
       "fontStyle": "normal",
       "textAlign": "left"
     },
-    "slug": "#hero",
+    "slug": "hero",
     "menu_positie": 1,
     "is_call_to_action": false
   },
@@ -23,7 +23,7 @@
       "fontStyle": "normal",
       "textAlign": "left"
     },
-    "slug": "#tarieven",
+    "slug": "tarieven",
     "menu_positie": 2,
     "is_call_to_action": false
   },
@@ -37,7 +37,7 @@
       "fontStyle": "normal",
       "textAlign": "left"
     },
-    "slug": "#missie",
+    "slug": "missie",
     "menu_positie": 3,
     "is_call_to_action": false
   },
@@ -51,7 +51,7 @@
       "fontStyle": "normal",
       "textAlign": "left"
     },
-    "slug": "#aveda",
+    "slug": "aveda",
     "menu_positie": 4,
     "is_call_to_action": false
   },
@@ -65,14 +65,14 @@
       "fontStyle": "normal",
       "textAlign": "left"
     },
-    "slug": "#footer",
+    "slug": "footer",
     "menu_positie": 5,
     "is_call_to_action": false
   },
   {
     "pagina_id": 6,
     "titel_navigatie": "Afspraak",
-    "slug": "#contact",
+    "slug": "footer",
     "menu_positie": 6,
     "is_call_to_action": true
   }
