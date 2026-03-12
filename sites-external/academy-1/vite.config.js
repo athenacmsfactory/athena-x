@@ -17,7 +17,7 @@ if (fs.existsSync(pluginPath)) {
 }
 
 export default defineConfig({
-  base: '/academy-1/', 
+  base: '/academy-1/',
   plugins: [
     react(),
     tailwindcss(),

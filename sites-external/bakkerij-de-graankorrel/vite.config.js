@@ -17,7 +17,7 @@ if (fs.existsSync(pluginPath)) {
 }
 
 export default defineConfig({
-  base: '/bakkerij-de-graankorrel/', 
+  base: '/bakkerij-de-graankorrel/',
   plugins: [
     react(),
     tailwindcss(),
