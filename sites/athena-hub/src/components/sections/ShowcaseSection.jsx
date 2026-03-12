@@ -18,7 +18,7 @@ const ShowcaseSection = ({ sectionName, items, sectionStyle }) => {
       const response = await fetch('https://api.github.com/orgs/athena-cms-factory/repos?sort=updated&per_page=100');
       const repos = await response.json();
       
-      const excludeList = ['athena-x', 'urban-sneakers-store', 'academy-1', 'bakkerij-de-graankorrel', 'dirk-de-witte-kappers'];
+      const excludeList = ['athena-x'];
       
       const data = repos
         .filter(repo => !repo.fork && !excludeList.includes(repo.name)) 
@@ -154,9 +154,7 @@ const ShowcaseSection = ({ sectionName, items, sectionStyle }) => {
                             </span>
                           </td>
                           <td className="py-6 px-4">
-                            <a href={project.liveLink} target="_blank" rel="noopener noreferrer" className="hover:text-accent transition-colors">
-                              <h4 className="font-bold text-primary text-lg">{project.name}</h4>
-                            </a>
+                            <h4 className="font-bold text-primary text-lg">{project.name}</h4>
                           </td>
                           <td className="py-6 px-4">
                             <p className="text-slate-600 font-light italic line-clamp-1">{project.description}</p>
