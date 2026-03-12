@@ -1,7 +1,9 @@
 import { useState, useEffect } from 'react'
 import { ApiService } from '../services/ApiService'
+import { useToast } from '../services/ToastContext'
 
 export default function StorageView() {
+  const { addToast } = useToast()
   const [storageData, setStorageData] = useState([])
   const [systemStatus, setSystemStatus] = useState(null)
   const [loading, setLoading] = useState(true)
@@ -23,13 +25,26 @@ export default function StorageView() {
     setLoading(false)
   }
 
+  const handlePrunePnpm = async () => {
+    addToast("PNPM Store opschonen gestart...", "info")
+    try {
+      const res = await ApiService.prunePnpmStore()
+      if (res.success) {
+        addToast("PNPM Store succesvol opgeschoond!", "success")
+        refresh()
+      } else {
+        addToast("Fout bij opschonen PNPM Store: " + res.error, "error")
+      }
+    } catch (e) { addToast("Netwerkfout.", "error") }
+  }
+
   const totalSavable = storageData
     .filter(s => s.policy === 'dormant' && s.hydration === 'hydrated')
     .reduce((acc, s) => acc + (s.storage - 10), 0)
 
   return (
     <div className="space-y-6">
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
         <div className="bg-athena-panel p-5 border border-athena-border rounded-sm flex items-center gap-4">
           <div className="text-2xl opacity-50">💾</div>
           <div>
@@ -46,9 +61,15 @@ export default function StorageView() {
         </div>
         <button 
           onClick={() => ApiService.pruneStorage().then(refresh)}
+          className="bg-[#21262d] border border-athena-border text-amber-500 hover:bg-amber-500 hover:text-white transition-all text-[10px] font-black uppercase tracking-widest rounded-sm shadow-sm"
+        >
+           🌵 PRUNE DORMANT SITES
+        </button>
+        <button 
+          onClick={handlePrunePnpm}
           className="bg-[#21262d] border border-athena-border text-rose-500 hover:bg-rose-500 hover:text-white transition-all text-[10px] font-black uppercase tracking-widest rounded-sm shadow-sm"
         >
-           🧹 PRUNE DORMANT SITES
+           🧹 PRUNE PNPM STORE
         </button>
       </div>
 

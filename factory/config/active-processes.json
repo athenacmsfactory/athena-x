@@ -1,23 +1,23 @@
 {
   "5002": {
-    "pid": 2276,
+    "pid": 23140,
     "id": "athena-dock",
     "type": "dock",
-    "startTime": "2026-03-10T14:24:23.903Z",
+    "startTime": "2026-03-12T17:37:19.695Z",
     "logFile": "/home/kareltestspecial/0-IT/2-Productie/athena/athena-x/factory/output/logs/athena-dock-dock.log"
   },
+  "5003": {
+    "pid": 16255,
+    "id": "layout-editor",
+    "type": "editor",
+    "startTime": "2026-03-12T18:24:34.949Z",
+    "logFile": "/home/kareltestspecial/0-IT/2-Productie/athena/athena-x/factory/output/logs/layout-editor-editor.log"
+  },
   "5004": {
-    "pid": 9249,
+    "pid": 9048,
     "id": "media-mapper",
     "type": "editor",
-    "startTime": "2026-03-10T14:33:22.407Z",
+    "startTime": "2026-03-12T18:03:47.136Z",
     "logFile": "/home/kareltestspecial/0-IT/2-Productie/athena/athena-x/factory/output/logs/media-mapper-editor.log"
-  },
-  "5591": {
-    "pid": 9632,
-    "id": "cloud-architects",
-    "type": "preview",
-    "startTime": "2026-03-10T20:26:00.885Z",
-    "logFile": "/home/kareltestspecial/0-IT/2-Productie/athena/athena-x/factory/output/logs/cloud-architects-preview.log"
   }
 }

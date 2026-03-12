@@ -223,4 +223,17 @@ export class DoctorController {
 
         return { success: true, message: `Opgeschoond: ${cleanedCount} tijdelijke data-mappen (ouder dan 3 weken) verwijderd.` };
     }
+
+    /**
+     * Run pnpm store prune to recover global disk space
+     */
+    prunePnpmStore() {
+        console.log("⚓ Running global pnpm store prune...");
+        try {
+            const output = execSync('pnpm store prune').toString();
+            return { success: true, message: "PNPM Store opgeruimd!", output };
+        } catch (e) {
+            return { success: false, error: e.message };
+        }
+    }
 }

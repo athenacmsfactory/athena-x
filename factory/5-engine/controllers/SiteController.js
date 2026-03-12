@@ -19,6 +19,7 @@ export class SiteController {
         this.pm = processManager;
         this.root = configManager.get('paths.root');
         this.sitesDir = configManager.get('paths.sites');
+        this.sitesExternalDir = configManager.get('paths.sitesExternal');
         this.dataManager = new AthenaDataManager(configManager.get('paths.factory'));
         this.interpreter = new AthenaInterpreter(configManager);
         this.installManager = new InstallManager(this.root);
@@ -66,13 +67,19 @@ export class SiteController {
      * List all generated sites with their current status
      */
     list() {
-        if (!fs.existsSync(this.sitesDir)) return [];
-        const sites = fs.readdirSync(this.sitesDir).filter(f => 
-            fs.statSync(path.join(this.sitesDir, f)).isDirectory() && !f.startsWith('.') && f !== 'athena-cms'
+        const nativeSites = this._scanDir(this.sitesDir, true);
+        const externalSites = this._scanDir(this.sitesExternalDir, false);
+        return [...nativeSites, ...externalSites];
+    }
+
+    _scanDir(dir, isNative) {
+        if (!dir || !fs.existsSync(dir)) return [];
+        const sites = fs.readdirSync(dir).filter(f => 
+            fs.statSync(path.join(dir, f)).isDirectory() && !f.startsWith('.') && f !== 'athena-cms'
         );
 
         return sites.map(site => {
-            const sitePath = path.join(this.sitesDir, site);
+            const sitePath = path.join(dir, site);
             const deployFile = path.join(sitePath, 'project-settings', 'deployment.json');
             const sheetFile = path.join(sitePath, 'project-settings', 'url-sheet.json');
 
@@ -98,23 +105,29 @@ export class SiteController {
             } else isDataEmpty = true;
 
             if (fs.existsSync(deployFile)) {
-                deployData = JSON.parse(fs.readFileSync(deployFile, 'utf8'));
-                status = deployData.status || 'live';
+                try {
+                    deployData = JSON.parse(fs.readFileSync(deployFile, 'utf8'));
+                    status = deployData.status || 'live';
 
-                // Fallback for missing liveUrl/repoUrl if status is live
-                if (status === 'live' && !deployData.liveUrl) {
-                    const githubUser = process.env.GITHUB_USER || this.configManager.get('GITHUB_USER');
-                    const githubOrg = process.env.GITHUB_ORG || this.configManager.get('GITHUB_ORG');
-                    const owner = githubOrg || githubUser || 'athena-cms-factory';
-                    deployData.liveUrl = `https://${owner}.github.io/${site}/`;
-                    if (!deployData.repoUrl) deployData.repoUrl = `https://github.com/${owner}/${site}`;
+                    // Fallback for missing liveUrl/repoUrl if status is live
+                    if (status === 'live' && !deployData.liveUrl) {
+                        const githubUser = process.env.GITHUB_USER || this.configManager.get('GITHUB_USER');
+                        const githubOrg = process.env.GITHUB_ORG || this.configManager.get('GITHUB_ORG');
+                        const owner = githubOrg || githubUser || 'athena-cms-factory';
+                        deployData.liveUrl = `https://${owner}.github.io/${site}/`;
+                        if (!deployData.repoUrl) deployData.repoUrl = `https://github.com/${owner}/${site}`;
+                    }
+                } catch (e) {
+                    console.error(`Error parsing deployment for ${site}:`, e.message);
                 }
             }
 
             if (fs.existsSync(sheetFile)) {
-                const json = JSON.parse(fs.readFileSync(sheetFile, 'utf8'));
-                const firstKey = Object.keys(json)[0];
-                if (firstKey) sheetData = json[firstKey].editUrl;
+                try {
+                    const json = JSON.parse(fs.readFileSync(sheetFile, 'utf8'));
+                    const firstKey = Object.keys(json)[0];
+                    if (firstKey) sheetData = json[firstKey].editUrl;
+                } catch (e) {}
             }
 
             // Get SiteType from athena-config.json
@@ -130,7 +143,7 @@ export class SiteController {
             const isInstalled = fs.existsSync(path.join(sitePath, 'node_modules'));
             const port = this.getSitePort(site, sitePath);
 
-            return { name: site, status, deployData, sheetUrl: sheetData, isDataEmpty, siteType, isInstalled, port };
+            return { name: site, status, deployData, sheetUrl: sheetData, isDataEmpty, siteType, isInstalled, port, isNative };
         });
     }
 
@@ -158,7 +171,10 @@ export class SiteController {
      * Get the full structure and data of a site for the Dock
      */
     getSiteStructure(id) {
-        const siteDir = path.join(this.sitesDir, id);
+        // Try native first, then external
+        let siteDir = path.join(this.sitesDir, id);
+        if (!fs.existsSync(siteDir)) siteDir = path.join(this.sitesExternalDir, id);
+        
         const dataDir = path.join(siteDir, 'src/data');
         const data = {};
 
@@ -179,12 +195,12 @@ export class SiteController {
         return {
             id,
             data,
-            url: this.getSiteUrl(id)
+            url: this.getSiteUrl(id, siteDir)
         };
     }
 
-    getSiteUrl(id) {
-        const port = this.getSitePort(id);
+    getSiteUrl(id, siteDir) {
+        const port = this.getSitePort(id, siteDir);
         return `http://localhost:${port}/${id}/`;
     }
 
@@ -192,7 +208,11 @@ export class SiteController {
      * Directly update a data field in a site's JSON
      */
     updateData(id, { table, rowId, field, value }) {
-        const filePath = path.join(this.sitesDir, id, 'src', 'data', `${table.toLowerCase()}.json`);
+        // Find site dir
+        let siteDir = path.join(this.sitesDir, id);
+        if (!fs.existsSync(siteDir)) siteDir = path.join(this.sitesExternalDir, id);
+
+        const filePath = path.join(siteDir, 'src', 'data', `${table.toLowerCase()}.json`);
         if (!fs.existsSync(filePath)) throw new Error(`Tabel ${table} niet gevonden.`);
 
         const data = JSON.parse(fs.readFileSync(filePath, 'utf8'));
@@ -218,7 +238,9 @@ export class SiteController {
      * Get installation status (node_modules existence + active progress)
      */
     getStatus(name) {
-        const siteDir = path.join(this.sitesDir, name);
+        let siteDir = path.join(this.sitesDir, name);
+        if (!fs.existsSync(siteDir)) siteDir = path.join(this.sitesExternalDir, name);
+
         const nodeModules = path.join(siteDir, 'node_modules');
         const installInfo = this.installManager.getStatus(name);
         
@@ -234,7 +256,9 @@ export class SiteController {
      * Install dependencies for a site
      */
     async install(name) {
-        const siteDir = path.join(this.sitesDir, name);
+        let siteDir = path.join(this.sitesDir, name);
+        if (!fs.existsSync(siteDir)) siteDir = path.join(this.sitesExternalDir, name);
+
         if (!fs.existsSync(siteDir)) throw new Error("Site niet gevonden");
 
         return await this.installManager.install(name, siteDir);
@@ -244,49 +268,100 @@ export class SiteController {
      * Start/Get preview server for a site
      */
     async preview(id) {
-        const siteDir = path.join(this.sitesDir, id);
-        if (!fs.existsSync(siteDir)) throw new Error('Site niet gevonden');
+        let siteDir = path.join(this.sitesDir, id);
+        if (!fs.existsSync(siteDir)) siteDir = path.join(this.sitesExternalDir, id);
+
+        if (!fs.existsSync(siteDir)) throw new Error(`Site '${id}' niet gevonden.`);
+
+        // Get site type to decide server
+        let siteType = 'basis';
+        const configPath = path.join(siteDir, 'athena-config.json');
+        if (fs.existsSync(configPath)) {
+            try { siteType = JSON.parse(fs.readFileSync(configPath, 'utf8')).siteType; } catch(e){}
+        }
 
         const previewPort = this.getSitePort(id, siteDir);
 
         // 1. STOP ALLE ANDERE PREVIEWS (behalve het dashboard!)
-        const activeProcesses = this.pm.listActive();
-        const dashboardPort = 5001; // Forceer dashboard poort beveiliging
-        
-        for (const port in activeProcesses) {
-            const pNum = parseInt(port);
-            if (activeProcesses[port].type === 'preview' && pNum !== dashboardPort) {
-                await this.pm.stopProcessByPort(pNum);
+        try {
+            const activeProcesses = this.pm.listActive();
+            const dashboardPort = 5001; 
+            
+            for (const port in activeProcesses) {
+                const pNum = parseInt(port);
+                if (activeProcesses[port].type === 'preview' && pNum !== dashboardPort) {
+                    await this.pm.stopProcessByPort(pNum);
+                }
+            }
+            await this.pm.stopProcessByPort(previewPort); 
+        } catch (e) {}
+
+        // 2. START SERVER
+        if (siteType === 'static-legacy') {
+            console.log(`📦 Starting light server (sirv) for static site ${id} on port ${previewPort}...`);
+            // Static sites don't need installation
+            await this.pm.startProcess(id, 'preview', previewPort, 'sirv', [siteDir, '--port', previewPort.toString(), '--host', '--dev', '--single'], { cwd: siteDir });
+        } else {
+            // VITE/APP SITES
+            if (!fs.existsSync(path.join(siteDir, 'node_modules'))) {
+                console.log(`📦 node_modules ontbreken in ${id}, installatie starten in achtergrond...`);
+                this.install(id).catch(err => console.error(`Fout bij installatie ${id}:`, err));
+                return { 
+                    success: true, 
+                    status: 'installing', 
+                    message: 'Installatie is gestart. Even geduld...',
+                    url: `http://localhost:${previewPort}/${id}/`
+                };
+            }
+
+            console.log(`🚀 Starting Vite preview for ${id} on port ${previewPort}...`);
+            try {
+                await this.pm.startProcess(id, 'preview', previewPort, 'pnpm', ['dev', '--port', previewPort.toString(), '--host'], { cwd: siteDir });
+            } catch (e) {
+                console.error(`Fout bij starten preview ${id}:`, e.message);
             }
         }
 
-        // Harde poort-vrijgave (indien poort nog bezet is door extern proces)
-        try {
-            this.pm.stopProcessByPort(previewPort); 
-        } catch (e) {}
-
-        // 2. CONTROLEER INSTALLATIE (Niet-blokkerend)
-        if (!fs.existsSync(path.join(siteDir, 'node_modules'))) {
-            console.log(`📦 node_modules ontbreken in ${id}, installatie starten in achtergrond...`);
-            // Start installatie maar wacht er niet op met de API respons
-            this.install(id).catch(err => console.error(`Fout bij installatie ${id}:`, err));
-            return { 
-                success: true, 
-                status: 'installing', 
-                message: 'Installatie is gestart. Even geduld...',
-                url: `http://localhost:${previewPort}/${id}/`
-            };
-        }
-
-        // 3. START PREVIEW
-        console.log(`🚀 Starting preview for ${id} on port ${previewPort}...`);
-        try {
-            await this.pm.startProcess(id, 'preview', previewPort, 'pnpm', ['dev', '--port', previewPort.toString(), '--host'], { cwd: siteDir });
-        } catch (e) {
-            console.error(`Fout bij starten preview ${id}:`, e.message);
-        }
-
         return { success: true, status: 'ready', url: `http://localhost:${previewPort}/${id}/` };
+    }
+
+    /**
+     * Create a new athenified version of an external site
+     */
+    async athenifySite(id) {
+        const sourceDir = path.join(this.sitesExternalDir, id);
+        if (!fs.existsSync(sourceDir)) throw new Error("Bron site niet gevonden in external.");
+
+        const newName = `${id}-ath`;
+        const targetDir = path.join(this.sitesDir, newName);
+
+        if (fs.existsSync(targetDir)) throw new Error(`Doelmap '${newName}' bestaat al.`);
+
+        console.log(`✨ Athenifying ${id} to ${newName}...`);
+        
+        try {
+            // 1. Maak kopie (zonder node_modules)
+            execSync(`mkdir -p "${targetDir}"`);
+            execSync(`rsync -av --exclude 'node_modules' --exclude '.git' "${sourceDir}/" "${targetDir}/"`);
+
+            // 2. Update/Create athena-config.json
+            const config = {
+                projectName: newName,
+                safeName: newName,
+                siteType: 'athenified-legacy',
+                sourceLegacy: id,
+                athenifiedAt: new Date().toISOString()
+            };
+            fs.writeFileSync(path.join(targetDir, 'athena-config.json'), JSON.stringify(config, null, 2));
+
+            // 3. Run Athenafier engine script
+            await this.execService.runEngineScript('athenafier.js', [newName]);
+
+            return { success: true, newName };
+        } catch (e) {
+            console.error("❌ Athenify failed:", e.message);
+            return { success: false, error: e.message };
+        }
     }
 
     /**
@@ -300,7 +375,7 @@ export class SiteController {
                 if (ports[siteId]) return ports[siteId];
             } catch (e) { }
         }
-        return 5000;
+        return 5100;
     }
 
     /**
@@ -329,13 +404,19 @@ export class SiteController {
      * Get all deployments for the Live Manager GUI
      */
     getAllDeployments() {
-        if (!fs.existsSync(this.sitesDir)) return [];
-        const projects = fs.readdirSync(this.sitesDir).filter(f => 
-            fs.statSync(path.join(this.sitesDir, f)).isDirectory() && !f.startsWith('.')
+        const nativeDeps = this._scanDeployments(this.sitesDir);
+        const externalDeps = this._scanDeployments(this.sitesExternalDir);
+        return [...nativeDeps, ...externalDeps];
+    }
+
+    _scanDeployments(dir) {
+        if (!dir || !fs.existsSync(dir)) return [];
+        const projects = fs.readdirSync(dir).filter(f => 
+            fs.statSync(path.join(dir, f)).isDirectory() && !f.startsWith('.')
         );
 
         return projects.map(project => {
-            const projectPath = path.join(this.sitesDir, project);
+            const projectPath = path.join(dir, project);
             const deployFile = path.join(projectPath, 'project-settings', 'deployment.json');
             let deployData = { liveUrl: '', repoUrl: '', status: 'local' };
             let flags = { liveUrlFallback: false, repoUrlFallback: false };

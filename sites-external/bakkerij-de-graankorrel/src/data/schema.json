@@ -1,0 +1,87 @@
+{
+  "blueprint_name": "basis",
+  "description": "Een ultra-flexibele, blok-gebaseerde structuur voor elke soort website (MKB, Info, Landing).",
+  "data_structure": [
+    {
+      "table_name": "Instellingen",
+      "description": "Algemene branding en contactgegevens.",
+      "columns": [
+        {
+          "name": "site_naam",
+          "type": "string"
+        },
+        {
+          "name": "tagline",
+          "type": "string"
+        },
+        {
+          "name": "email",
+          "type": "string"
+        },
+        {
+          "name": "telefoon",
+          "type": "string"
+        },
+        {
+          "name": "adres",
+          "type": "string"
+        },
+        {
+          "name": "primary_color",
+          "type": "string",
+          "description": "Bv. #3b82f6"
+        }
+      ]
+    },
+    {
+      "table_name": "Content",
+      "description": "De inhoudelijke blokken van de website.",
+      "columns": [
+        {
+          "name": "blok_type",
+          "type": "string",
+          "description": "Hero, Kenmerken, Tekst_Afbeelding, CTA, FAQ"
+        },
+        {
+          "name": "titel",
+          "type": "string"
+        },
+        {
+          "name": "tekst",
+          "type": "text"
+        },
+        {
+          "name": "knop_tekst",
+          "type": "string"
+        },
+        {
+          "name": "knop_link",
+          "type": "string"
+        },
+        {
+          "name": "image_prompt",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "table_name": "Kenmerken",
+      "description": "Lijst met USP's of eigenschappen.",
+      "columns": [
+        {
+          "name": "titel",
+          "type": "string"
+        },
+        {
+          "name": "beschrijving",
+          "type": "text"
+        },
+        {
+          "name": "icoon",
+          "type": "string",
+          "description": "Bv. Check, Star, Rocket"
+        }
+      ]
+    }
+  ]
+}

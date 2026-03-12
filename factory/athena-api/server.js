@@ -192,6 +192,7 @@ app.post('/api/sites/:id/update-data', (req, res) => res.json(siteCtrl.updateDat
 app.get('/api/sites/:name/status', (req, res) => res.json(siteCtrl.getStatus(req.params.name)));
 app.post('/api/sites/:name/install', async (req, res) => res.json(await siteCtrl.install(req.params.name)));
 app.post('/api/sites/:id/preview', async (req, res) => res.json(await siteCtrl.preview(req.params.id)));
+app.post('/api/sites/:id/athenify', async (req, res) => res.json(await siteCtrl.athenifySite(req.params.id)));
 app.post('/api/sites/update-deployment', (req, res) => res.json(siteCtrl.updateDeployment(req.body)));
 app.post('/api/sites/:id/pull-from-sheet', async (req, res) => res.json(await siteCtrl.pullFromSheet(req.params.id)));
 app.post('/api/sites/:id/pull-to-temp', async (req, res) => res.json(await siteCtrl.pullToTemp(req.params.id)));
@@ -258,6 +259,7 @@ app.post('/api/storage/prune-all', async (req, res) => {
     res.json({ success: true, actions, tempResult });
 });
 app.post('/api/storage/cleanup-temp', async (req, res) => res.json(await doctorCtrl.cleanupTempData()));
+app.post('/api/storage/prune-pnpm', (req, res) => res.json(doctorCtrl.prunePnpmStore()));
 
 // --- MARKETING API ---
 app.post('/api/marketing/generate-seo', async (req, res) => res.json(await marketingCtrl.generateSEO(req.body.projectName)));

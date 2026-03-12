@@ -64,10 +64,13 @@ export class MarketingController {
         console.log(`📡 Blog synchroniseren naar Google Sheet van ${projectName}...`);
         await this.dataManager.syncToSheet(projectName);
 
+        // Map excerpt to summary for UI consistency
+        const article = { ...blogJson, summary: blogJson.excerpt };
+
         return {
             success: true,
             message: "Blog succesvol gegenereerd en gesynchroniseerd naar de Sheet.",
-            blog: blogJson
+            articles: [article]
         };
     }
 

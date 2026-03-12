@@ -40,6 +40,46 @@
     "image": "showcase-urban-brew-bite.webp"
   },
   {
+    "name": "Pure Bloom Floral",
+    "category": "Retail / Lifestyle",
+    "description": "Exclusieve bloemencreaties en event-styling.",
+    "link": {
+      "label": "BEKIJK PROJECT",
+      "url": "https://athena-cms-factory.github.io/pure-bloom-floral/"
+    },
+    "image": "technische.png"
+  },
+  {
+    "name": "Academy-1",
+    "category": "Educatie",
+    "description": "Een modern leerplatform voor cursussen en trainingen.",
+    "link": {
+      "label": "BEKIJK PROJECT",
+      "url": "https://athena-cms-factory.github.io/academy-1/"
+    },
+    "image": "technische.png"
+  },
+  {
+    "name": "Bakkerij de Graankorrel",
+    "category": "Detailhandel & Food",
+    "description": "Lokale ambachtelijke bakkerij met een uitgebreid assortiment.",
+    "link": {
+      "label": "BEKIJK PROJECT",
+      "url": "https://athena-cms-factory.github.io/bakkerij-de-graankorrel/"
+    },
+    "image": "artisanal-1-1770398212360.jpeg"
+  },
+  {
+    "name": "Dirk De Witte Kappers",
+    "category": "Beauty & Grooming",
+    "description": "Premium kapperservaring met focus op stijl en vakmanschap.",
+    "link": {
+      "label": "BEKIJK PROJECT",
+      "url": "https://athena-cms-factory.github.io/dirk-de-witte-kappers/"
+    },
+    "image": "technische.png"
+  },
+  {
     "name": "Athena Pro",
     "category": "B2B / SaaS",
     "description": "Een professionele showcase voor geavanceerde B2B diensten en SaaS oplossingen.",
@@ -58,16 +98,6 @@
       "url": "https://athena-cms-factory.github.io/de-salon-site"
     },
     "image": "technische.png"
-  },
-  {
-    "name": "Bakkerij Artisanaal",
-    "category": "Detailhandel & Food",
-    "description": "Prachtige productcatalogus voor lokale winkels met bestelmogelijkheid via e-mail.",
-    "link": {
-      "label": "BEKIJK PROJECT",
-      "url": "https://athena-cms-factory.github.io/demo-bakkerij"
-    },
-    "image": "artisanal-1-1770398212360.jpeg"
   },
   {
     "name": "Belgian Chocolate Shop",

@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { ApiService } from './services/ApiService'
 import { useToast } from './services/ToastContext'
 import SiteCard from './components/SiteCard'
+import LegacySiteCard from './components/LegacySiteCard'
 import ServersView from './views/ServersView'
 import ProjectsView from './views/ProjectsView'
 import StorageView from './views/StorageView'
@@ -62,8 +63,14 @@ function App() {
 
   const startTool = async (name, url) => {
     addToast(`Starten van ${name}...`, 'info')
-    await ApiService.runScript(`start-${name.toLowerCase().replace(' ', '-')}`)
-    window.open(url, '_blank')
+    try {
+      if (name === 'Dock') await ApiService.startDock()
+      else if (name === 'Layout Editor') await ApiService.startLayoutServer()
+      else await ApiService.runScript(`start-${name.toLowerCase().replace(' ', '-')}`)
+      window.open(url, '_blank')
+    } catch (e) {
+      addToast(`Fout bij starten van ${name}: ${e.message}`, 'error')
+    }
   }
 
   return (
@@ -98,7 +105,7 @@ function App() {
           <div className="mt-6 pt-2 border-t border-athena-border/30">
              <p className="text-[8px] font-black text-slate-600 uppercase tracking-widest px-3 mb-2">Snelle Tools</p>
              <ActionBtn label="DOCK" icon="⚓" onClick={() => startTool('Dock', 'http://localhost:5002')} />
-             <ActionBtn label="REVIEW" icon="⚖️" onClick={() => window.open('http://localhost:5000/reviewer.html', '_blank')} />
+             <ActionBtn label="REVIEW" icon="⚖️" onClick={() => window.open('http://localhost:5001/reviewer.html', '_blank')} />
              <ActionBtn label="LAYOUT" icon="🎨" onClick={() => startTool('Layout Editor', 'http://localhost:5003')} />
           </div>
         </nav>
@@ -143,18 +150,92 @@ function App() {
                      <StatBox label="Online (Dev)" value={activeServers.filter(s => !s.isSystem).length} color="text-emerald-500" />
                      <StatBox label="Live op GitHub" value={sites.filter(s => s.status === 'live').length} color="text-athena-accent" />
                   </div>
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
-                    {sites.map((site, idx) => (
-                      <SiteCard 
-                        key={idx} 
-                        site={site} 
-                        activeServer={activeServers.find(s => s.siteName === site.name)}
-                        onRefresh={refreshData}
-                        onSEO={(name) => { setSelectedMarketingSite(name); setIsMarketingOpen(true); }}
-                        onBlog={(name) => { setSelectedBlogSite(name); setIsBlogOpen(true); }}
-                      />
-                    ))}
+
+                  {/* NATIVE ATHENA SITES */}
+                  <div>
+                    <h3 className="text-[11px] font-black text-slate-500 uppercase tracking-widest mb-4 flex items-center gap-2">
+                      <span className="w-2 h-2 bg-athena-accent rounded-full animate-pulse"></span>
+                      Native Athena Projects
+                    </h3>
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+                      {sites.filter(s => s.isNative).map((site, idx) => (
+                        <SiteCard 
+                          key={`native-${idx}`} 
+                          site={site} 
+                          activeServer={activeServers.find(s => s.siteName === site.name)}
+                          onRefresh={refreshData}
+                          onSEO={(name) => { setSelectedMarketingSite(name); setIsMarketingOpen(true); }}
+                          onBlog={(name) => { setSelectedBlogSite(name); setIsBlogOpen(true); }}
+                        />
+                      ))}
+                    </div>
                   </div>
+
+                  {/* EXTERNAL / LEGACY SITES */}
+                  {sites.some(s => !s.isNative) && (
+                    <div className="mt-10 pt-10 border-t border-athena-border/30 space-y-10">
+                      
+                      {/* 1. Legacy Apps (Vite) */}
+                      {sites.filter(s => !s.isNative && s.siteType !== 'static-legacy' && (s.isInstalled || s.name.includes('academy') || s.name.includes('bakkerij'))).length > 0 && (
+                        <div>
+                          <h3 className="text-[11px] font-black text-slate-500 uppercase tracking-widest mb-4 flex items-center gap-2">
+                            <span className="w-2 h-2 bg-purple-500 rounded-full"></span>
+                            Legacy Apps (Vite)
+                          </h3>
+                          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+                            {sites.filter(s => !s.isNative && s.siteType !== 'static-legacy' && (s.isInstalled || s.name.includes('academy') || s.name.includes('bakkerij'))).map((site, idx) => (
+                              <LegacySiteCard 
+                                key={`app-${idx}`} 
+                                site={site} 
+                                activeServer={activeServers.find(s => s.siteName === site.name)}
+                                onRefresh={refreshData}
+                              />
+                            ))}
+                          </div>
+                        </div>
+                      )}
+
+                      {/* 2. Static Legacy (HTML) */}
+                      {sites.filter(s => !s.isNative && s.siteType === 'static-legacy').length > 0 && (
+                        <div>
+                          <h3 className="text-[11px] font-black text-slate-500 uppercase tracking-widest mb-4 flex items-center gap-2">
+                            <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
+                            Static Legacy Sites
+                          </h3>
+                          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+                            {sites.filter(s => !s.isNative && s.siteType === 'static-legacy').map((site, idx) => (
+                              <LegacySiteCard 
+                                key={`static-${idx}`} 
+                                site={site} 
+                                activeServer={activeServers.find(s => s.siteName === site.name)}
+                                onRefresh={refreshData}
+                              />
+                            ))}
+                          </div>
+                        </div>
+                      )}
+
+                      {/* 3. Incomplete / Data Archives */}
+                      {sites.filter(s => !s.isNative && !s.isInstalled && s.siteType !== 'static-legacy' && !s.name.includes('academy') && !s.name.includes('bakkerij')).length > 0 && (
+                        <div>
+                          <h3 className="text-[11px] font-black text-slate-500 uppercase tracking-widest mb-4 flex items-center gap-2">
+                            <span className="w-2 h-2 bg-slate-600 rounded-full"></span>
+                            Data & Archive (Incomplete)
+                          </h3>
+                          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 opacity-60 grayscale">
+                            {sites.filter(s => !s.isNative && !s.isInstalled && s.siteType !== 'static-legacy' && !s.name.includes('academy') && !s.name.includes('bakkerij')).map((site, idx) => (
+                              <LegacySiteCard 
+                                key={`data-${idx}`} 
+                                site={site} 
+                                activeServer={activeServers.find(s => s.siteName === site.name)}
+                                onRefresh={refreshData}
+                              />
+                            ))}
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  )}
                </div>
             )}
 

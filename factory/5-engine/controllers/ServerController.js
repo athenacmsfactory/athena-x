@@ -14,6 +14,8 @@ export class ServerController {
         this.execService = executionService;
         this.root = configManager.get('paths.root');
         this.factoryDir = configManager.get('paths.factory');
+        this.sitesDir = configManager.get('paths.sites');
+        this.sitesExternalDir = configManager.get('paths.sitesExternal');
     }
 
     /**
@@ -25,8 +27,9 @@ export class ServerController {
             if (active[port]) return { online: true };
             
             // Fallback check via system ss (fuser is often missing on Chromebooks)
-            const res = this.execService.runSync(`ss -tuln | grep :${port}`, { label: 'Port Check', silent: true });
-            return { online: res.success };
+            // We use "|| true" to prevent exit code 1 from triggering an error in ExecutionService
+            const res = this.execService.runSync(`ss -tuln | grep :${port} || true`, { label: 'Port Check', silent: true });
+            return { online: res.success && res.output && res.output.includes(`:${port}`) };
         } catch (e) {
             return { online: false };
         }
@@ -55,55 +58,71 @@ export class ServerController {
      * Get all active site and system servers
      */
     getActive(hostname = 'localhost') {
-        const active = this.pm.listActive();
-        const activeMap = new Map();
-        const systemPorts = Object.values(this.configManager.get('ports') || {});
-
-        const addServer = (port, info) => {
-            if (!activeMap.has(port)) {
-                if (port === (this.configManager.get('ports.dashboard') || 5001)) return;
-                const isSystem = systemPorts.includes(port);
-                activeMap.set(port, { ...info, isSystem });
-            }
-        };
-
-        // 1. Add managed processes
-        for (const port in active) {
-            const info = active[port];
-            addServer(parseInt(port), {
-                siteName: info.id,
-                port: parseInt(port),
-                pid: info.pid,
-                type: info.type,
-                url: info.type === 'preview' ? `http://${hostname}:${port}/${info.id}/` : `http://${hostname}:${port}/`
-            });
-        }
-
-        // 2. Discover unmanaged processes (started via CLI)
-        const sitesDir = path.join(this.root, 'sites');
-        if (fs.existsSync(sitesDir)) {
-            const sites = fs.readdirSync(sitesDir).filter(f => fs.statSync(path.join(sitesDir, f)).isDirectory() && !f.startsWith('.'));
+        try {
+            const active = this.pm.listActive();
+            const activeMap = new Map();
+            const systemPorts = Object.values(this.configManager.get('ports') || {});
             
-            for (const site of sites) {
-                const siteDir = path.join(sitesDir, site);
-                const port = this.getSitePort(site, siteDir);
+            // Add API_PORT explicitly if not in config
+            const apiPort = parseInt(process.env.API_PORT) || 5000;
+            if (!systemPorts.includes(apiPort)) systemPorts.push(apiPort);
 
-                if (activeMap.has(port)) continue;
-
-                const res = this.execService.runSync(`ss -tuln | grep :${port}`, { label: 'Port Discovery', silent: true });
-                if (res.success) {
-                    addServer(port, {
-                        siteName: site,
-                        port: port,
-                        pid: 'external',
-                        type: 'preview',
-                        url: `http://${hostname}:${port}/${site}/`
-                    });
+            const addServer = (port, info) => {
+                if (!activeMap.has(port)) {
+                    if (port === (this.configManager.get('ports.dashboard') || 5001)) return;
+                    const isSystem = systemPorts.includes(port);
+                    activeMap.set(port, { ...info, isSystem });
                 }
+            };
+
+            // 1. Add managed processes
+            for (const port in active) {
+                const info = active[port];
+                addServer(parseInt(port), {
+                    siteName: info.id,
+                    port: parseInt(port),
+                    pid: info.pid,
+                    type: info.type,
+                    url: info.type === 'preview' ? `http://${hostname}:${port}/${info.id}/` : `http://${hostname}:${port}/`
+                });
+            }
+
+            // 2. Discover unmanaged processes (started via CLI)
+            this._discoverExternalServers(this.sitesDir, hostname, activeMap, systemPorts, addServer);
+            this._discoverExternalServers(this.sitesExternalDir, hostname, activeMap, systemPorts, addServer);
+
+            return Array.from(activeMap.values());
+        } catch (error) {
+            console.error("❌ Error in getActive servers:", error.message);
+            return []; // Return empty list instead of crashing API
+        }
+    }
+
+    _discoverExternalServers(dir, hostname, activeMap, systemPorts, addServer) {
+        if (!dir || !fs.existsSync(dir)) return;
+        
+        const sites = fs.readdirSync(dir).filter(f => 
+            fs.statSync(path.join(dir, f)).isDirectory() && !f.startsWith('.')
+        );
+        
+        for (const site of sites) {
+            const siteDir = path.join(dir, site);
+            const port = this.getSitePort(site, siteDir);
+
+            if (activeMap.has(port) || systemPorts.includes(port)) continue;
+
+            // We use a silent shell check with || true to avoid noise in the logs
+            const res = this.execService.runSync(`ss -tuln | grep :${port} || true`, { label: 'Port Discovery', silent: true });
+            if (res.success && res.output && res.output.includes(`:${port}`)) {
+                addServer(port, {
+                    siteName: site,
+                    port: port,
+                    pid: 'external',
+                    type: 'preview',
+                    url: `http://${hostname}:${port}/${site}/`
+                });
             }
         }
-
-        return Array.from(activeMap.values());
     }
 
     /**
@@ -172,6 +191,6 @@ export class ServerController {
             if (match) return parseInt(match[1]);
         }
 
-        return 5000;
+        return 5100;
     }
 }

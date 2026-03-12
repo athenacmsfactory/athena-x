@@ -34,6 +34,7 @@ export class AthenaConfigManager {
                 root: this.root,
                 factory: path.join(this.root, 'factory'),
                 sites: path.join(this.root, 'sites'),
+                sitesExternal: path.join(this.root, 'sites-external'),
                 input: path.join(this.root, 'input'),
                 logs: path.join(this.root, 'factory/output/logs'),
                 config: path.join(this.root, 'factory/config'),

@@ -60,6 +60,16 @@
     "port": 5834
   },
   {
+    "id": "code-crafters-bold",
+    "name": "code-crafters-bold",
+    "siteType": "tech-consultancy",
+    "generatedAt": "2026-02-27T18:40:05.305Z",
+    "governance_mode": "dev-mode",
+    "repoUrl": null,
+    "liveUrl": null,
+    "port": 5434
+  },
+  {
     "id": "code-crafters-modern-dark",
     "name": "code-crafters-modern-dark",
     "siteType": "tech-consultancy",
@@ -167,7 +177,7 @@
     "governance_mode": "dev-mode",
     "repoUrl": null,
     "liveUrl": null,
-    "port": 3000
+    "port": 5016
   },
   {
     "id": "portfolio-kbm",
@@ -178,6 +188,16 @@
     "repoUrl": null,
     "liveUrl": null,
     "port": 6107
+  },
+  {
+    "id": "athena-promo",
+    "name": "athena-promo",
+    "siteType": "professional-service-provider",
+    "generatedAt": "2026-02-14T18:37:11.711Z",
+    "governance_mode": "dev-mode",
+    "repoUrl": "https://github.com/athena-cms-factory/athena-promo",
+    "liveUrl": "https://athena-cms-factory.github.io/athena-promo",
+    "port": 5017
   },
   {
     "id": "demo-consultant-classic",
@@ -330,6 +350,16 @@
     "port": 6101
   },
   {
+    "id": "de-salon-site",
+    "name": "de-salon-site",
+    "siteType": "de-salon-type",
+    "generatedAt": "2026-01-22T15:08:39.843Z",
+    "governance_mode": "dev-mode",
+    "repoUrl": "https://github.com/athena-cms-factory/de-salon-site",
+    "liveUrl": "https://athena-cms-factory.github.io/de-salon-site",
+    "port": 5018
+  },
+  {
     "id": "de-schaar-site",
     "name": "de-schaar-site",
     "siteType": "de-schaar-type",
@@ -338,5 +368,95 @@
     "repoUrl": "https://github.com/athena-cms-factory/de-schaar-site",
     "liveUrl": "https://athena-cms-factory.github.io/de-schaar-site",
     "port": 6110
+  },
+  {
+    "id": "test-medical",
+    "name": "test-medical",
+    "siteType": "medical-basic",
+    "generatedAt": "2026-01-10T13:36:58.615Z",
+    "governance_mode": "dev-mode",
+    "repoUrl": "https://github.com/athena-cms-factory/test-medical",
+    "liveUrl": "https://athena-cms-factory.github.io/test-medical",
+    "port": 3000
+  },
+  {
+    "id": "test-store-fashion",
+    "name": "test-store-fashion",
+    "siteType": "store-fashion",
+    "generatedAt": "2026-01-10T13:24:01.580Z",
+    "governance_mode": "dev-mode",
+    "repoUrl": null,
+    "liveUrl": null,
+    "port": 3000
+  },
+  {
+    "id": "test-real-estate",
+    "name": "test-real-estate",
+    "siteType": "real-estate",
+    "generatedAt": "2026-01-10T13:23:33.825Z",
+    "governance_mode": "dev-mode",
+    "repoUrl": null,
+    "liveUrl": null,
+    "port": 3000
+  },
+  {
+    "id": "test-dentist",
+    "name": "test-dentist",
+    "siteType": "dentist-basic",
+    "generatedAt": "2026-01-10T13:23:05.015Z",
+    "governance_mode": "dev-mode",
+    "repoUrl": "https://github.com/athena-cms-factory/test-dentist",
+    "liveUrl": "https://athena-cms-factory.github.io/test-dentist",
+    "port": 3000
+  },
+  {
+    "id": "test-portfolio",
+    "name": "test-portfolio",
+    "siteType": "portfolio",
+    "generatedAt": "2026-01-10T13:22:38.712Z",
+    "governance_mode": "dev-mode",
+    "repoUrl": null,
+    "liveUrl": null,
+    "port": 3000
+  },
+  {
+    "id": "test-restaurant",
+    "name": "test-restaurant",
+    "siteType": "restaurant-basic",
+    "generatedAt": "2026-01-10T13:22:08.372Z",
+    "governance_mode": "dev-mode",
+    "repoUrl": "https://github.com/athena-cms-factory/test-restaurant",
+    "liveUrl": "https://athena-cms-factory.github.io/test-restaurant",
+    "port": 3000
+  },
+  {
+    "id": "test-kapper",
+    "name": "test-kapper",
+    "siteType": "kapper",
+    "generatedAt": "2026-01-10T13:21:36.512Z",
+    "governance_mode": "dev-mode",
+    "repoUrl": null,
+    "liveUrl": null,
+    "port": 3000
+  },
+  {
+    "id": "test-store-payment",
+    "name": "test-store-payment",
+    "siteType": "store-payment",
+    "generatedAt": "2026-01-10T13:09:27.545Z",
+    "governance_mode": "dev-mode",
+    "repoUrl": null,
+    "liveUrl": null,
+    "port": 3000
+  },
+  {
+    "id": "urban-sneakers-store",
+    "name": "urban-sneakers-store",
+    "siteType": "store",
+    "generatedAt": "2026-01-09T15:43:25.539Z",
+    "governance_mode": "dev-mode",
+    "repoUrl": "https://github.com/KarelTestSpecial/ath-urban-sneakers-store",
+    "liveUrl": "https://kareltestspecial.github.io/ath-urban-sneakers-store",
+    "port": 5019
   }
 ]

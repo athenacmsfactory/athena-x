@@ -27,6 +27,23 @@ export default function SiteCard({ site, activeServer, onRefresh, onSEO, onBlog 
     }
   };
 
+  const handleDeploy = async () => {
+    const msg = prompt("Commit bericht voor deze release:", "Update site content via Athena Dashboard");
+    if (!msg) return;
+
+    try {
+      addToast(`Deployment van ${site.name} gestart...`, 'info');
+      const res = await ApiService.deploy(site.name, msg);
+      if (res.success) {
+        addToast(`Deployment geslaagd! Site is onderweg naar GitHub Pages.`, 'success');
+      } else {
+        addToast(`Fout bij deployment: ${res.message || 'Onbekende fout'}`, 'error');
+      }
+    } catch (e) {
+      addToast(`Fout bij deployment: ${e.message}`, 'error');
+    }
+  };
+
   return (
     <div className={`bg-athena-panel border border-athena-border rounded-sm transition-all flex flex-col min-h-[160px] group relative ${isRunning ? 'border-l-4 border-l-emerald-500' : 'border-l-4 border-l-amber-500'}`}>
       
@@ -57,12 +74,12 @@ export default function SiteCard({ site, activeServer, onRefresh, onSEO, onBlog 
         <ActionButton 
           icon="⚓" 
           label="DOCK" 
-          onClick={() => ApiService.runScript('start-dock').then(() => window.open(`http://localhost:5002?site=${site.name}`, '_blank'))}
+          onClick={() => ApiService.startDock().then(() => window.open(`http://localhost:5002?site=${site.name}`, '_blank'))}
         />
         <ActionButton 
           icon="🖼️" 
           label="MEDIA" 
-          onClick={() => ApiService.runScript('start-media-server', [site.name]).then(() => window.open(`http://localhost:5004`, '_blank'))}
+          onClick={() => ApiService.startMediaServer(site.name).then(() => window.open(`http://localhost:5004`, '_blank'))}
         />
         <ActionButton 
           icon="🛑" 
@@ -91,7 +108,7 @@ export default function SiteCard({ site, activeServer, onRefresh, onSEO, onBlog 
           icon="🚀" 
           label="DEPLOY" 
           highlight={true}
-          onClick={() => alert("Deployment Manager...")}
+          onClick={handleDeploy}
         />
       </div>
     </div>

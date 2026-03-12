@@ -4,6 +4,7 @@ packages:
   - 'factory/athena-dashboard-ui'
   - 'dock'
   - 'sites/*'
+  - 'sites-external/*'
 
 onlyBuiltDependencies:
   - esbuild
