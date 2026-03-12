@@ -154,7 +154,9 @@ const ShowcaseSection = ({ sectionName, items, sectionStyle }) => {
                             </span>
                           </td>
                           <td className="py-6 px-4">
-                            <h4 className="font-bold text-primary text-lg">{project.name}</h4>
+                            <a href={project.liveLink} target="_blank" rel="noopener noreferrer" className="hover:text-accent transition-colors">
+                              <h4 className="font-bold text-primary text-lg">{project.name}</h4>
+                            </a>
                           </td>
                           <td className="py-6 px-4">
                             <p className="text-slate-600 font-light italic line-clamp-1">{project.description}</p>
