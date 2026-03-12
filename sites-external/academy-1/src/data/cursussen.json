@@ -1,0 +1,29 @@
+[
+  {
+    "titel": "Mastering AI Prompt Engineering",
+    "duur": "4 weken (deeltijds)",
+    "niveau": "Beginner tot Gevorderd",
+    "prijs": "€499",
+    "beschrijving": "Leer hoe je het maximale haalt uit grote taalmodellen zoals GPT-4 en Claude. Deze cursus behandelt de psychologie achter prompts, keten-van-gedachten technieken en het bouwen van AI-agents.",
+    "doelgroep": "Professionals en studenten die hun workflow willen optimaliseren met behulp van de nieuwste AI-tools.",
+    "image_prompt": "Abstracte representatie van een succesvolle, complexe AI-prompt die een stroom van creatieve en logische output genereert, in heldere, digitale blauwe en groene tinten."
+  },
+  {
+    "titel": "Full-Stack Web Development met React & Node.js",
+    "duur": "12 weken (voltijds)",
+    "niveau": "Intermediate",
+    "prijs": "€2.450",
+    "beschrijving": "Een intensief traject waarin je leert hoe je moderne, schaalbare webapplicaties bouwt. We focussen op de essentiële technologieën zoals TypeScript, Tailwind CSS, en PostgreSQL.",
+    "doelgroep": "Aspiring full-stack developers en iedereen die een carrière in moderne webarchitectuur ambieert.",
+    "image_prompt": "Een strakke, high-definition weergave van schone code op meerdere programmeerschermen, met de logo's van React en Node.js die naadloos geïntegreerd zijn in een functionele webapplicatie."
+  },
+  {
+    "titel": "Data Science & Machine Learning Fundamentals",
+    "duur": "6 weken (avondonderwijs)",
+    "niveau": "Beginner",
+    "prijs": "€850",
+    "beschrijving": "Begrijp de data achter de beslissingen. In deze cursus leer je Python, data-visualisatie met D3.js en de basis van voorspellende modellen, cruciaal voor elke moderne professional.",
+    "doelgroep": "Analisten, managers, of iedereen die wil starten met datagedreven besluitvorming.",
+    "image_prompt": "Een inspirerend datavisualisatie dashboard dat complexe informatie omzet in duidelijke inzichten, waarbij de nadruk ligt op de overgang van ruwe data naar strategische beslissingen."
+  }
+]

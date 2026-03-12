@@ -16,6 +16,7 @@ on:
   push:
     paths:
       - 'sites/**'
+      - 'sites-external/**'
     branches:
       - main
       - 'feat/**'
@@ -64,15 +65,18 @@ jobs:
             if [ -n "$INPUT_SITES" ]; then
               CHANGED_SITES=$(echo "$INPUT_SITES" | jq -R -s -c 'split(" ") | map(gsub("^\\s+|\\s+$"; "")) | map(select(length > 0))')
             else
-              CHANGED_SITES=$(ls -d sites/*/ 2>/dev/null | xargs -I{} basename {} | jq -R -s -c 'split("\n") | map(gsub("^\\s+|\\s+$"; "")) | map(select(length > 0))')
+              # Scan beide directories
+              SITES_LIST=$(ls -d sites/*/ 2>/dev/null | xargs -I{} basename {})
+              EXTERNAL_LIST=$(ls -d sites-external/*/ 2>/dev/null | xargs -I{} basename {})
+              CHANGED_SITES=$(echo -e "$SITES_LIST\n$EXTERNAL_LIST" | jq -R -s -c 'split("\n") | map(gsub("^\\s+|\\s+$"; "")) | map(select(length > 0))')
             fi
           else
             BEFORE="${{ github.event.before }}"
             if [ -z "$BEFORE" ] || [ "$BEFORE" = "0000000000000000000000000000000000000000" ]; then
               BEFORE="HEAD~1"
             fi
-            # We vergelijken met de basis van de huidige push
-            RAW_SITES=$(git diff --name-only "$BEFORE" ${{ github.event.after }} | grep '^sites/' | cut -d/ -f2 | sort -u | tr -d '\r' | xargs)
+            # Detecteer in beide mappen
+            RAW_SITES=$(git diff --name-only "$BEFORE" ${{ github.event.after }} | grep -E '^(sites|sites-external)/' | cut -d/ -f2 | sort -u | tr -d '\r' | xargs)
             CHANGED_SITES=$(echo "$RAW_SITES" | jq -R -s -c 'split(" ") | map(gsub("^\\s+|\\s+$"; "")) | map(select(length > 0))')
           fi
           
@@ -114,8 +118,18 @@ jobs:
           SITE="${{ matrix.site }}"
           BRANCH="${{ github.ref_name }}"
           
+          # Bepaal prefix (waar staat de site?)
+          if [ -d "sites/$SITE" ]; then
+            PREFIX="sites/$SITE"
+          elif [ -d "sites-external/$SITE" ]; then
+            PREFIX="sites-external/$SITE"
+          else
+            echo "❌ Site $SITE niet gevonden in sites/ of sites-external/"
+            exit 1
+          fi
+          
           # Probeer de specifieke repoUrl uit de site settings te halen
-          DEPLOY_CONFIG="sites/$SITE/project-settings/deployment.json"
+          DEPLOY_CONFIG="$PREFIX/project-settings/deployment.json"
           TARGET_REPO=""
           
           if [ -f "$DEPLOY_CONFIG" ]; then
@@ -134,13 +148,11 @@ jobs:
           
           # Isoleer en push naar DEZELFDE branch op de target repo
           # (behalve voor main, dat blijft de standaard)
-          SPLIT_SHA=$(git subtree split --prefix=sites/$SITE $BRANCH)
+          SPLIT_SHA=$(git subtree split --prefix=$PREFIX $BRANCH)
 
           if [ "$BRANCH" = "main" ]; then
             git push "$REMOTE_URL" "$SPLIT_SHA":refs/heads/main --force
           else
-            # MULTIVERSE: Push naar 'preview' slot op de target repo
-            # Dit triggert de 'deploy.yml' op de target repo (indien aanwezig)
-            # Of we kunnen hier direct naar gh-pages/preview pushen.
+            # MULTIVERSE: Push naar branch op de target repo
             git push "$REMOTE_URL" "$SPLIT_SHA":refs/heads/$BRANCH --force
           fi
