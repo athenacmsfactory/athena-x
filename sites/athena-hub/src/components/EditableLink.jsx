@@ -76,9 +76,36 @@ export default function EditableLink({
     return Object.fromEntries(Object.entries(styles).filter(([_, v]) => v !== undefined));
   }, [actualValue, isObject, style]);
 
+  const handleClick = (e) => {
+    if (props.onClick) {
+      props.onClick(e);
+      if (e.defaultPrevented) return;
+    }
+
+    if (Tag === 'button' && actualUrl) {
+      if (actualUrl.startsWith('#')) {
+        const target = document.getElementById(actualUrl.substring(1));
+        if (target) {
+          e.preventDefault();
+          target.scrollIntoView({ behavior: 'smooth' });
+        }
+      } else if (actualUrl.startsWith('http')) {
+        window.open(actualUrl, '_blank');
+      } else {
+        window.location.href = actualUrl;
+      }
+    }
+  };
+
   if (!isDev) {
     return (
-      <Tag href={Tag === 'a' ? actualUrl : undefined} className={className} style={individualStyle} {...props}>
+      <Tag 
+        href={Tag === 'a' ? actualUrl : undefined} 
+        className={className} 
+        style={individualStyle} 
+        {...props}
+        onClick={handleClick}
+      >
         {safeContent}
       </Tag>
     );
@@ -102,6 +129,7 @@ export default function EditableLink({
       style={individualStyle}
       title={`Shift+Klik om "${dockLabel}" te bewerken in de Dock (Normale klik om link te volgen)`}
       {...props}
+      onClick={handleClick}
     >
       {safeContent}
     </Tag>

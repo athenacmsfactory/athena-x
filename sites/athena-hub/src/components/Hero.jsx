@@ -43,17 +43,10 @@ const Hero = ({ data, sectionName, features = {}, style = {} }) => {
                     <div className="flex flex-wrap justify-center gap-4">
                         <EditableLink
                             as="button"
-                            label={hero.cta_label || "Contact"}
-                            url={hero.cta_url || "#contact"}
-                            cmsBind={{ file: sectionName, index: 0, key: 'cta' }}
+                            url={hero.cta || hero.cta_url || "#contact"}
+                            label={hero.cta_label || (typeof hero.cta === 'object' ? hero.cta.label : null) || "Contact"}
+                            cmsBind={{ file: sectionName, index: 0, key: hero.cta ? 'cta' : 'cta_url' }}
                             className="bg-[var(--color-button-bg)] text-white px-10 py-4 rounded-full text-xl font-bold shadow-2xl hover:opacity-90 transition-all transform hover:scale-105"
-                            onClick={(e) => {
-                                const url = hero.cta_url || "#contact";
-                                if (url.startsWith('#')) {
-                                    e.preventDefault();
-                                    document.getElementById(url.substring(1))?.scrollIntoView({ behavior: 'smooth' });
-                                }
-                            }}
                         />
                         {hasSearchLinks && (
                             <a href={getGoogleSearchUrl(heroTitle)} target="_blank" rel="noopener noreferrer" className="bg-white/10 hover:bg-white/20 text-white border border-white/30 px-8 py-3 rounded-full backdrop-blur-md transition-all font-bold flex items-center gap-3 group">

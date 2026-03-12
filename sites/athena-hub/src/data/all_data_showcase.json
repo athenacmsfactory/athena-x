@@ -1,0 +1,92 @@
+    [
+      {
+        "name": "Gentse Dakwerken",
+        "category": "Bouw & Renovatie",
+        "description": "Specialist in dakrenovatie en zonnepanelen in de regio Gent.",
+        "link": {
+          "label": "BEKIJK PROJECT",
+          "url": "https://athena-cms-factory.github.io/gentse-dakwerken/"
+        },
+        "image": "showcase-gentse-dakwerken.webp"
+      },
+      {
+        "name": "KDC IT Advies",
+        "category": "IT & Consultancy",
+        "description": "Strategisch IT-advies en digitale transformatie voor KMO's.",
+        "link": {
+          "label": "BEKIJK PROJECT",
+          "url": "https://athena-cms-factory.github.io/kdc-it-advies/"
+        },
+        "image": "showcase-kdc-it-advies.webp"
+      },
+      {
+        "name": "Lex & Justitia Advocaten",
+        "category": "Juridische Dienstverlening",
+        "description": "Juridische expertise in ondernemingsrecht en vastgoedrecht.",
+        "link": {
+          "label": "BEKIJK PROJECT",
+          "url": "https://athena-cms-factory.github.io/lex-justitia/"
+        },
+        "image": "showcase-lex-justitia.webp"
+      },
+      {
+        "name": "Urban Brew & Bite",
+        "category": "Horeca",
+        "description": "Specialty coffee en urban lunch experience in het hart van Gent.",
+        "link": {
+          "label": "BEKIJK PROJECT",
+          "url": "https://athena-cms-factory.github.io/urban-brew-bite/"
+        },
+        "image": "showcase-urban-brew-bite.webp"
+      },
+      {
+        "name": "De Salon",
+        "category": "Beauty & Wellness",
+        "description": "Een moderne website voor kapsalons met focus op sfeer en team-presentatie.",
+        "link": {
+          "label": "BEKIJK PROJECT",
+          "url": "https://athena-cms-factory.github.io/de-salon-site"
+        },
+        "image": "technische.png"
+      },
+      {
+        "name": "Bakkerij Artisanaal",
+        "category": "Detailhandel & Food",
+        "description": "Prachtige productcatalogus voor lokale winkels met bestelmogelijkheid via e-mail.",
+        "link": {
+          "label": "BEKIJK PROJECT",
+          "url": "https://athena-cms-factory.github.io/demo-bakkerij"
+        },
+        "image": "artisanal-1-1770398212360.jpeg"
+      },
+      {
+        "name": "Belgian Chocolate Shop",
+        "category": "Webshop",
+        "description": "Een webshop voor Belgische chocolaterie",
+        "link": {
+          "label": "BEKIJK PROJECT",
+          "url": "https://athena-cms-factory.github.io/chocolade-shop/"
+        },
+        "image": "hero-1770476346310.jpeg"
+      },
+      {
+        "name": "Urban Soles",
+        "category": "Webshop",
+        "description": "High-end sneaker shop met 20+ producten en AI-gegenereerde content.",
+        "link": {
+          "label": "BEKIJK PROJECT",
+          "url": "https://athena-cms-factory.github.io/urban-soles/"
+        },
+        "image": "1-1770476441932-1770476982985.jpg"
+      },
+      {
+        "name": "Cloud Architects",
+        "category": "IT / Tech",
+        "description": "Strakke, moderne website voor IT-consultants en cloud architectuur specialisten.",
+        "link": {
+          "label": "BEKIJK DEMO",
+          "url": "https://athena-cms-factory.github.io/cloud-architects/"
+        },
+        "image": "showcase-cloud-architects.jpg"
+      }
+    ]
