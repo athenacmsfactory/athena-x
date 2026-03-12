@@ -1,0 +1,9 @@
+[
+  { "dag": "Maandag", "uren": "Gesloten" },
+  { "dag": "Dinsdag", "uren": "09:00 - 18:30" },
+  { "dag": "Woensdag", "uren": "09:00 - 18:30" },
+  { "dag": "Donderdag", "uren": "09:00 - 18:30" },
+  { "dag": "Vrijdag", "uren": "09:00 - 19:00" },
+  { "dag": "Zaterdag", "uren": "08:30 - 17:00" },
+  { "dag": "Zondag", "uren": "Gesloten" }
+]

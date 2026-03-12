@@ -253,6 +253,19 @@
       ]
     },
     {
+      "table_name": "openingsuren",
+      "columns": [
+        {
+          "name": "dag",
+          "description": "De dag van de week."
+        },
+        {
+          "name": "uren",
+          "description": "De openingstijden voor die dag."
+        }
+      ]
+    },
+    {
       "table_name": "navbar",
       "columns": [
         {

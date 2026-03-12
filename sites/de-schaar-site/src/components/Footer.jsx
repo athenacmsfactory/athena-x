@@ -1,7 +1,7 @@
 import React from 'react';
 import EditableText from './EditableText';
 
-export default function Footer({ primaryTable, socialData = [] }) {
+export default function Footer({ primaryTable, socialData = [], openingData = [] }) {
   const info = primaryTable?.[0] || {};
 
   const iconMap = {
@@ -123,6 +123,21 @@ export default function Footer({ primaryTable, socialData = [] }) {
                   />
                 </div>
               )}
+            </div>
+          </div>
+
+          {/* Openingsuren */}
+          <div>
+            <h4 className="text-sm font-black text-white uppercase tracking-[0.2em] mb-8">
+              Openingsuren
+            </h4>
+            <div className="space-y-2">
+              {openingData.map((item, idx) => (
+                <div key={idx} className="flex justify-between text-xs border-b border-white/5 pb-1">
+                  <EditableText tagName="span" value={item.dag} table="openingsuren" id={idx} field="dag" className="opacity-50" />
+                  <EditableText tagName="span" value={item.uren} table="openingsuren" id={idx} field="uren" className="font-bold text-white" />
+                </div>
+              ))}
             </div>
           </div>
 
