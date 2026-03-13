@@ -33,8 +33,9 @@ jobs:
       - name: 🛰️ Checkout Monorepo
         uses: actions/checkout@v4
         with:
+          persist-credentials: false
           fetch-depth: 0
-          token: ${{ secrets.ATHENA_DEPLOY_TOKEN || secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: 🔄 Sync from Google Sheets (if Dispatch)
         if: github.event_name == 'repository_dispatch' && github.event.action == 'publish_from_sheet'
@@ -102,8 +103,9 @@ jobs:
       - name: 🛰️ Checkout Monorepo
         uses: actions/checkout@v4
         with:
+          persist-credentials: false
           fetch-depth: 0
-          token: ${{ secrets.ATHENA_DEPLOY_TOKEN || secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: 🏗️ Setup Enviroment
         run: |
