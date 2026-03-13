@@ -67,8 +67,8 @@
     "proces": "z-pattern"
   },
   "links_config": {
-    "showcase:1:link": "https://athena-cms-factory.github.io/demo-bakkerij",
-    "showcase:0:link": "https://athena-cms-factory.github.io/de-salon-site"
+    "showcase:1:link": "https://ath-x.github.io/demo-bakkerij",
+    "showcase:0:link": "https://ath-x.github.io/de-salon-site"
   },
   "proces": [
     {
@@ -278,7 +278,7 @@
       "description": "Specialist in dakrenovatie en zonnepanelen in de regio Gent.",
       "link": {
         "label": "BEKIJK PROJECT",
-        "url": "https://athena-cms-factory.github.io/gentse-dakwerken/"
+        "url": "https://ath-x.github.io/gentse-dakwerken/"
       },
       "image": "showcase-gentse-dakwerken.webp"
     },
@@ -288,7 +288,7 @@
       "description": "Strategisch IT-advies en digitale transformatie voor KMO's.",
       "link": {
         "label": "BEKIJK PROJECT",
-        "url": "https://athena-cms-factory.github.io/kdc-it-advies/"
+        "url": "https://ath-x.github.io/kdc-it-advies/"
       },
       "image": "showcase-kdc-it-advies.webp"
     },
@@ -298,7 +298,7 @@
       "description": "Juridische expertise in ondernemingsrecht en vastgoedrecht.",
       "link": {
         "label": "BEKIJK PROJECT",
-        "url": "https://athena-cms-factory.github.io/lex-justitia/"
+        "url": "https://ath-x.github.io/lex-justitia/"
       },
       "image": "showcase-lex-justitia.webp"
     },
@@ -308,7 +308,7 @@
       "description": "Specialty coffee en urban lunch experience in het hart van Gent.",
       "link": {
         "label": "BEKIJK PROJECT",
-        "url": "https://athena-cms-factory.github.io/urban-brew-bite/"
+        "url": "https://ath-x.github.io/urban-brew-bite/"
       },
       "image": "showcase-urban-brew-bite.webp"
     },
@@ -318,7 +318,7 @@
       "description": "Een professionele showcase voor geavanceerde B2B diensten en SaaS oplossingen.",
       "link": {
         "label": "BEKIJK DEMO",
-        "url": "https://athena-cms-factory.github.io/athena-pro/"
+        "url": "https://ath-x.github.io/athena-pro/"
       },
       "image": "showcase-athena-pro.jpg"
     },
@@ -328,7 +328,7 @@
       "description": "Een moderne website voor kapsalons met focus op sfeer en team-presentatie.",
       "link": {
         "label": "BEKIJK PROJECT",
-        "url": "https://athena-cms-factory.github.io/de-schaar-site"
+        "url": "https://ath-x.github.io/de-schaar-site"
       },
       "image": "technische.png"
     },
@@ -338,7 +338,7 @@
       "description": "Prachtige productcatalogus voor lokale winkels met bestelmogelijkheid via e-mail.",
       "link": {
         "label": "BEKIJK PROJECT",
-        "url": "https://athena-cms-factory.github.io/demo-bakkerij"
+        "url": "https://ath-x.github.io/demo-bakkerij"
       },
       "image": "artisanal-1-1770398212360.jpeg"
     },
@@ -348,7 +348,7 @@
       "description": "Een webshop voor Belgische chocolaterie",
       "link": {
         "label": "BEKIJK PROJECT",
-        "url": "https://athena-cms-factory.github.io/chocolade-shop/"
+        "url": "https://ath-x.github.io/chocolade-shop/"
       },
       "image": "hero-1770476346310.jpeg"
     },
@@ -358,7 +358,7 @@
       "description": "High-end sneaker shop met 20+ producten en AI-gegenereerde content.",
       "link": {
         "label": "BEKIJK PROJECT",
-        "url": "https://athena-cms-factory.github.io/urban-soles/"
+        "url": "https://ath-x.github.io/urban-soles/"
       },
       "image": "1-1770476441932-1770476982985.jpg"
     },
@@ -368,7 +368,7 @@
       "description": "Strakke, moderne website voor IT-consultants en cloud architectuur specialisten.",
       "link": {
         "label": "BEKIJK DEMO",
-        "url": "https://athena-cms-factory.github.io/cloud-architects/"
+        "url": "https://ath-x.github.io/cloud-architects/"
       },
       "image": "showcase-cloud-architects.jpg"
     }
