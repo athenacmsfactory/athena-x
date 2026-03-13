@@ -23,7 +23,6 @@ on:
       - 'fix/**'
 
 jobs:
-  # STAP 1: Detecteer welke sites gewijzigd zijn
   discovery:
     runs-on: ubuntu-latest
     outputs:
@@ -41,17 +40,14 @@ jobs:
         if: github.event_name == 'repository_dispatch' && github.event.action == 'publish_from_sheet'
         run: |
           SITE="${{ github.event.client_payload.site }}"
-          echo "Syncing data for $SITE from Google Sheets..."
           cd "sites/$SITE"
           npm install -g pnpm
           pnpm install --no-frozen-lockfile
           pnpm fetch-data
-          
           git config --global user.name "Athena Bot"
           git config --global user.email "bot@athena-cms.nl"
           git add src/data/*.json
           if git commit -m "chore(data): sync $SITE from sheets [skip ci]"; then
-            # Push naar de branch waar de dispatch vandaan kwam (meestal main)
             git push origin ${{ github.ref_name }}
           fi
 
@@ -66,7 +62,6 @@ jobs:
             if [ -n "$INPUT_SITES" ]; then
               CHANGED_SITES=$(echo "$INPUT_SITES" | jq -R -s -c 'split(" ") | map(gsub("^\\s+|\\s+$"; "")) | map(select(length > 0))')
             else
-              # Scan beide directories
               SITES_LIST=$(ls -d sites/*/ 2>/dev/null | xargs -I{} basename {})
               EXTERNAL_LIST=$(ls -d sites-external/*/ 2>/dev/null | xargs -I{} basename {})
               CHANGED_SITES=$(echo -e "$SITES_LIST\n$EXTERNAL_LIST" | jq -R -s -c 'split("\n") | map(gsub("^\\s+|\\s+$"; "")) | map(select(length > 0))')
@@ -76,20 +71,16 @@ jobs:
             if [ -z "$BEFORE" ] || [ "$BEFORE" = "0000000000000000000000000000000000000000" ]; then
               BEFORE="HEAD~1"
             fi
-            # Detecteer in beide mappen
             RAW_SITES=$(git diff --name-only "$BEFORE" ${{ github.event.after }} | grep -E '^(sites|sites-external)/' | cut -d/ -f2 | sort -u | tr -d '\r' | xargs)
             CHANGED_SITES=$(echo "$RAW_SITES" | jq -R -s -c 'split(" ") | map(gsub("^\\s+|\\s+$"; "")) | map(select(length > 0))')
           fi
-          
           if [ "$CHANGED_SITES" = "[]" ] || [ -z "$CHANGED_SITES" ]; then
             echo "any_changed=false" >> $GITHUB_OUTPUT
           else
             echo "any_changed=true" >> $GITHUB_OUTPUT
             echo "sites=$CHANGED_SITES" >> $GITHUB_OUTPUT
           fi
-          echo "Gevonden sites: $CHANGED_SITES"
 
-  # STAP 2: Publiceer elke site parallel via een matrix
   publish:
     needs: discovery
     if: needs.discovery.outputs.any_changed == 'true'
@@ -98,7 +89,6 @@ jobs:
       matrix:
         site: ${{ fromJson(needs.discovery.outputs.sites) }}
       fail-fast: false
-    
     steps:
       - name: 🛰️ Checkout Monorepo
         uses: actions/checkout@v4
@@ -106,10 +96,6 @@ jobs:
           persist-credentials: false
           fetch-depth: 0
           token: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: 🏗️ Setup Enviroment
-        run: |
-          echo "CURRENT_BRANCH=${{ github.ref_name }}" >> $GITHUB_ENV
 
       - name: 🚀 Push Subtree to Client Repo
         env:
@@ -119,9 +105,6 @@ jobs:
         run: |
           SITE="${{ matrix.site }}"
           BRANCH="${{ github.ref_name }}"
-          TARGET_ORG="ath-x"
-
-          # Bepaal prefix
           if [ -d "sites/$SITE" ]; then
             PREFIX="sites/$SITE"
           elif [ -d "sites-external/$SITE" ]; then
@@ -130,34 +113,20 @@ jobs:
             echo "❌ Site $SITE niet gevonden"
             exit 1
           fi
-
-          TARGET_REPO="$TARGET_ORG/$SITE"
-
-          # AUTOMATISCHE CREATIE: Check of repo bestaat, zo niet: aanmaken!
-          # We gebruiken de GitHub CLI (gh) die al beschikbaar is in de runner
+          TARGET_REPO="$DEFAULT_OWNER/$SITE"
+          
           if ! gh repo view "$TARGET_REPO" >/dev/null 2>&1; then
-            echo "✨ Repository $TARGET_REPO bestaat nog niet. Aanmaken in organisatie $TARGET_ORG..."
-            gh repo create "$TARGET_REPO" --public --description "Athena CMS Site: $SITE (Dev Sandbox)"
-            
-            # Wacht even tot GitHub de repo heeft geregistreerd
+            echo "✨ Repository $TARGET_REPO bestaat nog niet. Aanmaken..."
+            gh repo create "$TARGET_REPO" --public --description "Athena CMS Site: $SITE (Sandbox)"
             sleep 5
-            
-            # Activeer GitHub Pages op de gh-pages branch
+          fi
+
+          if ! gh api repos/$TARGET_REPO/pages >/dev/null 2>&1; then
             echo "🌐 Activeren van GitHub Pages voor $TARGET_REPO..."
-            gh api --method POST /repos/$TARGET_REPO/pages -f source='{"branch": "gh-pages", "path": "/"}' || echo "⚠️ Pages kon nog niet geactiveerd worden (mogelijk bestaat de branch nog niet)"
+            gh api --method POST /repos/$TARGET_REPO/pages -f source='{"branch": "gh-pages", "path": "/"}' || echo "⚠️ Pages kon nog niet geactiveerd worden"
           fi
 
           echo "📤 Pushen van subtree $PREFIX naar $TARGET_REPO op branch $BRANCH"
           REMOTE_URL="https://x-access-token:${API_TOKEN_GITHUB}@github.com/${TARGET_REPO}.git"
-
-          
-          # Isoleer en push naar DEZELFDE branch op de target repo
-          # (behalve voor main, dat blijft de standaard)
           SPLIT_SHA=$(git subtree split --prefix=$PREFIX $BRANCH)
-
-          if [ "$BRANCH" = "main" ]; then
-            git push "$REMOTE_URL" "$SPLIT_SHA":refs/heads/main --force
-          else
-            # MULTIVERSE: Push naar branch op de target repo
-            git push "$REMOTE_URL" "$SPLIT_SHA":refs/heads/$BRANCH --force
-          fi
+          git push "$REMOTE_URL" "$SPLIT_SHA":refs/heads/main --force
