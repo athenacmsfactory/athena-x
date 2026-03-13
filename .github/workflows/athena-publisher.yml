@@ -113,38 +113,34 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.ATHENA_DEPLOY_TOKEN || secrets.GITHUB_TOKEN }}
           API_TOKEN_GITHUB: ${{ secrets.ATHENA_DEPLOY_TOKEN || secrets.GITHUB_TOKEN }}
-          DEFAULT_OWNER: "athena-cms-factory"
+          DEFAULT_OWNER: "ath-x"
         run: |
           SITE="${{ matrix.site }}"
           BRANCH="${{ github.ref_name }}"
-          
-          # Bepaal prefix (waar staat de site?)
+          TARGET_ORG="ath-x"
+
+          # Bepaal prefix
           if [ -d "sites/$SITE" ]; then
             PREFIX="sites/$SITE"
           elif [ -d "sites-external/$SITE" ]; then
             PREFIX="sites-external/$SITE"
           else
-            echo "❌ Site $SITE niet gevonden in sites/ of sites-external/"
+            echo "❌ Site $SITE niet gevonden"
             exit 1
           fi
-          
-          # Probeer de specifieke repoUrl uit de site settings te halen
-          DEPLOY_CONFIG="$PREFIX/project-settings/deployment.json"
-          TARGET_REPO=""
-          
-          if [ -f "$DEPLOY_CONFIG" ]; then
-            RAW_URL=$(cat "$DEPLOY_CONFIG" | jq -r '.repoUrl' 2>/dev/null || echo "")
-            if [[ "$RAW_URL" == *"github.com"* ]]; then
-              REPO_PATH=$(echo "$RAW_URL" | sed 's/.*github.com\///' | sed 's/\.git$//')
-              TARGET_REPO="$REPO_PATH"
-            fi
+
+          TARGET_REPO="$TARGET_ORG/$SITE"
+
+          # AUTOMATISCHE CREATIE: Check of repo bestaat, zo niet: aanmaken!
+          # We gebruiken de GitHub CLI (gh) die al beschikbaar is in de runner
+          if ! gh repo view "$TARGET_REPO" >/dev/null 2>&1; then
+            echo "✨ Repository $TARGET_REPO bestaat nog niet. Aanmaken in organisatie $TARGET_ORG..."
+            gh repo create "$TARGET_REPO" --public --description "Athena CMS Site: $SITE (Dev Sandbox)"
           fi
 
-          if [ -z "$TARGET_REPO" ]; then
-            TARGET_REPO="$DEFAULT_OWNER/$SITE"
-          fi
-
+          echo "📤 Pushen van subtree $PREFIX naar $TARGET_REPO op branch $BRANCH"
           REMOTE_URL="https://x-access-token:${API_TOKEN_GITHUB}@github.com/${TARGET_REPO}.git"
+
           
           # Isoleer en push naar DEZELFDE branch op de target repo
           # (behalve voor main, dat blijft de standaard)
