@@ -138,6 +138,13 @@ jobs:
           if ! gh repo view "$TARGET_REPO" >/dev/null 2>&1; then
             echo "✨ Repository $TARGET_REPO bestaat nog niet. Aanmaken in organisatie $TARGET_ORG..."
             gh repo create "$TARGET_REPO" --public --description "Athena CMS Site: $SITE (Dev Sandbox)"
+            
+            # Wacht even tot GitHub de repo heeft geregistreerd
+            sleep 5
+            
+            # Activeer GitHub Pages op de gh-pages branch
+            echo "🌐 Activeren van GitHub Pages voor $TARGET_REPO..."
+            gh api --method POST /repos/$TARGET_REPO/pages -f source='{"branch": "gh-pages", "path": "/"}' || echo "⚠️ Pages kon nog niet geactiveerd worden (mogelijk bestaat de branch nog niet)"
           fi
 
           echo "📤 Pushen van subtree $PREFIX naar $TARGET_REPO op branch $BRANCH"
