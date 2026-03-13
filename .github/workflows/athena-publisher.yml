@@ -99,26 +99,24 @@ jobs:
           fi
           TARGET_REPO="$DEFAULT_OWNER/$SITE"
           
-          # 1. Zorg dat de repo bestaat
           if ! gh repo view "$TARGET_REPO" >/dev/null 2>&1; then
+            echo "✨ Creating repo $TARGET_REPO..."
             gh repo create "$TARGET_REPO" --public --description "Athena CMS Site: $SITE"
-            sleep 2
+            sleep 5
           fi
 
-          # 2. Push de code naar main (Met PAT, dus triggert Action!)
           REMOTE_URL="https://x-access-token:${API_TOKEN_GITHUB}@github.com/${TARGET_REPO}.git"
           SPLIT_SHA=$(git subtree split --prefix=$PREFIX $BRANCH)
           git push "$REMOTE_URL" "$SPLIT_SHA":refs/heads/main --force
 
-          # 3. KICKSTART: Maak gh-pages branch aan als deze ontbreekt
           if ! gh api repos/$TARGET_REPO/branches/gh-pages >/dev/null 2>&1; then
-            echo "🌱 Kickstarting gh-pages branch..."
-            gh api --method POST /repos/$TARGET_REPO/git/refs -f ref='refs/heads/gh-pages' -f sha="$SPLIT_SHA" || true
-            sleep 2
+            echo "🌱 Creating gh-pages branch..."
+            gh api --method POST /repos/$TARGET_REPO/git/refs -f ref='refs/heads/gh-pages' -f sha="$SPLIT_SHA"
+            sleep 10
           fi
 
-          # 4. FAILSAFE: Activeer Pages
           if ! gh api repos/$TARGET_REPO/pages >/dev/null 2>&1; then
-            echo "🌐 Activeren van GitHub Pages..."
-            gh api --method POST /repos/$TARGET_REPO/pages -f source='{"branch": "gh-pages", "path": "/"}' || true
+            echo "🌐 Activating GitHub Pages..."
+            sleep 5
+            gh api --method POST /repos/$TARGET_REPO/pages -f source='{"branch": "gh-pages", "path": "/"}'
           fi
