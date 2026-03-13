@@ -1,7 +1,7 @@
 import { ApiService } from '../services/ApiService';
 import { useToast } from '../services/ToastContext';
 
-export default function SiteCard({ site, activeServer, onRefresh, onSEO, onBlog }) {
+export default function SiteCard({ site, activeServer, onRefresh, onSEO, onSheet }) {
   const { addToast } = useToast();
   const isRunning = !!activeServer;
   const status = site.status || 'local';
@@ -55,6 +55,11 @@ export default function SiteCard({ site, activeServer, onRefresh, onSEO, onBlog 
           </div>
           <p className="text-[10px] text-slate-500 font-medium uppercase flex items-center gap-2">
              <span>{status === 'live' ? 'Live on Pages' : 'Local Project'}</span>
+             {site.deployData?.liveUrl && (
+               <a href={site.deployData.liveUrl} target="_blank" rel="noopener noreferrer" className="text-athena-accent hover:text-white transition-colors" title="Open Live Site">
+                 <span className="text-[10px]">↗️</span>
+               </a>
+             )}
              <span className="font-mono bg-black/20 px-1 rounded text-slate-400">:{activeServer?.port || site.port || 5000}</span>
           </p>
         </div>
@@ -90,22 +95,18 @@ export default function SiteCard({ site, activeServer, onRefresh, onSEO, onBlog 
         />
 
         <ActionButton 
-          icon="📡" 
-          label="SYNC" 
-          onClick={() => ApiService.syncToSheet(site.name).then(res => addToast(res.message, res.success ? 'success' : 'error'))}
-        />
-        <ActionButton 
           icon="📊" 
           label="SEO" 
           onClick={() => onSEO(site.name)}
         />
-         <ActionButton 
-          icon="✍️" 
-          label="BLOG" 
-          onClick={() => onBlog(site.name)}
+        <ActionButton 
+          icon="📝" 
+          label="SHEET" 
+          onClick={() => onSheet(site)}
         />
         <ActionButton 
           icon="🚀" 
+ 
           label="DEPLOY" 
           highlight={true}
           onClick={handleDeploy}

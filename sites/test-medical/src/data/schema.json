@@ -1,0 +1,96 @@
+{
+  "blueprint_name": "medical",
+  "description": "Een professionele en betrouwbare website voor artsen en medische praktijken.",
+  "data_structure": [
+    {
+      "table_name": "Praktijk_Info",
+      "description": "Algemene informatie over de praktijk.",
+      "columns": [
+        {
+          "name": "naam",
+          "type": "string"
+        },
+        {
+          "name": "specialisatie",
+          "type": "string"
+        },
+        {
+          "name": "adres",
+          "type": "string"
+        },
+        {
+          "name": "telefoon",
+          "type": "string"
+        },
+        {
+          "name": "email",
+          "type": "string"
+        },
+        {
+          "name": "afspraak_url",
+          "type": "string",
+          "description": "Link naar online agenda"
+        },
+        {
+          "name": "hero_image_prompt",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "table_name": "Specialisaties",
+      "description": "De medische diensten die worden aangeboden.",
+      "columns": [
+        {
+          "name": "titel",
+          "type": "string"
+        },
+        {
+          "name": "uitleg",
+          "type": "text"
+        },
+        {
+          "name": "icon",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "table_name": "Artsen",
+      "description": "De medische staf.",
+      "columns": [
+        {
+          "name": "naam",
+          "type": "string"
+        },
+        {
+          "name": "rol",
+          "type": "string"
+        },
+        {
+          "name": "bio",
+          "type": "text"
+        },
+        {
+          "name": "foto_prompt",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "table_name": "Info",
+      "description": "Praktische informatie.",
+      "columns": [
+        {
+          "name": "onderwerp",
+          "type": "string",
+          "description": "Bv. 'Noodgeval', 'Huisbezoek'"
+        },
+        {
+          "name": "uitleg",
+          "type": "text"
+        }
+      ]
+    }
+  ]
+}

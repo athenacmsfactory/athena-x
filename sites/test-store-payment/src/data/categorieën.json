@@ -1,0 +1,12 @@
+[
+  {
+    "naam": "Schoenen",
+    "afbeelding": "cat-shoes.jpg",
+    "field3": 0
+  },
+  {
+    "naam": "Kleding",
+    "afbeelding": "cat-clothes.jpg",
+    "field3": 1
+  }
+]

@@ -1,0 +1,29 @@
+[
+  {
+    "naam": "Steak Tartare",
+    "prijs": "€24.50",
+    "categorie": "Hoofdgerechten",
+    "beschrijving": "Met frietjes en sla.",
+    "dieet_info": "Glutenvrij",
+    "field6": 0,
+    "foto": "steak-tartare.jpg"
+  },
+  {
+    "naam": "Escargots",
+    "prijs": "€16.00",
+    "categorie": "Voorgerechten",
+    "beschrijving": "In lookboter.",
+    "dieet_info": "-",
+    "field6": 1,
+    "foto": "escargots.jpg"
+  },
+  {
+    "naam": "Dame Blanche",
+    "prijs": "€9.50",
+    "categorie": "Desserts",
+    "beschrijving": "Met warme chocoladesaus.",
+    "dieet_info": "-",
+    "field6": 2,
+    "foto": "dame-blanche.jpg"
+  }
+]

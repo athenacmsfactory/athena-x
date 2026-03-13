@@ -1,0 +1,17 @@
+{
+  "name": "test-medical",
+  "short_name": "test-medical",
+  "description": "Gebouwd met Athena CMS Factory",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0f172a",
+  "theme_color": "#3b82f6",
+  "icons": [
+    {
+      "src": "athena-icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

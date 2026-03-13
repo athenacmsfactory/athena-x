@@ -1,0 +1,149 @@
+{
+  "blueprint_name": "portfolio",
+  "description": "Een gespecialiseerd type voor freelancers, creatievelingen en bureaus om werk te presenteren.",
+  "data_structure": [
+    {
+      "table_name": "Profile",
+      "description": "Wie is de eigenaar van dit portfolio?",
+      "columns": [
+        {
+          "name": "full_name",
+          "type": "string",
+          "description": "Naam van de persoon of het bureau"
+        },
+        {
+          "name": "tagline",
+          "type": "string",
+          "description": "Korte, pakkende slogan (bv. 'Building digital dreams')"
+        },
+        {
+          "name": "professional_title",
+          "type": "string",
+          "description": "Bv. 'Full Stack Developer' of 'Grafisch Ontwerper'"
+        },
+        {
+          "name": "bio_short",
+          "type": "text",
+          "description": "Introductie voor de Hero sectie"
+        },
+        {
+          "name": "bio_long",
+          "type": "text",
+          "description": "Uitgebreid verhaal voor de 'Over mij' sectie"
+        },
+        {
+          "name": "avatar_prompt",
+          "type": "string",
+          "description": "Prompt voor een AI-profielfoto"
+        },
+        {
+          "name": "contact_email",
+          "type": "string"
+        },
+        {
+          "name": "cta_text",
+          "type": "string",
+          "description": "Tekst voor de hoofdknop (bv. 'Hire Me')"
+        }
+      ]
+    },
+    {
+      "table_name": "Projects",
+      "description": "De kern van het portfolio: het werk.",
+      "columns": [
+        {
+          "name": "title",
+          "type": "string"
+        },
+        {
+          "name": "category",
+          "type": "string",
+          "description": "Bv. 'Web', 'Mobile', 'Branding'"
+        },
+        {
+          "name": "summary",
+          "type": "text",
+          "description": "Korte beschrijving voor de kaart"
+        },
+        {
+          "name": "description",
+          "type": "text",
+          "description": "Volledige beschrijving van de case"
+        },
+        {
+          "name": "tech_stack",
+          "type": "string",
+          "description": "Comma-separated (bv. 'React, Figma')"
+        },
+        {
+          "name": "demo_url",
+          "type": "string"
+        },
+        {
+          "name": "repo_url",
+          "type": "string"
+        },
+        {
+          "name": "image_prompt",
+          "type": "string",
+          "description": "Beschrijving voor een project screenshot/mockup"
+        }
+      ]
+    },
+    {
+      "table_name": "Services",
+      "description": "Wat kun je voor de klant betekenen?",
+      "columns": [
+        {
+          "name": "title",
+          "type": "string",
+          "description": "Dienst naam (bv. 'Web Development')"
+        },
+        {
+          "name": "description",
+          "type": "text",
+          "description": "Uitleg van de dienst"
+        },
+        {
+          "name": "icon_name",
+          "type": "string",
+          "description": "Naam van een icoon (bv. 'Code', 'Pen')"
+        }
+      ]
+    },
+    {
+      "table_name": "Testimonials",
+      "description": "Aanbevelingen van klanten.",
+      "columns": [
+        {
+          "name": "client_name",
+          "type": "string"
+        },
+        {
+          "name": "company",
+          "type": "string"
+        },
+        {
+          "name": "quote",
+          "type": "text",
+          "description": "De aanbeveling"
+        }
+      ]
+    },
+    {
+      "table_name": "Socials",
+      "description": "Links naar sociale media.",
+      "columns": [
+        {
+          "name": "platform",
+          "type": "string",
+          "description": "LinkedIn, GitHub, Twitter, etc."
+        },
+        {
+          "name": "url",
+          "type": "string"
+        }
+      ]
+    }
+  ]
+}

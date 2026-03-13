@@ -1,0 +1,67 @@
+{
+  "blueprint_name": "dentist",
+  "description": "Een gespecialiseerde blueprint voor tandartspraktijken.",
+  "data_structure": [
+    {
+      "table_name": "Praktijk_Info",
+      "columns": [
+        {
+          "name": "naam",
+          "type": "string"
+        },
+        {
+          "name": "adres",
+          "type": "string"
+        },
+        {
+          "name": "telefoon",
+          "type": "string"
+        },
+        {
+          "name": "afspraak_url",
+          "type": "string"
+        },
+        {
+          "name": "hero_image_prompt",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "table_name": "Behandelingen",
+      "columns": [
+        {
+          "name": "naam",
+          "type": "string",
+          "description": "Bv. 'Controle', 'Bleken', 'Implantaat'"
+        },
+        {
+          "name": "omschrijving",
+          "type": "text"
+        },
+        {
+          "name": "prijs_vanaf",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "table_name": "Team",
+      "columns": [
+        {
+          "name": "naam",
+          "type": "string"
+        },
+        {
+          "name": "functie",
+          "type": "string",
+          "description": "Tandarts, Assistent, Preventie-assistent"
+        },
+        {
+          "name": "bio",
+          "type": "text"
+        }
+      ]
+    }
+  ]
+}

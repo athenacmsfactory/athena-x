@@ -1,0 +1,23 @@
+[
+  {
+    "naam": "Sven",
+    "rol": "Zaakvoerder & Colorist",
+    "bio": "Staat al 30 jaar in het vak en is gespecialiseerd in kleurbehandelingen en dameskapsels.",
+    "foto_prompt": "Portrait of a professional male hair stylist",
+    "foto_url": "images/sven.jpg"
+  },
+  {
+    "naam": "Siham",
+    "rol": "Allround Stylist",
+    "bio": "Gespecialiseerd in dames, heren en kinderen, evenals complexe brushing en opsteekkapsels.",
+    "foto_prompt": "Portrait of a professional female hair stylist",
+    "foto_url": "images/siham.jpg"
+  },
+  {
+    "naam": "Alessandro",
+    "rol": "Herenspecialist",
+    "bio": "20 jaar ervaring, gespecialiseerd in herenkapsels en droog knippen.",
+    "foto_prompt": "Portrait of a stylish male barber",
+    "foto_url": "images/alessandro.jpg"
+  }
+]

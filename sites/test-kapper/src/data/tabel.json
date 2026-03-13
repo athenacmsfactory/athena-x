@@ -1,0 +1,12 @@
+[
+  {
+    "Key": "github_user",
+    "Value": "KarelTestSpecial",
+    "Description": "De GitHub gebruikersnaam van de ontwikkelaar."
+  },
+  {
+    "Key": "github_repo_name",
+    "Value": "test-kapper",
+    "Description": "De specifieke repository-naam voor dit project."
+  }
+]

@@ -7,7 +7,7 @@
       "columns": [
         {
           "name": "bedrijfsnaam",
-          "description": "De officiële naam van de zaak ('De Salon')."
+          "description": "De officiële naam van de zaak ('De Schaar')."
         },
         {
           "name": "telefoonnummer",

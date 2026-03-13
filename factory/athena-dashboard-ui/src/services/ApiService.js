@@ -29,6 +29,20 @@ export const ApiService = {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ projectName, commitMsg })
   }).then(res => res.json()),
+
+  linkSheet: (id, sheetUrl) => fetch(`${API_BASE}/sites/${id}/link-sheet`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ sheetUrl })
+  }).then(res => res.json()),
+
+  pullFromSheet: (id) => fetch(`${API_BASE}/sites/${id}/pull-from-sheet`, {
+    method: 'POST'
+  }).then(res => res.json()),
+
+  syncToSheet: (id) => fetch(`${API_BASE}/sites/${id}/sync-to-sheet`, {
+    method: 'POST'
+  }).then(res => res.json()),
   
   // Site Actions
   getThemeInfo: (id) => fetch(`${API_BASE}/sites/${id}/theme-info`).then(res => res.json()),

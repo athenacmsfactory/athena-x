@@ -1,0 +1,17 @@
+[
+  {
+    "label": "Telefoon",
+    "waarde": "09 123 45 67",
+    "field3": 0
+  },
+  {
+    "label": "E-mail",
+    "waarde": "info@deglimlach.be",
+    "field3": 1
+  },
+  {
+    "label": "Openingsuren",
+    "waarde": "Ma-Vr: 08:00 - 18:00",
+    "field3": 2
+  }
+]

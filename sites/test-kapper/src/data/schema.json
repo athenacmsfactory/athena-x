@@ -1,0 +1,56 @@
+{
+  "blueprint_name": "kapper",
+  "description": "Een premium blueprint voor kapperszaken en barbiers.",
+  "data_structure": [
+    {
+      "table_name": "Basisgegevens",
+      "columns": [
+        {"name": "naam", "type": "string"},
+        {"name": "tagline", "type": "string"},
+        {"name": "beschrijving_kort", "type": "text"},
+        {"name": "adres", "type": "string"},
+        {"name": "telefoon", "type": "string"},
+        {"name": "email", "type": "string"},
+        {"name": "boekings_url", "type": "string"},
+        {"name": "hero_image_prompt", "type": "string"},
+        {"name": "foto_url", "type": "string"}
+      ]
+    },
+    {
+      "table_name": "Diensten",
+      "columns": [
+        {"name": "naam", "type": "string"},
+        {"name": "omschrijving", "type": "text"},
+        {"name": "prijs", "type": "string"},
+        {"name": "duur", "type": "string"},
+        {"name": "categorie", "type": "string"},
+        {"name": "foto_url", "type": "string"}
+      ]
+    },
+    {
+      "table_name": "Team",
+      "columns": [
+        {"name": "naam", "type": "string"},
+        {"name": "rol", "type": "string"},
+        {"name": "bio", "type": "text"},
+        {"name": "foto_prompt", "type": "string"},
+        {"name": "foto_url", "type": "string"}
+      ]
+    },
+    {
+      "table_name": "Openingstijden",
+      "columns": [
+        {"name": "dag", "type": "string"},
+        {"name": "uren", "type": "string"}
+      ]
+    },
+    {
+      "table_name": "Reviews",
+      "columns": [
+        {"name": "klant_naam", "type": "string"},
+        {"name": "sterren", "type": "string"},
+        {"name": "tekst", "type": "text"}
+      ]
+    }
+  ]
+}

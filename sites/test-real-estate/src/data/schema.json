@@ -1,0 +1,114 @@
+{
+  "blueprint_name": "real-estate",
+  "description": "Een professionele blueprint voor vastgoedmakelaars en projectontwikkelaars.",
+  "data_structure": [
+    {
+      "table_name": "Agency_Info",
+      "description": "Algemene informatie over het kantoor.",
+      "columns": [
+        {
+          "name": "naam",
+          "type": "string"
+        },
+        {
+          "name": "tagline",
+          "type": "string",
+          "description": "Bv. 'Uw partner in wonen'"
+        },
+        {
+          "name": "beschrijving",
+          "type": "text"
+        },
+        {
+          "name": "adres",
+          "type": "string"
+        },
+        {
+          "name": "telefoon",
+          "type": "string"
+        },
+        {
+          "name": "email",
+          "type": "string"
+        },
+        {
+          "name": "hero_image_prompt",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "table_name": "Panden",
+      "description": "Lijst met huizen, appartementen en gronden.",
+      "columns": [
+        {
+          "name": "titel",
+          "type": "string"
+        },
+        {
+          "name": "prijs",
+          "type": "string"
+        },
+        {
+          "name": "locatie",
+          "type": "string",
+          "description": "Stad of regio"
+        },
+        {
+          "name": "type",
+          "type": "string",
+          "description": "Huis, Appartement, Grond, Handelspand"
+        },
+        {
+          "name": "oppervlakte",
+          "type": "string",
+          "description": "Bv. '150 m²'"
+        },
+        {
+          "name": "slaapkamers",
+          "type": "string"
+        },
+        {
+          "name": "beschrijving",
+          "type": "text"
+        },
+        {
+          "name": "status",
+          "type": "string",
+          "description": "Te koop, Te huur, Verkocht"
+        },
+        {
+          "name": "epc_waarde",
+          "type": "string",
+          "description": "Bv. 'A', 'B', '120 kWh/m²'"
+        },
+        {
+          "name": "image_prompt",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "table_name": "Agenten",
+      "description": "De makelaars van het kantoor.",
+      "columns": [
+        {
+          "name": "naam",
+          "type": "string"
+        },
+        {
+          "name": "functie",
+          "type": "string"
+        },
+        {
+          "name": "telefoon_direct",
+          "type": "string"
+        },
+        {
+          "name": "foto_prompt",
+          "type": "string"
+        }
+      ]
+    }
+  ]
+}

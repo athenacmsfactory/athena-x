@@ -3,6 +3,7 @@ import { ApiService } from './services/ApiService'
 import { useToast } from './services/ToastContext'
 import SiteCard from './components/SiteCard'
 import LegacySiteCard from './components/LegacySiteCard'
+import SheetModal from './components/SheetModal'
 import ServersView from './views/ServersView'
 import ProjectsView from './views/ProjectsView'
 import StorageView from './views/StorageView'
@@ -21,8 +22,11 @@ function App() {
   const [currentView, setCurrentView] = useState('sites')
   const [isGeneratorOpen, setIsGeneratorOpen] = useState(false)
   const [isMarketingOpen, setIsMarketingOpen] = useState(false)
-  const [selectedMarketingSite, setSelectedMarketingSite] = useState('')
+  const [selectedMarketingSite, setSelectedMarketingSite] = useState(null)
+  const [isSheetOpen, setIsSheetOpen] = useState(false)
+  const [selectedSheetSite, setSelectedSheetSite] = useState(null)
   const [isBlogOpen, setIsBlogOpen] = useState(false)
+
   const [selectedBlogSite, setSelectedBlogSite] = useState('')
   
   const [sites, setSites] = useState([])
@@ -165,7 +169,7 @@ function App() {
                           activeServer={activeServers.find(s => s.siteName === site.name)}
                           onRefresh={refreshData}
                           onSEO={(name) => { setSelectedMarketingSite(name); setIsMarketingOpen(true); }}
-                          onBlog={(name) => { setSelectedBlogSite(name); setIsBlogOpen(true); }}
+                          onSheet={(siteObj) => { setSelectedSheetSite(siteObj); setIsSheetOpen(true); }}
                         />
                       ))}
                     </div>
@@ -254,6 +258,7 @@ function App() {
       <GeneratorModal isOpen={isGeneratorOpen} onClose={() => setIsGeneratorOpen(false)} onRefresh={refreshData} />
       <MarketingModal isOpen={isMarketingOpen} siteName={selectedMarketingSite} onClose={() => setIsMarketingOpen(false)} />
       <BlogModal isOpen={isBlogOpen} siteName={selectedBlogSite} onClose={() => setIsBlogOpen(false)} />
+      <SheetModal isOpen={isSheetOpen} site={selectedSheetSite} onClose={() => { setIsSheetOpen(false); refreshData(); }} />
     </div>
   )
 }

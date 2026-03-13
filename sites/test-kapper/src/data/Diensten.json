@@ -1,0 +1,11 @@
+[
+  {"naam": "Knippen & Brushen Kort", "prijs": "€ 75,-", "omschrijving": "Wassen, knippen en brushen voor kort haar.", "categorie": "Voor Haar", "duur": "60 min", "foto_url": "images/haircut-short.jpg"},
+  {"naam": "Knippen & Brushen Medium", "prijs": "€ 85,-", "omschrijving": "Wassen, knippen en brushen voor medium haar.", "categorie": "Voor Haar", "duur": "75 min", "foto_url": "haircut-medium.jpg"},
+  {"naam": "Knippen & Brushen Lang", "prijs": "€ 95,-", "omschrijving": "Wassen, knippen en brushen voor lang haar.", "categorie": "Voor Haar", "duur": "90 min", "foto_url": "haircut-long.jpg"},
+  {"naam": "Knippen & Handdrogen", "prijs": "€ 62,-", "omschrijving": "Wassen, knippen en drogen met de hand.", "categorie": "Voor Haar", "duur": "45 min", "foto_url": "handdry.jpg"},
+  {"naam": "Droog Knippen", "prijs": "€ 43,-", "omschrijving": "Knippen op droog haar.", "categorie": "Voor Haar", "duur": "30 min", "foto_url": "drycut.jpg"},
+  {"naam": "Kleuren", "prijs": "v.a. € 60,-", "omschrijving": "Professionele kleurbehandeling.", "categorie": "Kleuren", "duur": "90 min", "foto_url": "images/color.jpg"},
+  {"naam": "Highlights", "prijs": "v.a. € 85,-", "omschrijving": "Subtiele of opvallende highlights.", "categorie": "Kleuren", "duur": "120 min", "foto_url": "highlights.jpg"},
+  {"naam": "Knippen (Heren)", "prijs": "€ 41,-", "omschrijving": "All-in herensnit.", "categorie": "Voor Hem", "duur": "30 min", "foto_url": "men-cut.jpg"},
+  {"naam": "Droog knippen (Heren)", "prijs": "€ 35,-", "omschrijving": "Droge herensnit.", "categorie": "Voor Hem", "duur": "20 min", "foto_url": "men-drycut.jpg"}
+]

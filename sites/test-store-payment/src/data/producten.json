@@ -1,0 +1,22 @@
+[
+  {
+    "naam": "Luxe Sneakers",
+    "prijs": 129.99,
+    "categorie": "Schoenen",
+    "afbeelding-url": "sneaker.jpg",
+    "populair": "Ja",
+    "nieuw": "Nee",
+    "beschrijving": "Comfortabele sneakers.",
+    "field8": 0
+  },
+  {
+    "naam": "Vintage Hoodie",
+    "prijs": 89.5,
+    "categorie": "Kleding",
+    "afbeelding-url": "hoodie.jpg",
+    "populair": "Nee",
+    "nieuw": "Ja",
+    "beschrijving": "Warme hoodie.",
+    "field8": 1
+  }
+]

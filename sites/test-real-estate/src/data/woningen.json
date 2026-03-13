@@ -1,0 +1,28 @@
+[
+  {
+    "titel": "Villa Zeezicht",
+    "prijs": "€1.250.000",
+    "locatie": "Knokke-Heist",
+    "oppervlakte": "250m²",
+    "slaapkamers": 4,
+    "type": "Villa",
+    "status": "Te Koop",
+    "foto": "villa.jpg",
+    "image_prompt": "Modern white villa",
+    "epc_waarde": "A",
+    "field11": 0
+  },
+  {
+    "titel": "Appartement Duin",
+    "prijs": "€450.000",
+    "locatie": "Oostende",
+    "oppervlakte": "110m²",
+    "slaapkamers": 2,
+    "type": "Appartement",
+    "status": "Verkocht",
+    "foto": "app.jpg",
+    "image_prompt": "Cosy apartment",
+    "epc_waarde": "B",
+    "field11": 1
+  }
+]

@@ -1,0 +1,12 @@
+@import "./modern.css";
+
+/* Medical Specific Overrides & Additions */
+@theme {
+  --color-accent: #0ea5e9; /* Een iets frissere medische blauw */
+}
+
+@layer base {
+  body {
+    @apply selection:bg-accent/20 selection:text-primary;
+  }
+}

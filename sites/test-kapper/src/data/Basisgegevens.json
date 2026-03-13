@@ -1,0 +1,13 @@
+[
+  {
+    "naam": "Soap Antwerp",
+    "tagline": "Een natuurlijke oase van rust in het hartje van de stad",
+    "beschrijving_kort": "Soap ademt passie, vakmanschap en rust. Al meer dan 20 jaar werken we met Aveda-kwaliteitsproducten, die voor 97% uit plantaardige grondstoffen zijn opgebouwd. Dat is niet alleen beter voor je haar, maar ook voor de planeet!",
+    "adres": "Plantinkaai 13, 2000 Antwerpen",
+    "telefoon": "03 232 73 72",
+    "email": "info@soap-antwerp.be",
+    "boekings_url": "https://soap-antwerp.be/",
+    "hero_image_prompt": "Elegant high-end hair salon interior with natural light and Aveda products",
+    "foto_url": "images/salon-hero.jpg"
+  }
+]

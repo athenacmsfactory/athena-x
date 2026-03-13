@@ -56,6 +56,11 @@ export default function LegacySiteCard({ site, activeServer, onRefresh }) {
           <h3 className="font-bold text-white text-[13px] tracking-tight group-hover:text-athena-accent transition-colors truncate">{site.name}</h3>
           <p className="text-[9px] text-slate-500 font-bold uppercase flex items-center gap-2 tracking-tighter">
              <span className={isStatic ? 'text-blue-400/80' : 'text-teal-400/80'}>{isStatic ? 'STATIC SITE' : 'VITE APPLICATION'}</span>
+             {site.deployData?.liveUrl && (
+               <a href={site.deployData.liveUrl} target="_blank" rel="noopener noreferrer" className="text-athena-accent hover:text-white transition-colors" title="Open Live Site">
+                 <span className="text-[9px]">↗️</span>
+               </a>
+             )}
              <span className="font-mono bg-black/30 px-1 rounded text-slate-500">:{activeServer?.port || site.port || '---'}</span>
           </p>
         </div>

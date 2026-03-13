@@ -350,16 +350,6 @@
     "port": 6101
   },
   {
-    "id": "de-salon-site",
-    "name": "de-salon-site",
-    "siteType": "de-salon-type",
-    "generatedAt": "2026-01-22T15:08:39.843Z",
-    "governance_mode": "dev-mode",
-    "repoUrl": "https://github.com/athena-cms-factory/de-salon-site",
-    "liveUrl": "https://athena-cms-factory.github.io/de-salon-site",
-    "port": 5018
-  },
-  {
     "id": "de-schaar-site",
     "name": "de-schaar-site",
     "siteType": "de-schaar-type",

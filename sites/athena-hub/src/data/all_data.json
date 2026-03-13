@@ -323,12 +323,12 @@
       "image": "showcase-athena-pro.jpg"
     },
     {
-      "name": "De Salon",
+      "name": "De Schaar",
       "category": "Beauty & Wellness",
       "description": "Een moderne website voor kapsalons met focus op sfeer en team-presentatie.",
       "link": {
         "label": "BEKIJK PROJECT",
-        "url": "https://athena-cms-factory.github.io/de-salon-site"
+        "url": "https://athena-cms-factory.github.io/de-schaar-site"
       },
       "image": "technische.png"
     },

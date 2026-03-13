@@ -1,0 +1,22 @@
+[
+  {
+    "naam": "Oversized Coat",
+    "prijs": "€450.00",
+    "categorie": "Coats",
+    "afbeelding-url": "coat.jpg",
+    "populair": "Nee",
+    "nieuw": "Ja",
+    "beschrijving": "Wool blend structure.",
+    "field8": 0
+  },
+  {
+    "naam": "Leather Boots",
+    "prijs": "€295.00",
+    "categorie": "Footwear",
+    "afbeelding-url": "boots.jpg",
+    "populair": "Ja",
+    "nieuw": "Nee",
+    "beschrijving": "Handmade in Italy.",
+    "field8": 1
+  }
+]

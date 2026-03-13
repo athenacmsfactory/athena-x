@@ -24,7 +24,7 @@ De tabbladen onderaan uw Google Sheet bepalen de structuur van uw website. Hiero
 
 | Kolomnaam | Beschrijving |
 | :--- | :--- |
-| `bedrijfsnaam` | De officiële naam van de zaak ('De Salon'). |
+| `bedrijfsnaam` | De officiële naam van de zaak ('De Schaar'). |
 | `missie_kern` | De korte kern van de missie ('We care about your hair'). |
 | `missie_uitgebreid` | Het combineren van schoonheid, milieubewustheid en welzijn. |
 | `telefoonnummer` | Het algemene telefoonnummer voor contact en afspraken. |

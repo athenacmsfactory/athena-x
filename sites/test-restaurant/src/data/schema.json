@@ -1,0 +1,101 @@
+{
+  "blueprint_name": "restaurant",
+  "description": "Een sfeervolle blueprint voor restaurants, bistro's en cafés.",
+  "data_structure": [
+    {
+      "table_name": "Restaurant_Info",
+      "description": "Algemene informatie en sfeer.",
+      "columns": [
+        {
+          "name": "naam",
+          "type": "string"
+        },
+        {
+          "name": "keuken_type",
+          "type": "string",
+          "description": "Bv. 'Italiaans', 'Frans-Belgisch'"
+        },
+        {
+          "name": "beschrijving",
+          "type": "text"
+        },
+        {
+          "name": "adres",
+          "type": "string"
+        },
+        {
+          "name": "telefoon",
+          "type": "string"
+        },
+        {
+          "name": "email",
+          "type": "string"
+        },
+        {
+          "name": "reserveren_url",
+          "type": "string"
+        },
+        {
+          "name": "hero_image_prompt",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "table_name": "Menu_Items",
+      "description": "De gerechten op de kaart.",
+      "columns": [
+        {
+          "name": "naam",
+          "type": "string"
+        },
+        {
+          "name": "beschrijving",
+          "type": "text"
+        },
+        {
+          "name": "prijs",
+          "type": "string"
+        },
+        {
+          "name": "categorie",
+          "type": "string",
+          "description": "Bv. 'Voorgerechten', 'Hoofdgerechten', 'Desserts', 'Wijnen'"
+        },
+        {
+          "name": "dieet_info",
+          "type": "string",
+          "description": "Bv. 'Vega', 'Vegan', 'Glutenvrij'"
+        }
+      ]
+    },
+    {
+      "table_name": "Openingstijden",
+      "description": "Wanneer is de keuken open?",
+      "columns": [
+        {
+          "name": "dag",
+          "type": "string"
+        },
+        {
+          "name": "uren",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "table_name": "Socials",
+      "description": "Instagram, Facebook, etc.",
+      "columns": [
+        {
+          "name": "platform",
+          "type": "string"
+        },
+        {
+          "name": "url",
+          "type": "string"
+        }
+      ]
+    }
+  ]
+}

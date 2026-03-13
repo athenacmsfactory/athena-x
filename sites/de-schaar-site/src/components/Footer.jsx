@@ -14,8 +14,8 @@ export default function Footer({ primaryTable, socialData = [], openingData = []
   };
 
   // Zoek velden met verschillende mogelijke aliassen
-  const rawNaam = info.bedrijfsnaam || info.naam_bedrijf || info.naam || info.titel || 'De Salon';
-  const naam = (typeof rawNaam === 'object' && rawNaam !== null) ? (rawNaam.text || rawNaam.title || 'De Salon') : rawNaam;
+  const rawNaam = info.bedrijfsnaam || info.naam_bedrijf || info.naam || info.titel || 'De Schaar';
+  const naam = (typeof rawNaam === 'object' && rawNaam !== null) ? (rawNaam.text || rawNaam.title || 'De Schaar') : rawNaam;
 
   const adres = info.adres || info.address || info.locatie || '';
   const telefoon = info.telefoonnummer || info.telefoon || info.phone || '';

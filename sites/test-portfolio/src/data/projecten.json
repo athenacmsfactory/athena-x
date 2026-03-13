@@ -1,0 +1,20 @@
+[
+  {
+    "titel": "Athena CMS",
+    "categorie": "Tooling",
+    "foto": "athena.jpg",
+    "description": "Een geavanceerd CMS systeem.",
+    "tech_stack": "Node.js, React, Tailwind",
+    "repo_url": "github.com/athena",
+    "field7": 0
+  },
+  {
+    "titel": "Project X",
+    "categorie": "Web Design",
+    "foto": "x.jpg",
+    "description": "Geheim project.",
+    "tech_stack": "Vue, GSAP",
+    "repo_url": "-",
+    "field7": 1
+  }
+]

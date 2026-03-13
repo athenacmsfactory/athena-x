@@ -33,7 +33,7 @@ zzz/
 
 # Site Tester
 factory/test-reports/
-sites/test-*
+# sites/test-*
 
 # Temporary
 .gemini/tmp/
