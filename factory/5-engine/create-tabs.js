@@ -3,7 +3,7 @@ import fs from 'fs';
 import path from 'path';
 
 async function createTabs() {
-    const root = '/home/kareltestspecial/0-IT/2-Productie/athena/athena-x/factory';
+    const root = '/home/kareltestspecial/0-IT/2-Productie/athena-x/factory';
     const auth = new google.auth.GoogleAuth({
         keyFile: path.join(root, 'service-account.json'),
         scopes: ['https://www.googleapis.com/auth/spreadsheets'],

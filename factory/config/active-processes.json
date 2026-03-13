@@ -4,20 +4,20 @@
     "id": "athena-dock",
     "type": "dock",
     "startTime": "2026-03-12T17:37:19.695Z",
-    "logFile": "/home/kareltestspecial/0-IT/2-Productie/athena/athena-x/factory/output/logs/athena-dock-dock.log"
+    "logFile": "/home/kareltestspecial/0-IT/2-Productie/athena-x/factory/output/logs/athena-dock-dock.log"
   },
   "5003": {
     "pid": 16255,
     "id": "layout-editor",
     "type": "editor",
     "startTime": "2026-03-12T18:24:34.949Z",
-    "logFile": "/home/kareltestspecial/0-IT/2-Productie/athena/athena-x/factory/output/logs/layout-editor-editor.log"
+    "logFile": "/home/kareltestspecial/0-IT/2-Productie/athena-x/factory/output/logs/layout-editor-editor.log"
   },
   "5004": {
     "pid": 9048,
     "id": "media-mapper",
     "type": "editor",
     "startTime": "2026-03-12T18:03:47.136Z",
-    "logFile": "/home/kareltestspecial/0-IT/2-Productie/athena/athena-x/factory/output/logs/media-mapper-editor.log"
+    "logFile": "/home/kareltestspecial/0-IT/2-Productie/athena-x/factory/output/logs/media-mapper-editor.log"
   }
 }
