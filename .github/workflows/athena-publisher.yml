@@ -109,14 +109,16 @@ jobs:
           SPLIT_SHA=$(git subtree split --prefix=$PREFIX $BRANCH)
           git push "$REMOTE_URL" "$SPLIT_SHA":refs/heads/main --force
 
+          # KICKSTART gh-pages (Alleen als deze niet bestaat)
           if ! gh api repos/$TARGET_REPO/branches/gh-pages >/dev/null 2>&1; then
             echo "🌱 Creating gh-pages branch..."
-            gh api --method POST /repos/$TARGET_REPO/git/refs -f ref='refs/heads/gh-pages' -f sha="$SPLIT_SHA"
+            gh api --method POST /repos/$TARGET_REPO/git/refs -f ref='refs/heads/gh-pages' -f sha="$SPLIT_SHA" || echo "Branch bestaat al of fout"
             sleep 10
           fi
 
+          # FAILSAFE Pages activatie (Alleen als deze niet aan staat)
           if ! gh api repos/$TARGET_REPO/pages >/dev/null 2>&1; then
             echo "🌐 Activating GitHub Pages..."
             sleep 5
-            gh api --method POST /repos/$TARGET_REPO/pages -f source='{"branch": "gh-pages", "path": "/"}'
+            gh api --method POST /repos/$TARGET_REPO/pages -f source='{"branch": "gh-pages", "path": "/"}' || echo "Pages al actief of fout"
           fi
