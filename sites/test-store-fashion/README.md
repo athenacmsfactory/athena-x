@@ -1,1 +1,1 @@
-https://athena-cms-factory.github.io/test-store-fashion
+https://ath-x.github.io/test-store-fashion

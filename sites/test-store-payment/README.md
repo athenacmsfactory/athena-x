@@ -1,1 +1,1 @@
-https://athena-cms-factory.github.io/test-store-payment
+https://ath-x.github.io/test-store-payment

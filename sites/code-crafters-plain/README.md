@@ -1,1 +1,1 @@
-https://athena-cms-factory.github.io/code-crafters
+https://ath-x.github.io/code-crafters

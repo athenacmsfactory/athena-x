@@ -1,1 +1,1 @@
-https://athena-cms-factory.github.io/urban-oasis-classic
+https://ath-x.github.io/urban-oasis-classic
