@@ -3,4 +3,4 @@
 🚀 **Live Site:** [https://ath-x.github.io/de-schaar-site/](https://ath-x.github.io/de-schaar-site/)
 
 ---
-Built with **Athena CMS Factory** (Monorepo Workflow).
+Built with **Athena CMS Factory** (Monorepo Workflow). 
